@@ -1,0 +1,51 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+<PropertyGroup>
+    <Name>Xml_stub</Name>
+    <ProjectFile>dotNetMF_Stub.proj</ProjectFile>
+    <Version>4.3.1.0</Version>
+    <Platform>SmartFusion2</Platform>
+    <PlatformFamily>ARM</PlatformFamily>
+    <InstructionSet>THUMB2</InstructionSet>
+    <Compiler>GCC</Compiler>
+    <CompilerVersion>GCC5.4</CompilerVersion>
+    <TargetLocation>FLASH</TargetLocation>
+    <MemoryFlavor>FLASH</MemoryFlavor>
+    <Processor>M2S0xx</Processor>
+    <TargetPlatform>SmartFusion2</TargetPlatform>
+    <Codebase>SmartFusion2</Codebase>
+    <CodebaseType>Native</CodebaseType>
+    <Company>The Samraksh Company</Company>
+    <Copyright>Copyright (C) 2015 Samraksh and Microsoft.</Copyright>
+    <FileVersion>4.3.1.0</FileVersion>
+    <Configuration>RTM</Configuration>
+    <Product>Microsoft .NET Micro Framework</Product>
+    <Trademark>.NET is a trademark of Microsoft Corporation.</Trademark>
+    <ProjectPath>$(SPOCLIENT)\CLR\Core\Xml\dotNetMF_Stub.proj</ProjectPath>
+    <AssemblyName>Xml_stub</AssemblyName>
+    <ProjectGuid>083C7896-3659-47d2-8B15-4930FB182D20</ProjectGuid>
+    <Description>Xml stub library</Description>
+    <Level>CLR</Level>
+    <LibraryFile>Xml_stub.$(LIB_EXT)</LibraryFile>
+    <ManifestFile>Xml_stub.$(LIB_EXT).manifest</ManifestFile>
+    <Groups>Xml</Groups>
+    <PlatformIndependent>True</PlatformIndependent>
+    <Required>False</Required>
+    <IgnoreDefaultLibPath>False</IgnoreDefaultLibPath>
+    <IsStub>True</IsStub>
+    <LibraryCategory><MFComponent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="XML_core_CLR" Guid="{206AD820-45A4-4EAD-8B31-03599CDD4C6F}" ProjectPath="$(SPOCLIENT)\Framework\Features\XML_core_CLR.libcatproj" Conditional="" xmlns=""><VersionDependency xmlns="http://schemas.microsoft.com/netmf/InventoryFormat.xsd"><Major>4</Major><Minor>0</Minor><Revision>0</Revision><Build>0</Build><Extra /><Date>2010-06-02</Date><Author /></VersionDependency><ComponentType xmlns="http://schemas.microsoft.com/netmf/InventoryFormat.xsd">LibraryCategory</ComponentType></MFComponent></LibraryCategory>
+    <IsSolutionWizardVisible>True</IsSolutionWizardVisible>
+    <HasLibraryCategory>True</HasLibraryCategory>
+    <Directory>CLR\Core\Xml</Directory>
+    <OutputType>Library</OutputType>
+    <HasAuxTargets>true</HasAuxTargets>
+    <NoOptForParserTarget>Release</NoOptForParserTarget>
+    <PlatformIndependentBuild>true</PlatformIndependentBuild>
+    <Version>4.0.0.0</Version>
+</PropertyGroup>
+
+<ItemGroup>
+    <ObjectFile Include="D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\ANY_MEDIA\RTM\obj\CLR\Core\Xml\Xml_stub.obj" />
+</ItemGroup>
+
+</Project>

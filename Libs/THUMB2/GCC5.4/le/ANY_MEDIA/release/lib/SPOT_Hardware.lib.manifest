@@ -1,0 +1,59 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+<PropertyGroup>
+    <Name>SPOT_Hardware</Name>
+    <ProjectFile>dotNetMF.proj</ProjectFile>
+    <Version>4.3.1.0</Version>
+    <Platform>SmartFusion2</Platform>
+    <PlatformFamily>ARM</PlatformFamily>
+    <InstructionSet>THUMB2</InstructionSet>
+    <Compiler>GCC</Compiler>
+    <CompilerVersion>GCC5.4</CompilerVersion>
+    <TargetLocation>FLASH</TargetLocation>
+    <MemoryFlavor>FLASH</MemoryFlavor>
+    <Processor>M2S0xx</Processor>
+    <TargetPlatform>SmartFusion2</TargetPlatform>
+    <Codebase>SmartFusion2</Codebase>
+    <CodebaseType>Native</CodebaseType>
+    <Company>The Samraksh Company</Company>
+    <Copyright>Copyright (C) 2015 Samraksh and Microsoft.</Copyright>
+    <FileVersion>4.3.1.0</FileVersion>
+    <Configuration>Release</Configuration>
+    <Product>Microsoft .NET Micro Framework</Product>
+    <Trademark>.NET is a trademark of Microsoft Corporation.</Trademark>
+    <AssemblyName>SPOT_Hardware</AssemblyName>
+    <ProjectGuid>14F1BE66-A65F-4489-89DD-BB94DD2C9063</ProjectGuid>
+    <Description>Hardware interop library</Description>
+    <Level>CLR</Level>
+    <LibraryFile>SPOT_Hardware.$(LIB_EXT)</LibraryFile>
+    <ProjectPath>$(SPOCLIENT)\CLR\Libraries\SPOT_Hardware\dotNetMF.proj</ProjectPath>
+    <ManifestFile>SPOT_Hardware.$(LIB_EXT).manifest</ManifestFile>
+    <Groups>Hardware</Groups>
+    <LibraryCategory><MFComponent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="SPOT_Hardware_CLR" Guid="{0403BA1B-73CE-45F8-8C65-0BBA5E1F7176}" ProjectPath="" xmlns=""><VersionDependency xmlns="http://schemas.microsoft.com/netmf/InventoryFormat.xsd"><Major>4</Major><Minor>0</Minor><Revision>0</Revision><Build>0</Build><Extra /><Date>2009-04-30</Date></VersionDependency></MFComponent></LibraryCategory>
+    <PlatformIndependent>True</PlatformIndependent>
+    <Required>False</Required>
+    <IgnoreDefaultLibPath>False</IgnoreDefaultLibPath>
+    <IsStub>False</IsStub>
+    <Directory>CLR\Libraries\SPOT_Hardware</Directory>
+    <OutputType>Library</OutputType>
+    <VCProjName>Lib_SPOT_Hardware</VCProjName>
+    <NoOptForParserTarget>Release</NoOptForParserTarget>
+    <PlatformIndependentBuild>true</PlatformIndependentBuild>
+    <Version>4.0.0.0</Version>
+</PropertyGroup>
+
+<ItemGroup>
+    <ObjectFile Include="D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\ANY_MEDIA\release\obj\CLR\Libraries\SPOT_Hardware\Spot_Hardware_fastcompile.obj" />
+</ItemGroup>
+
+<Import Project="$(SPOCLIENT)\Framework\Features\Analog_HAL.libcatproj"/>
+<Import Project="$(SPOCLIENT)\Framework\Features\Analog_DA_HAL.libcatproj"/>
+<Import Project="$(SPOCLIENT)\Framework\Features\LargeBuffer_HAL.libcatproj"/>
+<Import Project="$(SPOCLIENT)\Framework\Features\VirtualKey_HAL.libcatproj"/>
+<Import Project="$(SPOCLIENT)\Framework\Features\I2C_PAL.libcatproj"/>
+<Import Project="$(SPOCLIENT)\Framework\Features\I2C_HAL.libcatproj"/>
+<Import Project="$(SPOCLIENT)\Framework\Features\BatteryCharger_HAL.libcatproj"/>
+<Import Project="$(SPOCLIENT)\Framework\Features\BatteryMeasurement_HAL.libcatproj"/>
+<Import Project="$(SPOCLIENT)\Framework\Features\SPI_HAL.libcatproj"/>
+<Import Project="$(SPOCLIENT)\Framework\Features\USART_HAL.libcatproj"/>
+</Project>

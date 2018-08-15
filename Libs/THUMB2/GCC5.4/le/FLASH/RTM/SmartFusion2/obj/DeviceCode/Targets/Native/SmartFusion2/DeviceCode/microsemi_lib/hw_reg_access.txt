@@ -1,0 +1,207 @@
+ARM GAS  D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S 			page 1
+
+
+   1              	/*******************************************************************************
+   2              	 * (c) Copyright 2008-2013 Microsemi SoC Products Group. All rights reserved.
+   3              	 * 
+   4              	 * SVN $Revision: 6667 $
+   5              	 * SVN $Date: 2014-07-04 11:48:08 +0100 (Fri, 04 Jul 2014) $
+   6              	 */
+   7              	
+   8              	    .text
+   9              	    .global HW_set_32bit_reg
+  10              	    .global HW_get_32bit_reg
+  11              	    .global HW_set_32bit_reg_field
+  12              	    .global HW_get_32bit_reg_field
+  13              	    .global HW_set_16bit_reg
+  14              	    .global HW_get_16bit_reg
+  15              	    .global HW_set_16bit_reg_field
+  16              	    .global HW_get_16bit_reg_field
+  17              	    .global HW_set_8bit_reg
+  18              	    .global HW_get_8bit_reg
+  19              	    .global HW_set_8bit_reg_field
+  20              	    .global HW_get_8bit_reg_field
+  21              	    .code 16
+  22              	    .syntax unified
+  23              	    .type HW_set_32bit_reg, function
+  24              	    .type HW_get_32bit_reg, function
+  25              	    .type HW_set_32bit_reg_field, function
+  26              	    .type HW_get_32bit_reg_field, function
+  27              	    .type HW_set_16bit_reg, function
+  28              	    .type HW_get_16bit_reg, function
+  29              	    .type HW_set_16bit_reg_field, function
+  30              	    .type HW_get_16bit_reg_field, function
+  31              	    .type HW_set_8bit_reg, function
+  32              	    .type HW_get_8bit_reg, function
+  33              	    .type HW_set_8bit_reg_field, function
+  34              	    .type HW_get_8bit_reg_field, function
+  35              	
+  36              	/*------------------------------------------------------------------------------
+  37              	 * R0:   addr_t reg_addr
+  38              	 * R1:   uint32_t value
+  39              	 */
+  40              	HW_set_32bit_reg:
+  41 0000 0160     	    STR R1, [R0]
+  42 0002 7047     	    BX LR
+  43              	
+  44              	/*------------------------------------------------------------------------------
+  45              	 * R0:   addr_t reg_addr
+  46              	 */      
+  47              	HW_get_32bit_reg:
+  48 0004 0068     	    LDR R0, [R0]
+  49 0006 7047     	    BX LR
+  50              	
+  51              	/*------------------------------------------------------------------------------
+  52              	 * R0:   addr_t reg_addr
+  53              	 * R1:   int_fast8_t shift
+  54              	 * R2:   uint32_t mask
+  55              	 * R3:   uint32_t value
+  56              	 */
+  57              	HW_set_32bit_reg_field:
+ARM GAS  D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S 			page 2
+
+
+  58 0008 0EB5     	    PUSH {R1,R2,R3,LR}
+  59 000a 03FA01F3 	    LSL.W R3, R3, R1
+  60 000e 03EA0203 	    AND.W R3, R3, R2
+  61 0012 0168     	    LDR R1, [R0]
+  62 0014 6FEA0202 	    MVN.W R2, R2
+  63 0018 01EA0201 	    AND.W R1, R1, R2
+  64 001c 41EA0301 	    ORR.W R1, R1, R3
+  65 0020 0160     	    STR R1, [R0]
+  66 0022 0EBD     	    POP {R1,R2,R3,PC}
+  67              	
+  68              	/*------------------------------------------------------------------------------
+  69              	 * R0:   addr_t reg_addr
+  70              	 * R1:   int_fast8_t shift
+  71              	 * R2:   uint32_t mask
+  72              	 */
+  73              	HW_get_32bit_reg_field:
+  74 0024 0068     	    LDR R0, [R0]
+  75 0026 00EA0200 	    AND.W R0, R0, R2
+  76 002a 20FA01F0 	    LSR.W R0, R0, R1
+  77 002e 7047     	    BX LR
+  78              	
+  79              	/*------------------------------------------------------------------------------
+  80              	 * R0:   addr_t reg_addr
+  81              	 * R1:   uint_fast16_t value
+  82              	 */
+  83              	HW_set_16bit_reg:
+  84 0030 0180     	    STRH R1, [R0]
+  85 0032 7047     	    BX LR
+  86              	        
+  87              	/*------------------------------------------------------------------------------
+  88              	 * R0:   addr_t reg_addr
+  89              	 */
+  90              	HW_get_16bit_reg:
+  91 0034 0088     	    LDRH R0, [R0]
+  92 0036 7047     	    BX LR
+  93              	
+  94              	/*------------------------------------------------------------------------------
+  95              	 * R0:   addr_t reg_addr
+  96              	 * R1:   int_fast8_t shift
+  97              	 * R2:   uint_fast16_t mask
+  98              	 * R3:   uint_fast16_t value
+  99              	 */
+ 100              	HW_set_16bit_reg_field:
+ 101 0038 0EB5     	    PUSH {R1,R2,R3,LR}
+ 102 003a 03FA01F3 	    LSL.W R3, R3, R1
+ 103 003e 03EA0203 	    AND.W R3, R3, R2
+ 104 0042 0188     	    LDRH R1, [R0]
+ 105 0044 6FEA0202 	    MVN.W R2, R2
+ 106 0048 01EA0201 	    AND.W R1, R1, R2
+ 107 004c 41EA0301 	    ORR.W R1, R1, R3
+ 108 0050 0180     	    STRH R1, [R0]
+ 109 0052 0EBD     	    POP {R1,R2,R3,PC}
+ 110              	
+ 111              	/*------------------------------------------------------------------------------
+ 112              	 * R0:   addr_t reg_addr
+ 113              	 * R1:   int_fast8_t shift
+ 114              	 * R2:   uint_fast16_t mask
+ARM GAS  D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S 			page 3
+
+
+ 115              	 */
+ 116              	HW_get_16bit_reg_field:
+ 117 0054 0088     	    LDRH R0, [R0]
+ 118 0056 00EA0200 	    AND.W R0, R0, R2
+ 119 005a 20FA01F0 	    LSR.W R0, R0, R1
+ 120 005e 7047     	    BX LR
+ 121              	
+ 122              	/*------------------------------------------------------------------------------
+ 123              	 * R0:   addr_t reg_addr
+ 124              	 * R1:   uint_fast8_t value
+ 125              	 */
+ 126              	HW_set_8bit_reg:
+ 127 0060 0170     	    STRB R1, [R0]
+ 128 0062 7047     	    BX LR
+ 129              	        
+ 130              	/*------------------------------------------------------------------------------
+ 131              	 * R0:   addr_t reg_addr
+ 132              	 */
+ 133              	HW_get_8bit_reg:
+ 134 0064 0078     	    LDRB R0, [R0]
+ 135 0066 7047     	    BX LR
+ 136              	
+ 137              	/*------------------------------------------------------------------------------
+ 138              	 * R0:   addr_t reg_addr,
+ 139              	 * R1:   int_fast8_t shift
+ 140              	 * R2:   uint_fast8_t mask
+ 141              	 * R3:   uint_fast8_t value
+ 142              	 */
+ 143              	HW_set_8bit_reg_field:
+ 144 0068 0EB5     	    PUSH {R1,R2,R3,LR}
+ 145 006a 03FA01F3 	    LSL.W R3, R3, R1
+ 146 006e 03EA0203 	    AND.W R3, R3, R2
+ 147 0072 0178     	    LDRB R1, [R0]
+ 148 0074 6FEA0202 	    MVN.W R2, R2
+ 149 0078 01EA0201 	    AND.W R1, R1, R2
+ 150 007c 41EA0301 	    ORR.W R1, R1, R3
+ 151 0080 0170     	    STRB R1, [R0]
+ 152 0082 0EBD     	    POP {R1,R2,R3,PC}
+ 153              	
+ 154              	/*------------------------------------------------------------------------------
+ 155              	 * R0:   addr_t reg_addr
+ 156              	 * R1:   int_fast8_t shift
+ 157              	 * R2:   uint_fast8_t mask
+ 158              	 */
+ 159              	HW_get_8bit_reg_field:
+ 160 0084 0078     	    LDRB R0, [R0]
+ 161 0086 00EA0200 	    AND.W R0, R0, R2
+ 162 008a 20FA01F0 	    LSR.W R0, R0, R1
+ 163 008e 7047     	    BX LR
+ 164              	
+ 165              	.end
+ARM GAS  D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000001 BUILD_RTM
+                            *ABS*:00000001 TARGETLOCATION_FLASH
+                            *ABS*:2000fff8 SAM_PROFILER_BUFFER_END
+                            *ABS*:2000ff00 SAM_PROFILER_BUFFER_BEGIN
+                            *ABS*:2000fff8 SAM_CUSTOM_HEAP_END
+                            *ABS*:2000fe00 SAM_CUSTOM_HEAP_BEGIN
+                            *ABS*:2000fdf8 SAM_HEAP_END
+                            *ABS*:200085ac SAM_HEAP_BEGIN
+                            *ABS*:20001000 SAM_STACK_TOP
+                            *ABS*:20000000 SAM_STACK_BOTTOM
+                            *ABS*:00000001 SAM_APP_TINYCLR
+                            *ABS*:00000001 PLATFORM_ARM_SmartFusion2
+                            *ABS*:00000001 PLATFORM_ARM_M2S0xx
+                            *ABS*:00000001 COMPILE_THUMB2
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:40     .text:00000000 HW_set_32bit_reg
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:47     .text:00000004 HW_get_32bit_reg
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:57     .text:00000008 HW_set_32bit_reg_field
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:73     .text:00000024 HW_get_32bit_reg_field
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:83     .text:00000030 HW_set_16bit_reg
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:90     .text:00000034 HW_get_16bit_reg
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:100    .text:00000038 HW_set_16bit_reg_field
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:116    .text:00000054 HW_get_16bit_reg_field
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:126    .text:00000060 HW_set_8bit_reg
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:133    .text:00000064 HW_get_8bit_reg
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:143    .text:00000068 HW_set_8bit_reg_field
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:159    .text:00000084 HW_get_8bit_reg_field
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hw_reg_access.S:41     .text:00000000 $t
+
+NO UNDEFINED SYMBOLS

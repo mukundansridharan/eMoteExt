@@ -1,0 +1,54 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+<PropertyGroup>
+    <Name>MFUpdate_PAL_stub</Name>
+    <ProjectFile>dotnetmf.proj</ProjectFile>
+    <Version>4.3.1.0</Version>
+    <Platform>SmartFusion2</Platform>
+    <PlatformFamily>ARM</PlatformFamily>
+    <InstructionSet>THUMB2</InstructionSet>
+    <Compiler>GCC</Compiler>
+    <CompilerVersion>GCC5.4</CompilerVersion>
+    <TargetLocation>FLASH</TargetLocation>
+    <MemoryFlavor>FLASH</MemoryFlavor>
+    <Processor>M2S0xx</Processor>
+    <TargetPlatform>SmartFusion2</TargetPlatform>
+    <Codebase>SmartFusion2</Codebase>
+    <CodebaseType>Native</CodebaseType>
+    <Company>The Samraksh Company</Company>
+    <Copyright>Copyright (C) 2015 Samraksh and Microsoft.</Copyright>
+    <FileVersion>4.3.1.0</FileVersion>
+    <Configuration>Release</Configuration>
+    <Product>Microsoft .NET Micro Framework</Product>
+    <Trademark>.NET is a trademark of Microsoft Corporation.</Trademark>
+    <AssemblyName>MFUpdate_PAL_stub</AssemblyName>
+    <ProjectGuid>{B4EEEADA-9907-4558-83A1-7DDF56E1CEAF}</ProjectGuid>
+    <Description>MFUpdate PAL stub component</Description>
+    <Level>HAL</Level>
+    <LibraryFile>MFUpdate_PAL_stub.$(LIB_EXT)</LibraryFile>
+    <ProjectPath>$(SPOCLIENT)\DeviceCode\PAL\MFUpdate\stubs\dotnetmf.proj</ProjectPath>
+    <ManifestFile>MFUpdate_PAL_stub.$(LIB_EXT).manifest</ManifestFile>
+    <LibraryCategory><MFComponent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="MFUpdate_PAL" Guid="{6F23FB66-9ED7-4320-9F1F-FD9C36E7DDC7}" ProjectPath="$(SPOCLIENT)\Framework\Features\MFUpdate_PAL.libcatproj" Conditional="" xmlns=""><VersionDependency xmlns="http://schemas.microsoft.com/netmf/InventoryFormat.xsd"><Major>4</Major><Minor>0</Minor><Revision>0</Revision><Build>0</Build><Extra /><Date>2011-09-15</Date><Author /></VersionDependency><ComponentType xmlns="http://schemas.microsoft.com/netmf/InventoryFormat.xsd">LibraryCategory</ComponentType></MFComponent></LibraryCategory>
+    <PlatformIndependent>False</PlatformIndependent>
+    <Required>False</Required>
+    <IgnoreDefaultLibPath>False</IgnoreDefaultLibPath>
+    <IsStub>True</IsStub>
+    <IsSolutionWizardVisible>True</IsSolutionWizardVisible>
+    <HasLibraryCategory>True</HasLibraryCategory>
+    <AssemblyName>MFUpdate_PAL_stub</AssemblyName>
+    <ProjectGuid>{B4EEEADA-9907-4558-83A1-7DDF56E1CEAF}</ProjectGuid>
+    <Description>MFUpdate PAL stub component</Description>
+    <Level>HAL</Level>
+    <LibraryFile>MFUpdate_PAL_stub.$(LIB_EXT)</LibraryFile>
+    <ProjectPath>$(SPOCLIENT)\DeviceCode\PAL\MFUpdate\stubs\dotnetmf.proj</ProjectPath>
+    <Directory>DeviceCode\PAL\MFUpdate\stubs</Directory>
+    <OutputType>Library</OutputType>
+    <PlatformIndependentBuild>false</PlatformIndependentBuild>
+    <Version>4.0.0.0</Version>
+</PropertyGroup>
+
+<ItemGroup>
+    <ObjectFile Include="D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\release\SmartFusion2\obj\DeviceCode\PAL\MFUpdate\stubs\MFUpdate_stub.obj" />
+</ItemGroup>
+
+</Project>

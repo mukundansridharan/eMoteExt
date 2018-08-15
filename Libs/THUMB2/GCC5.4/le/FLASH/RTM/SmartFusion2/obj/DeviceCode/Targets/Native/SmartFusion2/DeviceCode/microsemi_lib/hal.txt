@@ -1,0 +1,66 @@
+ARM GAS  D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hal.S 			page 1
+
+
+   1              	#-------------------------------------------------------------------------------
+   2              	# (c) Copyright 2007-2013 Microsemi SoC Products Group. All rights reserved.
+   3              	# 
+   4              	# Interrupt disabling/restoration for critical section protection.
+   5              	#
+   6              	# SVN $Revision: 6667 $
+   7              	# SVN $Date: 2014-07-04 11:48:08 +0100 (Fri, 04 Jul 2014) $
+   8              	#
+   9              	.section .text
+  10              	.globl HAL_get_interrupts
+  11              	.globl HAL_disable_interrupts
+  12              	.globl HAL_restore_interrupts
+  13              	#.code 16
+  14              	#.syntax unified
+  15              	.type HAL_get_interrupts, function
+  16              	.type HAL_disable_interrupts, function
+  17              	.type HAL_restore_interrupts, function
+  18              	#-------------------------------------------------------------------------------
+  19              	# 
+  20              	#
+  21              	HAL_get_interrupts:
+  22 0000 EFF31080 	    mrs r0, PRIMASK
+  23              	
+  24              	#-------------------------------------------------------------------------------
+  25              	#
+  26              	#
+  27              	HAL_disable_interrupts:    
+  28 0004 EFF31080 	    mrs r0, PRIMASK
+  29 0008 72B6     	    cpsid I
+  30 000a 7047     	    bx lr
+  31              	
+  32              	#-------------------------------------------------------------------------------
+  33              	#
+  34              	#
+  35              	HAL_restore_interrupts:    
+  36 000c 80F31088 	    msr PRIMASK, r0
+  37 0010 7047     	    bx lr
+  38              	
+  39              	.end
+ARM GAS  D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hal.S 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000001 BUILD_RTM
+                            *ABS*:00000001 TARGETLOCATION_FLASH
+                            *ABS*:2000fff8 SAM_PROFILER_BUFFER_END
+                            *ABS*:2000ff00 SAM_PROFILER_BUFFER_BEGIN
+                            *ABS*:2000fff8 SAM_CUSTOM_HEAP_END
+                            *ABS*:2000fe00 SAM_CUSTOM_HEAP_BEGIN
+                            *ABS*:2000fdf8 SAM_HEAP_END
+                            *ABS*:200085ac SAM_HEAP_BEGIN
+                            *ABS*:20001000 SAM_STACK_TOP
+                            *ABS*:20000000 SAM_STACK_BOTTOM
+                            *ABS*:00000001 SAM_APP_TINYCLR
+                            *ABS*:00000001 PLATFORM_ARM_SmartFusion2
+                            *ABS*:00000001 PLATFORM_ARM_M2S0xx
+                            *ABS*:00000001 COMPILE_THUMB2
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hal.S:21     .text:00000000 HAL_get_interrupts
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hal.S:27     .text:00000004 HAL_disable_interrupts
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hal.S:35     .text:0000000c HAL_restore_interrupts
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\microsemi_lib\hal\CortexM3\GNU\hal.S:22     .text:00000000 $t
+
+NO UNDEFINED SYMBOLS

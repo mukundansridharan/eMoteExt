@@ -1,0 +1,114 @@
+ARM GAS  D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s 			page 1
+
+
+   1              	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+   2              	@ Copyright (c) Microsoft Corporation.  All rights reserved.
+   3              	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+   4              	
+   5              	    .cpu cortex-m3
+   6              	    .code 16
+   7              	
+   8              	    .global  EntryPoint
+   9              	
+  10              	    .ifdef HAL_REDUCESIZE
+  11              	    .extern BootEntryLoader
+  12              	    .else
+  13              	    .extern BootEntry
+  14              	    .endif
+  15              	
+  16              	    .extern  VectorRelocate
+  17              	    .extern  BootstrapCode
+  18              	    @ .extern  Boot_Vectors         @ Boot_Vectors is obsolete.  Ignore the original warning commen
+  19              		.extern  ARM_Vectors
+  20              		@ .extern  Prot_Bytes see below
+  21              		.extern  SystemInit_ExtMemCtl
+  22              	
+  23              	
+  24              	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  25              	
+  26              	    .section SectionForStackBottom,       "a", %progbits
+  27              	StackBottom:
+  28 0000 00000000 	    .word   0
+  29              	    .section SectionForStackTop,          "a", %progbits
+  30              	StackTop:
+  31 0000 00000000 	    .word   0
+  32              	    .section SectionForHeapBegin,         "a", %progbits
+  33              	HeapBegin:
+  34 0000 00000000 	    .word   0
+  35              	    .section SectionForHeapEnd,           "a", %progbits
+  36              	HeapEnd:
+  37 0000 00000000 	    .word   0
+  38              	    .section SectionForCustomHeapBegin,   "a", %progbits
+  39              	CustomHeapBegin:
+  40 0000 00000000 	    .word   0
+  41              	    .section SectionForCustomHeapEnd,     "a", %progbits
+  42              	CustomHeapEnd:
+  43 0000 00000000 	    .word   0
+  44              	
+  45              	    .global StackBottom
+  46              	    .global StackTop
+  47              	    .global HeapBegin
+  48              	    .global HeapEnd
+  49              	    .global CustomHeapBegin
+  50              	    .global CustomHeapEnd
+  51              	
+  52              	    .section i.EntryPoint, "xa", %progbits
+  53              	
+  54              	    @ signature & mini vector table
+  55 0000 EFBEADDE 	    .word   0xDEADBEEF
+  56 0004 00000000 	    .word   EntryPoint
+  57              	
+ARM GAS  D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s 			page 2
+
+
+  58              	    @ have to reference them otherwise they dont get linked in
+  59              	    @ .word   Boot_Vectors @ Boot_Vectors is obsolete.
+  60 0008 00000000 	    .word   ARM_Vectors
+  61              	    @ .word   Prot_Bytes I don't know what this is supposed to do...
+  62              	
+  63              	    .thumb_func
+  64              	EntryPoint:
+  65              		@Set stack pointer
+  66              		@bl SystemInit_ExtMemCtl
+  67 000c 0448     	    LDR r0, =StackTop   @ new SYS stack pointer for a full decrementing stack. must explicitly set 
+  68 000e 80F30888 	    MSR msp, r0         @ stack top
+  69 0012 FFF7FEFF 		bl VectorRelocate
+  70 0016 FFF7FEFF 	    bl BootstrapCode
+  71 001a FFF7FEFF 	    bl BootEntry
+  72 001e 7047     	    bx	lr
+  73              	
+  74 0020 00000000 		.end
+ARM GAS  D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000001 BUILD_RTM
+                            *ABS*:00000001 TARGETLOCATION_FLASH
+                            *ABS*:2000fff8 SAM_PROFILER_BUFFER_END
+                            *ABS*:2000ff00 SAM_PROFILER_BUFFER_BEGIN
+                            *ABS*:2000fff8 SAM_CUSTOM_HEAP_END
+                            *ABS*:2000fe00 SAM_CUSTOM_HEAP_BEGIN
+                            *ABS*:2000fdf8 SAM_HEAP_END
+                            *ABS*:200085ac SAM_HEAP_BEGIN
+                            *ABS*:20001000 SAM_STACK_TOP
+                            *ABS*:20000000 SAM_STACK_BOTTOM
+                            *ABS*:00000001 SAM_APP_TINYCLR
+                            *ABS*:00000001 PLATFORM_ARM_SmartFusion2
+                            *ABS*:00000001 PLATFORM_ARM_M2S0xx
+                            *ABS*:00000001 COMPILE_THUMB2
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s:64     i.EntryPoint:0000000c EntryPoint
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s:27     SectionForStackBottom:00000000 StackBottom
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s:30     SectionForStackTop:00000000 StackTop
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s:33     SectionForHeapBegin:00000000 HeapBegin
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s:36     SectionForHeapEnd:00000000 HeapEnd
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s:39     SectionForCustomHeapBegin:00000000 CustomHeapBegin
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s:42     SectionForCustomHeapEnd:00000000 CustomHeapEnd
+                     i.EntryPoint:00000000 $d
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s:67     i.EntryPoint:0000000c $t
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Targets\Native\SmartFusion2\DeviceCode\cores\arm\AssemblyCode\thumb2\GNU_S\FirstEntry.s:74     i.EntryPoint:00000020 $d
+
+UNDEFINED SYMBOLS
+ARM_Vectors
+VectorRelocate
+BootstrapCode
+BootEntry

@@ -1,0 +1,18 @@
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Directory>DeviceCode\Targets\Native\Interop\ExampleLib</Directory>
+    <AssemblyName>ExampleLib</AssemblyName>
+  </PropertyGroup>
+  <Import Project="$(SPOCLIENT)\tools\targets\Microsoft.SPOT.System.Settings" />
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+<ItemGroup>
+<HFile Include="ExampleLib.h" />
+<Compile Include="ExampleLib.cpp" />
+<Compile Include="ExampleLib_ExampleLib_Exe_mshl.cpp" />
+<HFile Include="ExampleLib_ExampleLib_Exe.h" />
+<Compile Include="ExampleLib_ExampleLib_Exe.cpp" />
+</ItemGroup>
+<Import Project="$(SPOCLIENT)\tools\targets\Microsoft.SPOT.System.Targets" />
+</Project>

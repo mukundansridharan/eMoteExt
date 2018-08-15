@@ -1,0 +1,65 @@
+ARM GAS  D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Drivers\Stubs\Processor\stubs_PreStackInit\GNU_S\PreStackInit_stub.s 			page 1
+
+
+   1              	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+   2              	@ Copyright (c) Microsoft Corporation.  All rights reserved.
+   3              	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+   4              	
+   5              	    .global  PreStackInit
+   6              	
+   7              	    .extern  PreStackInit_Exit_Pointer
+   8              	
+   9              	    .section SectionForBootstrapOperations, "xa", %progbits
+  10              	
+  11              	PreStackInit:
+  12              	
+  13              	
+  14              	    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  15              	    @
+  16              	    @ TODO: Enter your pre stack initialization code here (if needed)
+  17              	    @       e.g. SDRAM initialization if you don't have/use SRAM for the stack
+  18              	    @
+  19              	    
+  20              	    @ << ADD CODE HERE >>
+  21              	
+  22              	    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  23              	    @ DO NOT CHANGE THE FOLLOWING CODE! we can not use pop to return because we 
+  24              	    @ loaded the PC register to get here (since the stack has not been initialized).  
+  25              	    @ Make sure the PreStackInit_Exit_Pointer is within range and 
+  26              	    @ in the SectionForBootstrapOperations
+  27              	    @ go back to the firstentry(_loader) code 
+  28              	    @
+  29              	
+  30              	
+  31              	PreStackEnd:
+  32 0000 FEE7     	    B     PreStackInit_Exit_Pointer
+  33              	
+  34              	    
+  35              	    @
+  36              	    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  37              	
+  38              	    .end
+ARM GAS  D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Drivers\Stubs\Processor\stubs_PreStackInit\GNU_S\PreStackInit_stub.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 BUILD_RTM
+                            *ABS*:00000001 TARGETLOCATION_FLASH
+                            *ABS*:20017ff8 SAM_PROFILER_BUFFER_END
+                            *ABS*:20017f00 SAM_PROFILER_BUFFER_BEGIN
+                            *ABS*:20017ff8 SAM_CUSTOM_HEAP_END
+                            *ABS*:20017e00 SAM_CUSTOM_HEAP_BEGIN
+                            *ABS*:20017df8 SAM_HEAP_END
+                            *ABS*:2000f5ac SAM_HEAP_BEGIN
+                            *ABS*:20001000 SAM_STACK_TOP
+                            *ABS*:20000000 SAM_STACK_BOTTOM
+                            *ABS*:00000001 SAM_APP_TINYCLR
+                            *ABS*:00000001 PLATFORM_ARM_EmoteDotNow
+                            *ABS*:00000001 PLATFORM_ARM_STM32F10x
+                            *ABS*:00000001 COMPILE_THUMB2
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Drivers\Stubs\Processor\stubs_PreStackInit\GNU_S\PreStackInit_stub.s:11     SectionForBootstrapOperations:00000000 PreStackInit
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Drivers\Stubs\Processor\stubs_PreStackInit\GNU_S\PreStackInit_stub.s:31     SectionForBootstrapOperations:00000000 PreStackEnd
+D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\DeviceCode\Drivers\Stubs\Processor\stubs_PreStackInit\GNU_S\PreStackInit_stub.s:32     SectionForBootstrapOperations:00000000 $t
+
+UNDEFINED SYMBOLS
+PreStackInit_Exit_Pointer
