@@ -1,1 +1,28 @@
-# eMoteExt
+# eMoteExt Repository
+
+# Overview
+Instructions to Write a New Extension as a C# Interop to the Emote OS (which is based on the MicroFramework v4.3). This uses a simple makefile based method to create extensions outside of MicroFramework source tree and uses binaries of libraries built by Samraksh. If you are interested in building an extension for a solution/platform/build type for which you dont find the necessary binaries, contact someone at Samraksh to get the binaries checkin into the repo.
+
+The idea is that the binaries would tract the master branch of Sarmaksh's repo and hence can change at anytime.
+
+Note to folks who update binaries: Make sure you are updating only binaries of the solution/build type that you intend to. DONOT copy paste your entire BuildOuputs directory to this repo. You will 
+overwrite stuff that you didnt intend.
+
+# Build Instructions
+- Install Visual Studio Community 2013. Install MF SDK 4.3. 
+- You will need 'make'. So you need to install mingw or cygwin or WSL or somesuch thing on Windows. The Makefile for compilation is written and tested only under mingw32, but should work with very minor changes with other types of linux emulation.
+- Create a C# Library project and write a interop
+	- Use the decoreation "[MethodImplAttribute(MethodImplOptions.InternalCall)]" for methods that need to be implemented on the native side
+	- Generate the native stubs: Go to project properties > .Net MicroFramework > And check the "Generate native stubs for internal methods" check box
+	- Make sure everytime you regenerate the c# dll, you regenerate the stubs. This is important since a hash is generated and put in the native part that corresponds to the c# dll.
+- Add you interop's call methods to the global interop table
+	- Open the CLR_RT_InteropAssembliesTable.cpp that corresponds to your Compiler,Solution,Memory and Build type. For example for Compiler=GCC5.4,Solution=EmoteDotNow,Memory=FLASH, and Build=debug, the file will be at eMoteExt\Libs\THUMB2\GCC5.4\le\FLASH\debug\EmoteDotNow\obj\Solutions\EmoteDotNow\TinyCLR 
+	- Add a extern declration to your CLR_RT_NativeAssemblyData member declaration(you will find this in your stubs directory's main .h file, it will be called something like "g_CLR_AssemblyNative_ExampleLib")
+	- Add the the member to the *g_CLR_InteropAssembliesNativeData array, just before the NULL on the last line.
+- Implement your native part by filling out the stubbed out C methods.
+
+- Modify the Makefile under the Solutions/"solution_name". Makefile already has code to compile a  example extension called "ExampleLib", just replace/add ExampleLib with the name of the extension you are creating.
+- compile by typing make.
+- Create a test C# App that uses the C# dll.
+- Load using jtag and test!!
+	
