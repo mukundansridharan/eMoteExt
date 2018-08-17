@@ -1,0 +1,5 @@
+**/BuildOutput
+**/.project
+**/.cproject
+**/InteropAssembliesTable.lib
+**/ext.lib
