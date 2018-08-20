@@ -11,6 +11,7 @@ overwrite stuff that you didnt intend.
 # Build Instructions
 - Install Visual Studio Community 2013. Install MF SDK 4.3. 
 - You will need 'make'. So you need to install mingw or cygwin or WSL or somesuch thing on Windows. The Makefile for compilation is written and tested only under mingw32, but should work with very minor changes with other types of linux emulation.
+	- If there is no 'make' in your mingw32/64 installation, get it from https://sourceforge.net/projects/ezwinports/files/make-4.2.1-without-guile-w32-bin.zip/download
 - Create a C# Library project and write a interop
 	- Use the decoreation "[MethodImplAttribute(MethodImplOptions.InternalCall)]" for methods that need to be implemented on the native side
 	- Generate the native stubs: Go to project properties > .Net MicroFramework > And check the "Generate native stubs for internal methods" check box
@@ -25,4 +26,8 @@ overwrite stuff that you didnt intend.
 - compile by typing make.
 - Create a test C# App that uses the C# dll.
 - Load using jtag and test!!
+
+# Common Build Errors:
+
+- If you get a error like "../../Compilers/GCC5.4.1/bin/arm-none-eabi-ld.exe: unrecognized option '-\('", its probably because of older version of make. GNU Make versions less than 4.0 seems to throw this error. Use the link above to update your make to version 4.2
 	
