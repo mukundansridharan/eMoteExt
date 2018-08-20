@@ -10,7 +10,6 @@
 GCC_VER=GCC5.4
 GCC_DIR=GCC5.4.1
 TOOL_DIR=../../Compilers/$(GCC_DIR)
-TOOL_DIR=/F/Mukund/Repos/TestSystem/Compilers/$(GCC_DIR)
 SOLUTION=EmoteDotNow
 BUILD=Debug
 FLAVER=FLASH
