@@ -10,6 +10,7 @@
 GCC_VER=GCC5.4
 GCC_DIR=GCC5.4.1
 TOOL_DIR=../../Compilers/$(GCC_DIR)
+TOOL_DIR=/F/Mukund/Repos/TestSystem/Compilers/$(GCC_DIR)
 SOLUTION=EmoteDotNow
 BUILD=Debug
 FLAVER=FLASH
@@ -67,7 +68,7 @@ CFLAGS	= -xc++  -Wno-invalid-offsetof -fcheck-new  -fno-threadsafe-statics    -m
 outputdir: $(OUTDIR) 
 
 $(OUTDIR):
-	$(shell mkdir "$(OUTDIR)")
+	$(MKDIR) "$(OUTDIR)"
 
 $(OUTDIR)/tinyclr.bin:
 	$(shell mkdir "$(OUTDIR)/tinyclr.bin")
@@ -80,7 +81,7 @@ InteropAssembliesTable.lib: $(IAT_DIR)/CLR_RT_InteropAssembliesTable.obj $(IAT_D
 	$(AR) -rcs $@ $(IAT_DIR)/CLR_RT_InteropAssembliesTable.obj $(IAT_DIR)/CLR_RT_RuntimeMemory.obj
 	
 linker: outputdir ext.lib InteropAssembliesTable.lib
-	$(LD)  -static --gc-sections --no-warn-mismatch --library-path=$(LIBS_SOLUTION) --library-path=$(LIBS_ANYMEDIA) --allow-multiple-definition -u ARM_Vectors -u _start --Map $(OUTDIR)/tinyclr.map --output=$(OUTDIR)/tinyclr.axf --script=tinyclr_scatterfile.ldf $(OBJS_CLRSTART)/tinyclr_dat.obj $(OBJS_CLRSTART)/allocator.obj $(OBJS_CLRSTART)/tinyclr.obj -( $(AM_LIBLIST) $(LIBS_SOLUTION)/static_tinyclr.lib InteropAssembliesTable.lib  ext.lib -) -( $(NEWLIB)/libm.a $(NEWLIB)/libc.a $(TOOL_DIR)/lib/gcc/arm-none-eabi/5.4.1/armv7-m/libgcc.a -) -(  -)
+	$(LD)  -static --gc-sections --no-warn-mismatch --library-path=$(LIBS_SOLUTION) --library-path=$(LIBS_ANYMEDIA) --allow-multiple-definition -u ARM_Vectors -u _start --Map $(OUTDIR)/tinyclr.map --output=$(OUTDIR)/tinyclr.axf --script=tinyclr_scatterfile.ldf $(OBJS_CLRSTART)/tinyclr_dat.obj $(OBJS_CLRSTART)/allocator.obj $(OBJS_CLRSTART)/tinyclr.obj -\( $(AM_LIBLIST) $(LIBS_SOLUTION)/static_tinyclr.lib InteropAssembliesTable.lib ext.lib -\) -\( $(NEWLIB)/libm.a $(NEWLIB)/libc.a $(TOOL_DIR)/lib/gcc/arm-none-eabi/5.4.1/armv7-m/libgcc.a -\)
   
 binary: linker $(OUTDIR)/tinyclr.bin $(OUTDIR)/tinyclr.hex
 	$(OBJCOPY) -S -j ER_FLASH -j ER_IRAM_TC -j ER_FLASH_CONT -j ER_RAM_RO -j ER_RAM_RW  -O binary $(OUTDIR)/tinyclr.axf $(OUTDIR)/tinyclr.bin/ER_FLASH
