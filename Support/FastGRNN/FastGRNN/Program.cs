@@ -6,8 +6,8 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
-using MathNet.Numerics;
-using MathNet.Numerics.LinearAlgebra;
+//using MathNet.Numerics;
+//using MathNet.Numerics.LinearAlgebra;
 
 class fastgrnn
 {
@@ -84,8 +84,8 @@ class Program
         //string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
         //ts.Hours, ts.Minutes, ts.Seconds,
         //ts.Milliseconds );
-        Console.WriteLine(stopWatch.ElapsedMilliseconds);
-        Console.Write(logits);
+        Console.WriteLine("Elapsed time: " + stopWatch.ElapsedMilliseconds + " ms");
+        Console.Write("Logits: " + logits);
 
     }
 }
