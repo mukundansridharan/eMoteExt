@@ -14,5 +14,11 @@ namespace ExampleLib
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern public int Arg1PlusArg2(int arg1, int arg2);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public int Arg1PlusArg2_IntFunc(int arg1, int arg2);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public int IntExp_Lib(int arg1, int arg2);
     }
 }

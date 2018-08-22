@@ -23,6 +23,9 @@ namespace ExampleLib
         static INT32 OnePlusTwo( CLR_RT_HeapBlock* pMngObj, HRESULT &hr );
         static INT32 TwoPlusFour( CLR_RT_HeapBlock* pMngObj, HRESULT &hr );
         static INT32 Arg1PlusArg2( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr );
+        static INT32 Arg1PlusArg2_IntFunc( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr );
+        static INT32 IntExp_Lib( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr );
+        static INT32 IntFunc( INT32 param0, INT32 param1 );
     };
 }
 #endif  //_EXAMPLELIB_EXAMPLELIB_EXE_H_
