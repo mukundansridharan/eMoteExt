@@ -16,6 +16,7 @@ namespace ExampleLibApp
             Debug.Print("One plus two = " + testExe.OnePlusTwo());
             Debug.Print("Two plus four = " + testExe.TwoPlusFour());
             Debug.Print("Addition with args: " + arg1 + " plus " + arg2 + " = " + testExe.Arg1PlusArg2(arg1, arg2));
+            Debug.Print("Addition with args (internal non-stub function call): " + arg1 + " plus " + arg2 + " = " + testExe.Arg1PlusArg2_IntFunc(arg1, arg2));
         }
     }
 }

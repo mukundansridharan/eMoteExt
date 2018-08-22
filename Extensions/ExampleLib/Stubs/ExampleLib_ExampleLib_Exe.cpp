@@ -34,3 +34,14 @@ INT32 Exe::Arg1PlusArg2( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, 
     return retVal;
 }
 
+INT32 Exe::Arg1PlusArg2_IntFunc( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr )
+{
+    INT32 retVal = IntFunc( param0, param1 ); 
+    return retVal;
+}
+
+INT32 Exe::IntFunc( INT32 param0, INT32 param1 )
+{
+    return param0 + param1;
+}
+

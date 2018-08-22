@@ -16,6 +16,7 @@ struct Library_ExampleLib_ExampleLib_Exe
     TINYCLR_NATIVE_DECLARE(OnePlusTwo___I4);
     TINYCLR_NATIVE_DECLARE(TwoPlusFour___I4);
     TINYCLR_NATIVE_DECLARE(Arg1PlusArg2___I4__I4__I4);
+    TINYCLR_NATIVE_DECLARE(Arg1PlusArg2_IntFunc___I4__I4__I4);
 
     //--//
 
