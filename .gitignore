@@ -4,3 +4,4 @@
 **/InteropAssembliesTable.lib
 **/CLR_RT_InteropAssembliesTable.obj
 **/ext.lib
+*.suo
