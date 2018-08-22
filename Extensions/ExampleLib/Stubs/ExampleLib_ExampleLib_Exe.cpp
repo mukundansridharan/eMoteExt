@@ -13,6 +13,7 @@
 
 #include "ExampleLib.h"
 #include "ExampleLib_ExampleLib_Exe.h"
+#include <cmath>
 
 using namespace ExampleLib;
 
@@ -43,5 +44,11 @@ INT32 Exe::Arg1PlusArg2_IntFunc( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 
 INT32 Exe::IntFunc( INT32 param0, INT32 param1 )
 {
     return param0 + param1;
+}
+
+INT32 Exe::IntExp_Lib( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr )
+{
+    INT32 retVal = (INT32)pow( param0, param1 ); 
+    return retVal;
 }
 

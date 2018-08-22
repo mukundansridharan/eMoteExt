@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <FeatureName>ExampleLib</FeatureName>
-    <Guid>{bc363c7f-9f03-48fa-995d-207a2124c977}</Guid>
+    <Guid>{ef9b283f-5ace-4b05-94dc-8d83d414787d}</Guid>
     <Description>&lt;Add Feature Description Here&gt;</Description>
     <Groups />
     <EXAMPLELIB_FEATUREPROJ>True</EXAMPLELIB_FEATUREPROJ>
