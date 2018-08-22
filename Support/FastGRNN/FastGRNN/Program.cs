@@ -6,8 +6,8 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
-//using MathNet.Numerics;
-//using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics;
+using MathNet.Numerics.LinearAlgebra;
 
 class fastgrnn
 {
