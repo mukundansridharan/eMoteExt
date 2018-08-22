@@ -4,5 +4,7 @@
 **/InteropAssembliesTable.lib
 **/CLR_RT_InteropAssembliesTable.obj
 **/ext.lib
+**/bin/Debug
+**/obj/Debug
 *.suo
 *.cache
