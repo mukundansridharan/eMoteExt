@@ -11,5 +11,8 @@ namespace ExampleLib
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern public int TwoPlusFour();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public int Arg1PlusArg2(int arg1, int arg2);
     }
 }

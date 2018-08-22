@@ -8,7 +8,13 @@ C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Deb
 C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\le\ExampleLibApp.pdbx
 C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\be\ExampleLibApp.pe
 C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\be\ExampleLibApp.pdbx
-C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\obj\Debug\TinyCLR_DebugReferences.cache
+C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\LE\ExampleLib.pe
+C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\BE\ExampleLib.pe
+C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\LE\ExampleLib.pdbx
+C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\BE\ExampleLib.pdbx
+C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\ExampleLib.dll
+C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\ExampleLib.pdb
+C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\obj\Debug\ExampleLibApp.csprojResolveAssemblyReference.cache
 C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\obj\Debug\ExampleLibApp.Resources.resources
 C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\obj\Debug\ExampleLibApp.csproj.GenerateResource.Cache
 C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\obj\Debug\ExampleLibApp.Resources.tinyresources
@@ -19,10 +25,3 @@ C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\obj\Deb
 C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\obj\Debug\le\ExampleLibApp.pdbx
 C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\obj\Debug\ExampleLibApp.exe
 C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\obj\Debug\ExampleLibApp.pdb
-C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\obj\Debug\ExampleLibApp.csprojResolveAssemblyReference.cache
-C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\LE\ExampleLib.pe
-C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\BE\ExampleLib.pe
-C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\LE\ExampleLib.pdbx
-C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\BE\ExampleLib.pdbx
-C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\ExampleLib.dll
-C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLibApp\ExampleLibApp\bin\Debug\ExampleLib.pdb

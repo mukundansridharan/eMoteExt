@@ -18,13 +18,19 @@ using namespace ExampleLib;
 
 INT32 Exe::OnePlusTwo( CLR_RT_HeapBlock* pMngObj, HRESULT &hr )
 {
-    INT32 retVal = 1+2;
+    INT32 retVal = 1+2; 
     return retVal;
 }
 
 INT32 Exe::TwoPlusFour( CLR_RT_HeapBlock* pMngObj, HRESULT &hr )
 {
-    INT32 retVal = 2+4;
+    INT32 retVal = 2+4; 
+    return retVal;
+}
+
+INT32 Exe::Arg1PlusArg2( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr )
+{
+    INT32 retVal = param0+param1; 
     return retVal;
 }
 
