@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FeatureName>MathFuncs</FeatureName>
+    <Guid>{04b8dff9-a303-4c72-a5c7-e55537dd160e}</Guid>
+    <Description>&lt;Add Feature Description Here&gt;</Description>
+    <Groups />
+    <MATHFUNCS_FEATUREPROJ>True</MATHFUNCS_FEATUREPROJ>
+  </PropertyGroup>
+  <ItemGroup>
+    <DriverLibs Include="MathFuncs.$(LIB_EXT)" />
+    <InteropFeature Include="MathFuncs" />
+    <MMP_DAT_CreateDatabase Include="$(BUILD_TREE_CLIENT)\pe\$(ENDIANNESS)\MathFuncs.pe" />
+    <RequiredProjects Include="C:\Users\roy17\Documents\eMoteExt\Extensions\MathFuncs\Stubs\dotnetmf.proj" />
+  </ItemGroup>
+</Project>

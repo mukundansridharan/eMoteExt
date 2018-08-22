@@ -3,5 +3,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <MF_GenerateStubs>True</MF_GenerateStubs>
     <DeployTransport>Serial</DeployTransport>
+    <MF_GenerateStubsDirectory>C:\Users\roy17\Documents\eMoteExt\Extensions\MathFuncs\Stubs\</MF_GenerateStubsDirectory>
   </PropertyGroup>
 </Project>

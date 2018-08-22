@@ -29,8 +29,8 @@ MISCTOOLS=../../Tools
 
 
 #####This is the library you are adding, it will create a library by name "ext.lib"####
-DLLDIR=../../Extensions/ExampleLib/Stubs
-DLLOBJS=$(DLLDIR)/ExampleLib.obj $(DLLDIR)/ExampleLib_ExampleLib_Exe.obj $(DLLDIR)/ExampleLib_ExampleLib_Exe_mshl.obj
+DLLDIR=../../Extensions/MathFuncs/Stubs
+DLLOBJS=$(DLLDIR)/MathFuncs.obj $(DLLDIR)/MathFuncs_CMSIS_Support.obj $(DLLDIR)/MathFuncs_CMSIS_Support_mshl.obj
 
 
 all: binary 

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleLibApp", "ExampleLibApp\ExampleLibApp.csproj", "{0A18C830-DDE4-4A79-9706-C564CD464CEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathFuncsTest", "MathFuncsTest\MathFuncsTest.csproj", "{0A18C830-DDE4-4A79-9706-C564CD464CEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

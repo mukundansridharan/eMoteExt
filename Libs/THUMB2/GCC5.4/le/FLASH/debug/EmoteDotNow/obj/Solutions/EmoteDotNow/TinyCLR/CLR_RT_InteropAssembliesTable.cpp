@@ -27,7 +27,7 @@ extern const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_RadioCallback_802_15
 extern const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_Samraksh_eMote_DSP;
 extern const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_Samraksh_eMote_ProgramManager;
 extern const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_UpdaterProgressCallback;
-extern const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_ExampleLib;
+extern const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_MathFuncs;
 
 const CLR_RT_NativeAssemblyData *g_CLR_InteropAssembliesNativeData[] =
 {
@@ -54,7 +54,7 @@ const CLR_RT_NativeAssemblyData *g_CLR_InteropAssembliesNativeData[] =
     &g_CLR_AssemblyNative_Samraksh_eMote_DSP,
     &g_CLR_AssemblyNative_Samraksh_eMote_ProgramManager,
     &g_CLR_AssemblyNative_UpdaterProgressCallback,
-	&g_CLR_AssemblyNative_ExampleLib,
+	&g_CLR_AssemblyNative_MathFuncs,
     NULL
 };
 // End of D:\Main\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\debug\EmoteDotNow\obj\Solutions\EmoteDotNow\TinyCLR\CLR_RT_InteropAssembliesTable.cpp
