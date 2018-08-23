@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <FeatureName>MathFuncs</FeatureName>
-    <Guid>{04b8dff9-a303-4c72-a5c7-e55537dd160e}</Guid>
+    <Guid>{a77863d5-6c84-49b9-a9a9-a88c4fb88dc5}</Guid>
     <Description>&lt;Add Feature Description Here&gt;</Description>
     <Groups />
     <MATHFUNCS_FEATUREPROJ>True</MATHFUNCS_FEATUREPROJ>
