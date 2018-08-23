@@ -110,3 +110,31 @@ HRESULT Library_ExampleLib_ExampleLib_Exe::IntExp_Lib___I4__I4__I4( CLR_RT_Stack
     }
     TINYCLR_NOCLEANUP();
 }
+
+HRESULT Library_ExampleLib_ExampleLib_Exe::CustomArgsIO_Int___I4__U2__SZARRAY_U2__U2__SZARRAY_U2( CLR_RT_StackFrame& stack )
+{
+    TINYCLR_HEADER(); hr = S_OK;
+    {
+        CLR_RT_HeapBlock* pMngObj = Interop_Marshal_RetrieveManagedObject( stack );
+
+        FAULT_ON_NULL(pMngObj);
+
+        UINT16 param0;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16( stack, 1, param0 ) );
+
+        CLR_RT_TypedArray_UINT16 param1;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16_ARRAY( stack, 2, param1 ) );
+
+        UINT16 param2;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16( stack, 3, param2 ) );
+
+        CLR_RT_TypedArray_UINT16 param3;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16_ARRAY( stack, 4, param3 ) );
+
+        INT32 retVal = Exe::CustomArgsIO_Int( pMngObj,  param0, param1, param2, param3, hr );
+        TINYCLR_CHECK_HRESULT( hr );
+        SetResult_INT32( stack, retVal );
+
+    }
+    TINYCLR_NOCLEANUP();
+}

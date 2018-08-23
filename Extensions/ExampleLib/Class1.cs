@@ -6,6 +6,12 @@ namespace ExampleLib
 {
     public class Exe
     {
+        public struct Arg
+        {
+            public UInt16 size;
+            public UInt16[] array;
+        };  
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern public int OnePlusTwo();
 
@@ -20,5 +26,14 @@ namespace ExampleLib
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern public int IntExp_Lib(int arg1, int arg2);
+
+
+        public void CustomArgsIO(Arg input, Arg output)
+        {
+            CustomArgsIO_Int(input.size, input.array, output.size, output.array);
+        }
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern int CustomArgsIO_Int(UInt16 input_size, UInt16[] input_array, UInt16 output_size, UInt16[] output_array);
     }
 }

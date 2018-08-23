@@ -25,7 +25,7 @@ namespace ExampleLib
         static INT32 Arg1PlusArg2( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr );
         static INT32 Arg1PlusArg2_IntFunc( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr );
         static INT32 IntExp_Lib( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr );
-        static INT32 IntFunc( INT32 param0, INT32 param1 );
+        static INT32 CustomArgsIO_Int( CLR_RT_HeapBlock* pMngObj, UINT16 param0, CLR_RT_TypedArray_UINT16 param1, UINT16 param2, CLR_RT_TypedArray_UINT16 param3, HRESULT &hr );
     };
 }
 #endif  //_EXAMPLELIB_EXAMPLELIB_EXE_H_

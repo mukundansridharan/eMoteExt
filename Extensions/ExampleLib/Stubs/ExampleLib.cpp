@@ -18,12 +18,14 @@ static const CLR_RT_MethodHandler method_lookup[] =
     Library_ExampleLib_ExampleLib_Exe::Arg1PlusArg2_IntFunc___I4__I4__I4,
     Library_ExampleLib_ExampleLib_Exe::IntExp_Lib___I4__I4__I4,
     NULL,
+    Library_ExampleLib_ExampleLib_Exe::CustomArgsIO_Int___I4__U2__SZARRAY_U2__U2__SZARRAY_U2,
+    NULL,
 };
 
 const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_ExampleLib =
 {
     "ExampleLib", 
-    0x086D0DD0,
+    0x4E997675,
     method_lookup
 };
 

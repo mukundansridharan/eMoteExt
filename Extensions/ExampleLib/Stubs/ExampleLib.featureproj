@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <FeatureName>ExampleLib</FeatureName>
-    <Guid>{ef9b283f-5ace-4b05-94dc-8d83d414787d}</Guid>
+    <Guid>{ee461f49-3c6d-4eab-a591-809e3ed5f6c4}</Guid>
     <Description>&lt;Add Feature Description Here&gt;</Description>
     <Groups />
     <EXAMPLELIB_FEATUREPROJ>True</EXAMPLELIB_FEATUREPROJ>
@@ -11,6 +11,6 @@
     <DriverLibs Include="ExampleLib.$(LIB_EXT)" />
     <InteropFeature Include="ExampleLib" />
     <MMP_DAT_CreateDatabase Include="$(BUILD_TREE_CLIENT)\pe\$(ENDIANNESS)\ExampleLib.pe" />
-    <RequiredProjects Include="C:\Users\roy17\Documents\eMoteExt\Extensions\ExampleLib\Stubs\dotnetmf.proj" />
+    <RequiredProjects Include="D:\Main\Repos\eMoteExt\Extensions\ExampleLib\Stubs\dotnetmf.proj" />
   </ItemGroup>
 </Project>

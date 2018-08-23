@@ -13,42 +13,44 @@
 
 #include "ExampleLib.h"
 #include "ExampleLib_ExampleLib_Exe.h"
-#include <cmath>
 
 using namespace ExampleLib;
 
 INT32 Exe::OnePlusTwo( CLR_RT_HeapBlock* pMngObj, HRESULT &hr )
 {
-    INT32 retVal = 1+2; 
+    INT32 retVal = 0; 
     return retVal;
 }
 
 INT32 Exe::TwoPlusFour( CLR_RT_HeapBlock* pMngObj, HRESULT &hr )
 {
-    INT32 retVal = 2+4; 
+    INT32 retVal = 0; 
     return retVal;
 }
 
 INT32 Exe::Arg1PlusArg2( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr )
 {
-    INT32 retVal = param0+param1; 
+    INT32 retVal = 0; 
     return retVal;
 }
 
 INT32 Exe::Arg1PlusArg2_IntFunc( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr )
 {
-    INT32 retVal = IntFunc( param0, param1 ); 
+    INT32 retVal = 0; 
     return retVal;
-}
-
-INT32 Exe::IntFunc( INT32 param0, INT32 param1 )
-{
-    return param0 + param1;
 }
 
 INT32 Exe::IntExp_Lib( CLR_RT_HeapBlock* pMngObj, INT32 param0, INT32 param1, HRESULT &hr )
 {
-    INT32 retVal = (INT32)pow( param0, param1 ); 
+    INT32 retVal = 0; 
+    return retVal;
+}
+
+INT32 Exe::CustomArgsIO_Int( CLR_RT_HeapBlock* pMngObj, UINT16 param0, CLR_RT_TypedArray_UINT16 param1, UINT16 param2, CLR_RT_TypedArray_UINT16 param3, HRESULT &hr )
+{
+    INT32 retVal = 0; 
+	//copy stuff from input buffer to output buffer
+	memcpy(param3.GetBuffer(), param1.GetBuffer(), param2 * 2);
     return retVal;
 }
 

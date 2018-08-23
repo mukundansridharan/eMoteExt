@@ -18,6 +18,17 @@ struct Library_ExampleLib_ExampleLib_Exe
     TINYCLR_NATIVE_DECLARE(Arg1PlusArg2___I4__I4__I4);
     TINYCLR_NATIVE_DECLARE(Arg1PlusArg2_IntFunc___I4__I4__I4);
     TINYCLR_NATIVE_DECLARE(IntExp_Lib___I4__I4__I4);
+    TINYCLR_NATIVE_DECLARE(CustomArgsIO_Int___I4__U2__SZARRAY_U2__U2__SZARRAY_U2);
+
+    //--//
+
+};
+
+struct Library_ExampleLib_ExampleLib_Exe__Arg
+{
+    static const int FIELD__size = 1;
+    static const int FIELD__array = 2;
+
 
     //--//
 
