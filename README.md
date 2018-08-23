@@ -1,12 +1,12 @@
 # eMoteExt Repository
 
 # Overview
-Instructions to Write a New Extension as a C# Interop to the Emote OS (which is based on the MicroFramework v4.3). This uses a simple makefile based method to create extensions outside of MicroFramework source tree and uses binaries of libraries built by Samraksh. If you are interested in building an extension for a solution/platform/build type for which you dont find the necessary binaries, contact someone at Samraksh to get the binaries checkin into the repo.
+This repo deals with extending the eMote OS. The basic idea is that, Samraksh will build part of the solution and will populate this repo with binary libraries and all header files that go with it. The users of this repo can add whatever stuff they want, native and c#, and can complete the build process (linking and executable creation) to create custom versions of emote OS. All libraries are static. Also, there is very little dynamic memory allocation in eMote, hence do not use 'new' or 'malloc' on the native side code, unless you know exactly what you are doing.
 
-The idea is that the binaries would tract the master branch of Sarmaksh's repo and hence can change at anytime.
+# Details
+The build process here uses a simple makefile based method to create extensions outside of MicroFramework4.3 (on which the eMote is based) source tree and uses binaries of libraries built by Samraksh. If you are interested in building an extension for a solution/platform/build type for which you dont find the necessary binaries, contact someone at Samraksh to get the binaries checkin into the repo.
 
-Note to folks who update binaries: Make sure you are updating only binaries of the solution/build type that you intend to. DONOT copy paste your entire BuildOuputs directory to this repo. You will 
-overwrite stuff that you didnt intend.
+Note to folks who update binaries: The idea is that the binaries would tract the master branch of Sarmaksh's repo and hence can change at anytime. Make sure you are updating only binaries of the solution/build type that you intend to. DONOT copy paste your entire BuildOuputs directory to this repo. That will overwrite stuff that you didnt intend.
 
 # Build Instructions
 - Install Visual Studio Community 2013. Install MF SDK 4.3. 
