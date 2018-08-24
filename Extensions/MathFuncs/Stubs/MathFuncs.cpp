@@ -19,12 +19,14 @@ static const CLR_RT_MethodHandler method_lookup[] =
     NULL,
     Library_MathFuncs_CMSIS_Support::ConvertFloatToInt___STATIC__I4__R4,
     Library_MathFuncs_CMSIS_Support::ConvertIntToFloat___STATIC__R4__I4,
+    Library_MathFuncs_CMSIS_Support::ConvertFloatToInt___STATIC__VOID__SZARRAY_R4__SZARRAY_I4,
+    Library_MathFuncs_CMSIS_Support::ConvertIntToFloat___STATIC__VOID__SZARRAY_I4__SZARRAY_R4,
 };
 
 const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_MathFuncs =
 {
     "MathFuncs", 
-    0x90076CCA,
+    0xB6102501,
     method_lookup
 };
 

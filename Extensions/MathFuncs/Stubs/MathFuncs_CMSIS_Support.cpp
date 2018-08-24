@@ -31,3 +31,13 @@ float Support::ConvertIntToFloat( INT32 param0, HRESULT &hr )
     return retVal;
 }
 
+void Support::ConvertFloatToInt( CLR_RT_TypedArray_float param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr )
+{
+	arm_float_to_q31(param0.GetBuffer(), (q31_t*) param1.GetBuffer(), param0.GetSize());
+}
+
+void Support::ConvertIntToFloat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_float param1, HRESULT &hr )
+{
+	arm_q31_to_float((q31_t*) param0.GetBuffer(), param1.GetBuffer(), param0.GetSize());
+}
+

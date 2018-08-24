@@ -34,6 +34,8 @@ struct Library_MathFuncs_CMSIS_Support
 {
     TINYCLR_NATIVE_DECLARE(ConvertFloatToInt___STATIC__I4__R4);
     TINYCLR_NATIVE_DECLARE(ConvertIntToFloat___STATIC__R4__I4);
+    TINYCLR_NATIVE_DECLARE(ConvertFloatToInt___STATIC__VOID__SZARRAY_R4__SZARRAY_I4);
+    TINYCLR_NATIVE_DECLARE(ConvertIntToFloat___STATIC__VOID__SZARRAY_I4__SZARRAY_R4);
 
     //--//
 

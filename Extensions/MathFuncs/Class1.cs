@@ -25,6 +25,12 @@ namespace CMSIS
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern public static float ConvertIntToFloat(int x);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public static void ConvertFloatToInt(float[] inx, int[] outx);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public static void ConvertIntToFloat(int[] inx, float[] outx);
     }
 
     public class MatrixFuncs

@@ -42,3 +42,35 @@ HRESULT Library_MathFuncs_CMSIS_Support::ConvertIntToFloat___STATIC__R4__I4( CLR
     }
     TINYCLR_NOCLEANUP();
 }
+
+HRESULT Library_MathFuncs_CMSIS_Support::ConvertFloatToInt___STATIC__VOID__SZARRAY_R4__SZARRAY_I4( CLR_RT_StackFrame& stack )
+{
+    TINYCLR_HEADER(); hr = S_OK;
+    {
+        CLR_RT_TypedArray_float param0;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_float_ARRAY( stack, 0, param0 ) );
+
+        CLR_RT_TypedArray_INT32 param1;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_INT32_ARRAY( stack, 1, param1 ) );
+
+        Support::ConvertFloatToInt( param0, param1, hr );
+        TINYCLR_CHECK_HRESULT( hr );
+    }
+    TINYCLR_NOCLEANUP();
+}
+
+HRESULT Library_MathFuncs_CMSIS_Support::ConvertIntToFloat___STATIC__VOID__SZARRAY_I4__SZARRAY_R4( CLR_RT_StackFrame& stack )
+{
+    TINYCLR_HEADER(); hr = S_OK;
+    {
+        CLR_RT_TypedArray_INT32 param0;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_INT32_ARRAY( stack, 0, param0 ) );
+
+        CLR_RT_TypedArray_float param1;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_float_ARRAY( stack, 1, param1 ) );
+
+        Support::ConvertIntToFloat( param0, param1, hr );
+        TINYCLR_CHECK_HRESULT( hr );
+    }
+    TINYCLR_NOCLEANUP();
+}

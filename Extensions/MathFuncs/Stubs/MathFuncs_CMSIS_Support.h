@@ -22,6 +22,8 @@ namespace CMSIS
         // Declaration of stubs. These functions are implemented by Interop code developers
         static INT32 ConvertFloatToInt( float param0, HRESULT &hr );
         static float ConvertIntToFloat( INT32 param0, HRESULT &hr );
+        static void ConvertFloatToInt( CLR_RT_TypedArray_float param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr );
+        static void ConvertIntToFloat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_float param1, HRESULT &hr );
     };
 }
 #endif  //_MATHFUNCS_CMSIS_SUPPORT_H_
