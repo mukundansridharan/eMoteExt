@@ -13,14 +13,14 @@
 using namespace CMSIS;
 
 
-HRESULT Library_MathFuncs_CMSIS_Support::ConvertFloatToInt___STATIC__I4__R4( CLR_RT_StackFrame& stack )
+HRESULT Library_MathFuncs_CMSIS_Support::ConvertFloatToQ31___STATIC__I4__R4( CLR_RT_StackFrame& stack )
 {
     TINYCLR_HEADER(); hr = S_OK;
     {
         float param0;
         TINYCLR_CHECK_HRESULT( Interop_Marshal_float( stack, 0, param0 ) );
 
-        INT32 retVal = Support::ConvertFloatToInt( param0, hr );
+        INT32 retVal = Support::ConvertFloatToQ31( param0, hr );
         TINYCLR_CHECK_HRESULT( hr );
         SetResult_INT32( stack, retVal );
 
@@ -28,14 +28,14 @@ HRESULT Library_MathFuncs_CMSIS_Support::ConvertFloatToInt___STATIC__I4__R4( CLR
     TINYCLR_NOCLEANUP();
 }
 
-HRESULT Library_MathFuncs_CMSIS_Support::ConvertIntToFloat___STATIC__R4__I4( CLR_RT_StackFrame& stack )
+HRESULT Library_MathFuncs_CMSIS_Support::ConvertQ31ToFloat___STATIC__R4__I4( CLR_RT_StackFrame& stack )
 {
     TINYCLR_HEADER(); hr = S_OK;
     {
         INT32 param0;
         TINYCLR_CHECK_HRESULT( Interop_Marshal_INT32( stack, 0, param0 ) );
 
-        float retVal = Support::ConvertIntToFloat( param0, hr );
+        float retVal = Support::ConvertQ31ToFloat( param0, hr );
         TINYCLR_CHECK_HRESULT( hr );
         SetResult_float( stack, retVal );
 
@@ -43,7 +43,7 @@ HRESULT Library_MathFuncs_CMSIS_Support::ConvertIntToFloat___STATIC__R4__I4( CLR
     TINYCLR_NOCLEANUP();
 }
 
-HRESULT Library_MathFuncs_CMSIS_Support::ConvertFloatToInt___STATIC__VOID__SZARRAY_R4__SZARRAY_I4( CLR_RT_StackFrame& stack )
+HRESULT Library_MathFuncs_CMSIS_Support::ConvertFloatToQ31___STATIC__VOID__SZARRAY_R4__SZARRAY_I4( CLR_RT_StackFrame& stack )
 {
     TINYCLR_HEADER(); hr = S_OK;
     {
@@ -53,13 +53,13 @@ HRESULT Library_MathFuncs_CMSIS_Support::ConvertFloatToInt___STATIC__VOID__SZARR
         CLR_RT_TypedArray_INT32 param1;
         TINYCLR_CHECK_HRESULT( Interop_Marshal_INT32_ARRAY( stack, 1, param1 ) );
 
-        Support::ConvertFloatToInt( param0, param1, hr );
+        Support::ConvertFloatToQ31( param0, param1, hr );
         TINYCLR_CHECK_HRESULT( hr );
     }
     TINYCLR_NOCLEANUP();
 }
 
-HRESULT Library_MathFuncs_CMSIS_Support::ConvertIntToFloat___STATIC__VOID__SZARRAY_I4__SZARRAY_R4( CLR_RT_StackFrame& stack )
+HRESULT Library_MathFuncs_CMSIS_Support::ConvertQ31ToFloat___STATIC__VOID__SZARRAY_I4__SZARRAY_R4( CLR_RT_StackFrame& stack )
 {
     TINYCLR_HEADER(); hr = S_OK;
     {
@@ -69,7 +69,7 @@ HRESULT Library_MathFuncs_CMSIS_Support::ConvertIntToFloat___STATIC__VOID__SZARR
         CLR_RT_TypedArray_float param1;
         TINYCLR_CHECK_HRESULT( Interop_Marshal_float_ARRAY( stack, 1, param1 ) );
 
-        Support::ConvertIntToFloat( param0, param1, hr );
+        Support::ConvertQ31ToFloat( param0, param1, hr );
         TINYCLR_CHECK_HRESULT( hr );
     }
     TINYCLR_NOCLEANUP();

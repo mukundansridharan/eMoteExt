@@ -21,16 +21,16 @@ namespace CMSIS
     public class Support
     {
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static int ConvertFloatToInt(float x);
+        extern public static int ConvertFloatToQ31(float x);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static float ConvertIntToFloat(int x);
+        extern public static float ConvertQ31ToFloat(int x);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static void ConvertFloatToInt(float[] inx, int[] outx);
+        extern public static void ConvertFloatToQ31(float[] inx, int[] outx);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static void ConvertIntToFloat(int[] inx, float[] outx);
+        extern public static void ConvertQ31ToFloat(int[] inx, float[] outx);
     }
 
     public class MatrixFuncs

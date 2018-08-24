@@ -14,14 +14,14 @@ namespace MathFuncsTest
             float fl1 = 0.18f;
             int int1 = 25;
 
-            Debug.Print(fl1 + " to Q31 = " + Support.ConvertFloatToInt(fl1) + " and back to float = " + Support.ConvertIntToFloat(Support.ConvertFloatToInt(fl1)));
-            Debug.Print(int1 + " to float = " + Support.ConvertIntToFloat(int1) + " and back to int = " + Support.ConvertFloatToInt(Support.ConvertIntToFloat(int1)));
+            Debug.Print(fl1 + " to Q31 = " + Support.ConvertFloatToQ31(fl1) + " and back to float = " + Support.ConvertQ31ToFloat(Support.ConvertFloatToQ31(fl1)));
+            Debug.Print(int1 + " to float = " + Support.ConvertQ31ToFloat(int1) + " and back to int = " + Support.ConvertFloatToQ31(Support.ConvertQ31ToFloat(int1)));
 
             float[] floatarr1 = new float[] { 1.0f/largeFactor, 2.0f/largeFactor, 3.0f/largeFactor, 4.0f/largeFactor, 5.0f/largeFactor, 6.0f/largeFactor };
             int[] q31arr1 = new int[6];
             float[] floatbackarr1 = new float[6];
 
-            Support.ConvertFloatToInt(floatarr1, q31arr1);
+            Support.ConvertFloatToQ31(floatarr1, q31arr1);
 
             Debug.Print("############");
             Debug.Print("# MATRIX 1 #");
@@ -39,7 +39,7 @@ namespace MathFuncsTest
                 Debug.Print(item.ToString());
             }
 
-            Support.ConvertIntToFloat(q31arr1, floatbackarr1);
+            Support.ConvertQ31ToFloat(q31arr1, floatbackarr1);
 
             Debug.Print("Converted back to float array: ");
             foreach (var item in floatbackarr1)
@@ -50,7 +50,7 @@ namespace MathFuncsTest
             float[] floatarr2 = new float[] { 7.0f/largeFactor, 8.0f/largeFactor, 9.0f/largeFactor, 10.0f/largeFactor, 11.0f/largeFactor, 12.0f/largeFactor };
             int[] q31arr2 = new int[6];
 
-            Support.ConvertFloatToInt(floatarr2, q31arr2);
+            Support.ConvertFloatToQ31(floatarr2, q31arr2);
 
             Debug.Print("############");
             Debug.Print("# MATRIX 2 #");
@@ -74,7 +74,7 @@ namespace MathFuncsTest
             MatrixFuncs.MatrixMult(M1, M2, out outmat);
 
             float[] matmultout = new float[outmat.rows*outmat.cols];
-            Support.ConvertIntToFloat(outmat.data, matmultout);
+            Support.ConvertQ31ToFloat(outmat.data, matmultout);
 
             Debug.Print("################################");
             Debug.Print("# MATRIX MULTIPLICATION OUTPUT #");
