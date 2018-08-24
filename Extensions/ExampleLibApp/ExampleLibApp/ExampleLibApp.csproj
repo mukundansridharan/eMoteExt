@@ -41,7 +41,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ExampleLib">
+    <Reference Include="ExampleLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ExampleLib\bin\Debug\ExampleLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SPOT.Native" />
