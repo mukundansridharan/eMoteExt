@@ -8,8 +8,8 @@ namespace MathFuncsTest
     {
         public static void Main()
         {
-            const float largeFactor = 20.0f; // Suitably large factor, for downscaling. The larger the better chance of not 
-                                             // overflowing, at the cost of precision
+            const float largeFactor = 20.0f; // Suitably large factor, for downscaling. The larger this factor, the better the chance of
+                                             // matrix multiplication not causing Q31 overflow, at the cost of precision
 
             float fl1 = 0.18f;
             int int1 = 25;
