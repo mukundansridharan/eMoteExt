@@ -30,7 +30,8 @@ MISCTOOLS=../../Tools
 
 #####This is the library you are adding, it will create a library by name "ext.lib"####
 DLLDIR=../../Extensions/MathFuncs/Stubs
-DLLOBJS=$(DLLDIR)/MathFuncs.obj $(DLLDIR)/MathFuncs_CMSIS_Support.obj $(DLLDIR)/MathFuncs_CMSIS_Support_mshl.obj
+DLLOBJS=$(DLLDIR)/MathFuncs.obj $(DLLDIR)/MathFuncs_CMSIS_Support.obj $(DLLDIR)/MathFuncs_CMSIS_Support_mshl.obj\
+		$(DLLDIR)/MathFuncs_CMSIS_MatrixFuncs.obj $(DLLDIR)/MathFuncs_CMSIS_MatrixFuncs_mshl.obj
 
 
 all: binary 
@@ -98,3 +99,4 @@ binary: linker $(OUTDIR)/tinyclr.bin $(OUTDIR)/tinyclr.hex
 	
 clean:
 	rm -rf BuildOutput/$(BUILD) $(IAT_DIR)/CLR_RT_InteropAssembliesTable.obj $(LIBS_SOLUTION)/InteropAssembliesTable.lib InteropAssembliesTable.lib ext.lib
+	rm $(DLLOBJS)
