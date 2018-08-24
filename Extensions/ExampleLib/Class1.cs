@@ -28,12 +28,12 @@ namespace ExampleLib
         extern public int IntExp_Lib(int arg1, int arg2);
 
 
-        public void CustomArgsIO(Arg input, Arg output)
+        public void CustomArgsIO(Arg input, out UInt16 outsize, UInt16[] outarr)
         {
-            CustomArgsIO_Int(input.size, input.array, output.size, output.array);
+            CustomArgsIO_Int(input.size, input.array, out outsize, outarr);
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern int CustomArgsIO_Int(UInt16 input_size, UInt16[] input_array, UInt16 output_size, UInt16[] output_array);
+        extern int CustomArgsIO_Int(UInt16 input_size, UInt16[] input_array, out UInt16 output_size, UInt16[] output_array);
     }
 }

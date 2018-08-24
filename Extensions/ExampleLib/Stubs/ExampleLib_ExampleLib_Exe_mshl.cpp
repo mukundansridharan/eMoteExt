@@ -111,7 +111,7 @@ HRESULT Library_ExampleLib_ExampleLib_Exe::IntExp_Lib___I4__I4__I4( CLR_RT_Stack
     TINYCLR_NOCLEANUP();
 }
 
-HRESULT Library_ExampleLib_ExampleLib_Exe::CustomArgsIO_Int___I4__U2__SZARRAY_U2__U2__SZARRAY_U2( CLR_RT_StackFrame& stack )
+HRESULT Library_ExampleLib_ExampleLib_Exe::CustomArgsIO_Int___I4__U2__SZARRAY_U2__BYREF_U2__SZARRAY_U2( CLR_RT_StackFrame& stack )
 {
     TINYCLR_HEADER(); hr = S_OK;
     {
@@ -125,8 +125,9 @@ HRESULT Library_ExampleLib_ExampleLib_Exe::CustomArgsIO_Int___I4__U2__SZARRAY_U2
         CLR_RT_TypedArray_UINT16 param1;
         TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16_ARRAY( stack, 2, param1 ) );
 
-        UINT16 param2;
-        TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16( stack, 3, param2 ) );
+        UINT16 * param2;
+        UINT8 heapblock2[CLR_RT_HEAP_BLOCK_SIZE];
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16_ByRef( stack, heapblock2, 3, param2 ) );
 
         CLR_RT_TypedArray_UINT16 param3;
         TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16_ARRAY( stack, 4, param3 ) );
@@ -135,6 +136,7 @@ HRESULT Library_ExampleLib_ExampleLib_Exe::CustomArgsIO_Int___I4__U2__SZARRAY_U2
         TINYCLR_CHECK_HRESULT( hr );
         SetResult_INT32( stack, retVal );
 
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_StoreRef( stack, heapblock2, 3 ) );
     }
     TINYCLR_NOCLEANUP();
 }

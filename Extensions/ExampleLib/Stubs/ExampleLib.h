@@ -18,7 +18,7 @@ struct Library_ExampleLib_ExampleLib_Exe
     TINYCLR_NATIVE_DECLARE(Arg1PlusArg2___I4__I4__I4);
     TINYCLR_NATIVE_DECLARE(Arg1PlusArg2_IntFunc___I4__I4__I4);
     TINYCLR_NATIVE_DECLARE(IntExp_Lib___I4__I4__I4);
-    TINYCLR_NATIVE_DECLARE(CustomArgsIO_Int___I4__U2__SZARRAY_U2__U2__SZARRAY_U2);
+    TINYCLR_NATIVE_DECLARE(CustomArgsIO_Int___I4__U2__SZARRAY_U2__BYREF_U2__SZARRAY_U2);
 
     //--//
 
