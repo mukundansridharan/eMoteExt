@@ -99,4 +99,4 @@ binary: linker $(OUTDIR)/tinyclr.bin $(OUTDIR)/tinyclr.hex
 	
 clean:
 	rm -rf BuildOutput/$(BUILD) $(IAT_DIR)/CLR_RT_InteropAssembliesTable.obj $(LIBS_SOLUTION)/InteropAssembliesTable.lib InteropAssembliesTable.lib ext.lib
-	rm $(DLLOBJS)
+	rm -rf $(DLLOBJS)
