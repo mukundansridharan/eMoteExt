@@ -11,6 +11,25 @@
 #define _MATHFUNCS_H_
 
 #include <TinyCLR_Interop.h>
+struct Library_MathFuncs_CMSIS_Matrix
+{
+    static const int FIELD__rows = 1;
+    static const int FIELD__cols = 2;
+    static const int FIELD__data = 3;
+
+
+    //--//
+
+};
+
+struct Library_MathFuncs_CMSIS_MatrixFuncs
+{
+    TINYCLR_NATIVE_DECLARE(MatrixMult_Nat___STATIC__VOID__U2__U2__SZARRAY_I4__U2__U2__SZARRAY_I4__BYREF_U2__BYREF_U2__SZARRAY_I4);
+
+    //--//
+
+};
+
 struct Library_MathFuncs_CMSIS_Support
 {
     TINYCLR_NATIVE_DECLARE(ConvertFloatToInt___STATIC__I4__R4);

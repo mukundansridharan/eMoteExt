@@ -10,6 +10,9 @@
 <ItemGroup>
 <HFile Include="MathFuncs.h" />
 <Compile Include="MathFuncs.cpp" />
+<Compile Include="MathFuncs_CMSIS_MatrixFuncs_mshl.cpp" />
+<HFile Include="MathFuncs_CMSIS_MatrixFuncs.h" />
+<Compile Include="MathFuncs_CMSIS_MatrixFuncs.cpp" />
 <Compile Include="MathFuncs_CMSIS_Support_mshl.cpp" />
 <HFile Include="MathFuncs_CMSIS_Support.h" />
 <Compile Include="MathFuncs_CMSIS_Support.cpp" />
