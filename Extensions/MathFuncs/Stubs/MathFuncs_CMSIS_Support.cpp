@@ -12,7 +12,6 @@
 
 #include "MathFuncs.h"
 #include "MathFuncs_CMSIS_Support.h"
-#include "arm_math.h"
 #include "utils.h"
 
 using namespace CMSIS;
