@@ -44,12 +44,12 @@ void Support::ConvertQ31ToFloat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArr
 	arm_q31_to_float((q31_t*) param0.GetBuffer(), param1.GetBuffer(), param0.GetSize());
 }
 
-void Support::VectorCopy( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr )
+void Support::VectorCopy_Nat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr )
 {
 	arm_copy_q31((q31_t*) param0.GetBuffer(), (q31_t*) param1.GetBuffer(), param0.GetSize());
 }
 
-void Support::VectorFill( INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr )
+void Support::VectorFill_Nat( INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr )
 {
 	arm_fill_q31((q31_t) param0, (q31_t*) param1.GetBuffer(), param1.GetSize());
 }
