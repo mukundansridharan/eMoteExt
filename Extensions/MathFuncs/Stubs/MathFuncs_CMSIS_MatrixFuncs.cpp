@@ -18,7 +18,7 @@
 #include "arm_mat_init_q31.c"
 #include "arm_mat_add_q31.c"
 #include "arm_mat_sub_q31.c"
-#include "arm_mat_mult_fast_q31.c"
+#include "arm_mat_mult_q31.c"
 #include "arm_mat_trans_q31.c"
 
 using namespace CMSIS;
@@ -35,7 +35,7 @@ void MatrixFuncs::MatrixMult_Nat( UINT16 param0, UINT16 param1, CLR_RT_TypedArra
 	arm_mat_init_q31(&mout, param0, param4, (q31_t *) param8.GetBuffer());
 
 	/*Matrix operation*/
-	arm_mat_mult_fast_q31(&m1, &m2, &mout);
+	arm_mat_mult_q31(&m1, &m2, &mout);
 	
 	/*Populate output*/
 	* param6 = mout.numRows;
