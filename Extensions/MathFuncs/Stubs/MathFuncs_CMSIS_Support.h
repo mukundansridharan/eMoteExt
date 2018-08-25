@@ -24,6 +24,8 @@ namespace CMSIS
         static float ConvertQ31ToFloat( INT32 param0, HRESULT &hr );
         static void ConvertFloatToQ31( CLR_RT_TypedArray_float param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr );
         static void ConvertQ31ToFloat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_float param1, HRESULT &hr );
+        static void VectorCopy( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr );
+        static void VectorFill( INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr );
     };
 }
 #endif  //_MATHFUNCS_CMSIS_SUPPORT_H_

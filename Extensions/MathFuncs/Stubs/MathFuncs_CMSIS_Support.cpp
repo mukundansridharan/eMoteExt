@@ -15,6 +15,8 @@
 #include "arm_math.h"
 #include "arm_q31_to_float.c"
 #include "arm_float_to_q31.c"
+#include "arm_fill_q31.c"
+#include "arm_copy_q31.c"
 
 using namespace CMSIS;
 
@@ -40,5 +42,15 @@ void Support::ConvertFloatToQ31( CLR_RT_TypedArray_float param0, CLR_RT_TypedArr
 void Support::ConvertQ31ToFloat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_float param1, HRESULT &hr )
 {
 	arm_q31_to_float((q31_t*) param0.GetBuffer(), param1.GetBuffer(), param0.GetSize());
+}
+
+void Support::VectorCopy( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr )
+{
+	arm_copy_q31((q31_t*) param0.GetBuffer(), (q31_t*) param1.GetBuffer(), param0.GetSize());
+}
+
+void Support::VectorFill( INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr )
+{
+	arm_fill_q31((q31_t) param0, (q31_t*) param1.GetBuffer(), param1.GetSize());
 }
 

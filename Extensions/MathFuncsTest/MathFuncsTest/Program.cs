@@ -194,6 +194,45 @@ namespace MathFuncsTest
             {
                 Debug.Print((item * largeFactor).ToString());
             }
+
+
+            int[] q31arr1copy = new int[q31arr1.Length];
+            Support.VectorCopy(q31arr1, q31arr1copy);
+            Debug.Print("############");
+            Debug.Print("# VECTOR 1 #");
+            Debug.Print("############");
+
+            Debug.Print("Scaled float array: ");
+            foreach (var item in floatarr1)
+            {
+                Debug.Print((item * largeFactor).ToString());
+            }
+
+            float[] floatarr1copy = new float[q31arr1copy.Length];
+            Support.ConvertQ31ToFloat(q31arr1copy, floatarr1copy);
+            Debug.Print("Copy: ");
+            foreach (var item in floatarr1copy)
+            {
+                Debug.Print((item*largeFactor).ToString());
+            }
+
+            float scalar = 3.5f;
+            int[] fillVec = new int[6];
+            Support.VectorFill(Support.ConvertFloatToQ31(scalar / largeFactor), fillVec);
+
+            Debug.Print("##################");
+            Debug.Print("# FILLING VECTOR #");
+            Debug.Print("##################");
+            Debug.Print("Scalar: " + scalar);
+
+            float[] fillVecFloat = new float[fillVec.Length];
+            Support.ConvertQ31ToFloat(fillVec, fillVecFloat);
+            
+            Debug.Print("Filled vector: ");
+            foreach (var item in fillVecFloat)
+            {
+                Debug.Print((item * largeFactor).ToString());
+            }
         }
     }
 }

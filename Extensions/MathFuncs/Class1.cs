@@ -31,6 +31,12 @@ namespace CMSIS
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern public static void ConvertQ31ToFloat(int[] inx, float[] outx);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public static void VectorCopy(int[] inx, int[] outx);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public static void VectorFill(int val, int[] outx);
     }
 
     public class MatrixFuncs
