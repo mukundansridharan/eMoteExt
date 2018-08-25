@@ -135,3 +135,35 @@ HRESULT Library_MathFuncs_CMSIS_MatrixFuncs::MatrixMult_Nat___STATIC__VOID__U2__
     }
     TINYCLR_NOCLEANUP();
 }
+
+HRESULT Library_MathFuncs_CMSIS_MatrixFuncs::MatrixTrans_Nat___STATIC__VOID__U2__U2__SZARRAY_I4__BYREF_U2__BYREF_U2__SZARRAY_I4( CLR_RT_StackFrame& stack )
+{
+    TINYCLR_HEADER(); hr = S_OK;
+    {
+        UINT16 param0;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16( stack, 0, param0 ) );
+
+        UINT16 param1;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16( stack, 1, param1 ) );
+
+        CLR_RT_TypedArray_INT32 param2;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_INT32_ARRAY( stack, 2, param2 ) );
+
+        UINT16 * param3;
+        UINT8 heapblock3[CLR_RT_HEAP_BLOCK_SIZE];
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16_ByRef( stack, heapblock3, 3, param3 ) );
+
+        UINT16 * param4;
+        UINT8 heapblock4[CLR_RT_HEAP_BLOCK_SIZE];
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT16_ByRef( stack, heapblock4, 4, param4 ) );
+
+        CLR_RT_TypedArray_INT32 param5;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_INT32_ARRAY( stack, 5, param5 ) );
+
+        MatrixFuncs::MatrixTrans_Nat( param0, param1, param2, param3, param4, param5, hr );
+        TINYCLR_CHECK_HRESULT( hr );
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_StoreRef( stack, heapblock3, 3 ) );
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_StoreRef( stack, heapblock4, 4 ) );
+    }
+    TINYCLR_NOCLEANUP();
+}

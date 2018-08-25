@@ -57,6 +57,13 @@ namespace CMSIS
             outmat.data = outdata;
         }
 
+        public static void MatrixTrans(Matrix m1, out Matrix outmat)
+        {
+            int[] outdata = new int[m1.rows * m1.cols];
+            MatrixTrans_Nat(m1.rows, m1.cols, m1.data, out outmat.rows, out outmat.cols, outdata);
+            outmat.data = outdata;
+        }
+
 
         // Natives
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -72,6 +79,10 @@ namespace CMSIS
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern static void MatrixMult_Nat(UInt16 m1_rows, UInt16 m1_cols, int[] m1_data,
             UInt16 m2_rows, UInt16 m2_cols, int[] m2_data,
+            out UInt16 outrows, out UInt16 outcols, int[] outdata);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern static void MatrixTrans_Nat(UInt16 m1_rows, UInt16 m1_cols, int[] m1_data,
             out UInt16 outrows, out UInt16 outcols, int[] outdata);
     }
 }
