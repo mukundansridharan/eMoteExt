@@ -153,6 +153,47 @@ namespace MathFuncsTest
                 Debug.Print((item * largeFactor).ToString());
             }
 
+            Debug.Print("######################");
+            Debug.Print("# MATRIX 1 TRANSPOSE #");
+            Debug.Print("######################");
+
+            MatrixFuncs.MatrixTrans(M1, out outmat);
+            outmatfloat = new float[outmat.rows * outmat.cols];
+            Support.ConvertQ31ToFloat(outmat.data, outmatfloat);
+
+            Debug.Print("Out rows: " + outmat.rows + "; cols: " + outmat.cols + "; data:");
+            foreach (float item in outmatfloat)
+            {
+                Debug.Print((item * largeFactor).ToString());
+            }
+
+            Debug.Print("######################");
+            Debug.Print("# MATRIX 2 TRANSPOSE #");
+            Debug.Print("######################");
+
+            MatrixFuncs.MatrixTrans(M2, out outmat);
+            outmatfloat = new float[outmat.rows * outmat.cols];
+            Support.ConvertQ31ToFloat(outmat.data, outmatfloat);
+
+            Debug.Print("Out rows: " + outmat.rows + "; cols: " + outmat.cols + "; data:");
+            foreach (float item in outmatfloat)
+            {
+                Debug.Print((item * largeFactor).ToString());
+            }
+
+            Debug.Print("######################");
+            Debug.Print("# MATRIX 3 TRANSPOSE #");
+            Debug.Print("######################");
+
+            MatrixFuncs.MatrixTrans(M3, out outmat);
+            outmatfloat = new float[outmat.rows * outmat.cols];
+            Support.ConvertQ31ToFloat(outmat.data, outmatfloat);
+
+            Debug.Print("Out rows: " + outmat.rows + "; cols: " + outmat.cols + "; data:");
+            foreach (float item in outmatfloat)
+            {
+                Debug.Print((item * largeFactor).ToString());
+            }
         }
     }
 }
