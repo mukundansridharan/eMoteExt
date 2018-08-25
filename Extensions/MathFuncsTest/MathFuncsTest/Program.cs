@@ -73,17 +73,84 @@ namespace MathFuncsTest
             Matrix outmat;
             MatrixFuncs.MatrixMult(M1, M2, out outmat);
 
-            float[] matmultout = new float[outmat.rows*outmat.cols];
-            Support.ConvertQ31ToFloat(outmat.data, matmultout);
+            float[] outmatfloat = new float[outmat.rows*outmat.cols];
+            Support.ConvertQ31ToFloat(outmat.data, outmatfloat);
 
             Debug.Print("################################");
             Debug.Print("# MATRIX MULTIPLICATION OUTPUT #");
             Debug.Print("################################");
 
             Debug.Print("Out rows: " + outmat.rows + "; cols: " + outmat.cols + "; data:");
-            foreach (float item in matmultout)
+            foreach (float item in outmatfloat)
             {
                 Debug.Print((item * largeFactor * largeFactor).ToString());
+            }
+
+            Debug.Print("############");
+            Debug.Print("# MATRIX 1 #");
+            Debug.Print("############");
+
+            Debug.Print("Scaled float array: ");
+            foreach (var item in floatarr1)
+            {
+                Debug.Print(item.ToString());
+            }
+
+            Debug.Print("Converted Q31 array: ");
+            foreach (var item in q31arr1)
+            {
+                Debug.Print(item.ToString());
+            }
+
+            float[] floatarr3 = new float[] { 8.0f / largeFactor, 7.0f / largeFactor, 6.0f / largeFactor, 5.0f / largeFactor, 4.0f / largeFactor, 3.0f / largeFactor };
+            int[] q31arr3 = new int[6];
+
+            Support.ConvertFloatToQ31(floatarr3, q31arr3);
+
+            Debug.Print("############");
+            Debug.Print("# MATRIX 3 #");
+            Debug.Print("############");
+
+            Debug.Print("Scaled float array: ");
+            foreach (var item in floatarr3)
+            {
+                Debug.Print(item.ToString());
+            }
+
+            Debug.Print("Converted Q31 array: ");
+            foreach (var item in q31arr3)
+            {
+                Debug.Print(item.ToString());
+            }
+
+            Matrix M3 = new Matrix(2, 3, q31arr3);
+
+            MatrixFuncs.MatrixAdd(M1, M3, out outmat);
+            outmatfloat = new float[outmat.rows * outmat.cols];
+            Support.ConvertQ31ToFloat(outmat.data, outmatfloat);
+
+            Debug.Print("##########################");
+            Debug.Print("# MATRIX ADDITION OUTPUT #");
+            Debug.Print("##########################");
+
+            Debug.Print("Out rows: " + outmat.rows + "; cols: " + outmat.cols + "; data:");
+            foreach (float item in outmatfloat)
+            {
+                Debug.Print((item * largeFactor).ToString());
+            }
+
+            MatrixFuncs.MatrixSub(M1, M3, out outmat);
+            outmatfloat = new float[outmat.rows * outmat.cols];
+            Support.ConvertQ31ToFloat(outmat.data, outmatfloat);
+
+            Debug.Print("#############################");
+            Debug.Print("# MATRIX SUBTRACTION OUTPUT #");
+            Debug.Print("#############################");
+
+            Debug.Print("Out rows: " + outmat.rows + "; cols: " + outmat.cols + "; data:");
+            foreach (float item in outmatfloat)
+            {
+                Debug.Print((item * largeFactor).ToString());
             }
 
         }

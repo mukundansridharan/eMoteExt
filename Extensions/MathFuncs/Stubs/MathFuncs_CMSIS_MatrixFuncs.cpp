@@ -51,7 +51,7 @@ void MatrixFuncs::MatrixAdd_Nat( UINT16 param0, UINT16 param1, CLR_RT_TypedArray
 	arm_mat_init_q31(&m2, param3, param4, (q31_t *) param5.GetBuffer());
 
 	/*Initialize output matrix*/
-	arm_mat_init_q31(&mout, param0, param4, (q31_t *) param8.GetBuffer());
+	arm_mat_init_q31(&mout, param0, param1, (q31_t *) param8.GetBuffer());
 
 	/*Fast matrix multiplication*/
 	arm_mat_add_q31(&m1, &m2, &mout);
@@ -71,7 +71,7 @@ void MatrixFuncs::MatrixSub_Nat( UINT16 param0, UINT16 param1, CLR_RT_TypedArray
 	arm_mat_init_q31(&m2, param3, param4, (q31_t *) param5.GetBuffer());
 
 	/*Initialize output matrix*/
-	arm_mat_init_q31(&mout, param0, param4, (q31_t *) param8.GetBuffer());
+	arm_mat_init_q31(&mout, param0, param1, (q31_t *) param8.GetBuffer());
 
 	/*Fast matrix multiplication*/
 	arm_mat_sub_q31(&m1, &m2, &mout);
