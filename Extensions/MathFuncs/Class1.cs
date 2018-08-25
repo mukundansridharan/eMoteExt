@@ -35,12 +35,39 @@ namespace CMSIS
 
     public class MatrixFuncs
     {
+        // Wrappers
         public static void MatrixMult(Matrix m1, Matrix m2, out Matrix outmat)
         {
             int[] outdata = new int[m1.rows * m2.cols];
             MatrixMult_Nat(m1.rows, m1.cols, m1.data, m2.rows, m2.cols, m2.data, out outmat.rows, out outmat.cols, outdata);
             outmat.data = outdata;
         }
+
+        public static void MatrixAdd(Matrix m1, Matrix m2, out Matrix outmat)
+        {
+            int[] outdata = new int[m1.rows * m2.cols];
+            MatrixAdd_Nat(m1.rows, m1.cols, m1.data, m2.rows, m2.cols, m2.data, out outmat.rows, out outmat.cols, outdata);
+            outmat.data = outdata;
+        }
+
+        public static void MatrixSub(Matrix m1, Matrix m2, out Matrix outmat)
+        {
+            int[] outdata = new int[m1.rows * m2.cols];
+            MatrixSub_Nat(m1.rows, m1.cols, m1.data, m2.rows, m2.cols, m2.data, out outmat.rows, out outmat.cols, outdata);
+            outmat.data = outdata;
+        }
+
+
+        // Natives
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern static void MatrixSub_Nat(UInt16 m1_rows, UInt16 m1_cols, int[] m1_data,
+            UInt16 m2_rows, UInt16 m2_cols, int[] m2_data,
+            out UInt16 outrows, out UInt16 outcols, int[] outdata);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern static void MatrixAdd_Nat(UInt16 m1_rows, UInt16 m1_cols, int[] m1_data,
+            UInt16 m2_rows, UInt16 m2_cols, int[] m2_data,
+            out UInt16 outrows, out UInt16 outcols, int[] outdata);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern static void MatrixMult_Nat(UInt16 m1_rows, UInt16 m1_cols, int[] m1_data,

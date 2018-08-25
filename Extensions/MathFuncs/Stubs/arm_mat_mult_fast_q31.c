@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "utils.h"
+#include "arm_math.h"
 
 /**
  * @ingroup groupMatrix
