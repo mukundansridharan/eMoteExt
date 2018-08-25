@@ -56,12 +56,12 @@ LIBS_ANY= Core.lib CLRStartup.lib CorLib.lib SPOT.lib SecurityPkcs11.lib SPOT_Up
 LIBS_ANY_DIR= $(LIBS)/ANY_MEDIA/$(BUILD)/lib
 IAT_DIR=$(LIBS)/$(FLAVER)/$(BUILD)/$(SOLUTION)/obj/Solutions/$(SOLUTION)/TinyCLR
 
-
 #AM_LIBLIST := $(wildcard $(LIBS_ANY_DIR)/*.lib)
 AM_LIBLIST := $(foreach f,$(LIBS_ANY), $(LIBS_ANY_DIR)/$(f))
 OBJS_CLRSTART=$(LIBS)/$(FLAVER)/$(BUILD)/$(SOLUTION)/obj/Solutions/$(SOLUTION)/TinyCLR
 
-INC=-I../../Include/DeviceCode -I../../Include/CLR -I../../Include/Support -I$(LIBS_ANY_DIR) -I.
+INC=-I../../Include/DeviceCode -I../../Include/CLR -I../../Include/Support -I$(LIBS_ANY_DIR) -I../../CMSIS_5/Core/Include -I../../CMSIS_5/DSP/Include\
+		-I../../CMSIS_5/DSP/Source/BasicMathFunctions -I../../CMSIS_5/DSP/Source/MatrixFunctions -I../../CMSIS_5/DSP/Source/SupportFunctions -I.
 
 CFLAGS	= -xc++  -Wno-invalid-offsetof -fcheck-new  -fno-threadsafe-statics\
 			-mslow-flash-data -fdata-sections -ffunction-sections -fdollars-in-identifiers -fno-exceptions\
