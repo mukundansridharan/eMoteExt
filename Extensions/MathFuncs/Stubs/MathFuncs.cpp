@@ -23,18 +23,24 @@ static const CLR_RT_MethodHandler method_lookup[] =
     Library_MathFuncs_CMSIS_MatrixFuncs::MatrixMult_Nat___STATIC__VOID__U2__U2__SZARRAY_I4__U2__U2__SZARRAY_I4__BYREF_U2__BYREF_U2__SZARRAY_I4,
     Library_MathFuncs_CMSIS_MatrixFuncs::MatrixTrans_Nat___STATIC__VOID__U2__U2__SZARRAY_I4__BYREF_U2__BYREF_U2__SZARRAY_I4,
     NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
     Library_MathFuncs_CMSIS_Support::ConvertFloatToQ31___STATIC__I4__R4,
     Library_MathFuncs_CMSIS_Support::ConvertQ31ToFloat___STATIC__R4__I4,
     Library_MathFuncs_CMSIS_Support::ConvertFloatToQ31___STATIC__VOID__SZARRAY_R4__SZARRAY_I4,
     Library_MathFuncs_CMSIS_Support::ConvertQ31ToFloat___STATIC__VOID__SZARRAY_I4__SZARRAY_R4,
-    Library_MathFuncs_CMSIS_Support::VectorCopy___STATIC__VOID__SZARRAY_I4__SZARRAY_I4,
-    Library_MathFuncs_CMSIS_Support::VectorFill___STATIC__VOID__I4__SZARRAY_I4,
+    Library_MathFuncs_CMSIS_Support::VectorCopy_Nat___STATIC__VOID__SZARRAY_I4__SZARRAY_I4,
+    Library_MathFuncs_CMSIS_Support::VectorFill_Nat___STATIC__VOID__I4__SZARRAY_I4,
 };
 
 const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_MathFuncs =
 {
     "MathFuncs", 
-    0x58E4BFCC,
+    0x487C24E4,
     method_lookup
 };
 

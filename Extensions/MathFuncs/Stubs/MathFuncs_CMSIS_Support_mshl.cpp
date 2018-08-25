@@ -75,7 +75,7 @@ HRESULT Library_MathFuncs_CMSIS_Support::ConvertQ31ToFloat___STATIC__VOID__SZARR
     TINYCLR_NOCLEANUP();
 }
 
-HRESULT Library_MathFuncs_CMSIS_Support::VectorCopy___STATIC__VOID__SZARRAY_I4__SZARRAY_I4( CLR_RT_StackFrame& stack )
+HRESULT Library_MathFuncs_CMSIS_Support::VectorCopy_Nat___STATIC__VOID__SZARRAY_I4__SZARRAY_I4( CLR_RT_StackFrame& stack )
 {
     TINYCLR_HEADER(); hr = S_OK;
     {
@@ -85,13 +85,13 @@ HRESULT Library_MathFuncs_CMSIS_Support::VectorCopy___STATIC__VOID__SZARRAY_I4__
         CLR_RT_TypedArray_INT32 param1;
         TINYCLR_CHECK_HRESULT( Interop_Marshal_INT32_ARRAY( stack, 1, param1 ) );
 
-        Support::VectorCopy( param0, param1, hr );
+        Support::VectorCopy_Nat( param0, param1, hr );
         TINYCLR_CHECK_HRESULT( hr );
     }
     TINYCLR_NOCLEANUP();
 }
 
-HRESULT Library_MathFuncs_CMSIS_Support::VectorFill___STATIC__VOID__I4__SZARRAY_I4( CLR_RT_StackFrame& stack )
+HRESULT Library_MathFuncs_CMSIS_Support::VectorFill_Nat___STATIC__VOID__I4__SZARRAY_I4( CLR_RT_StackFrame& stack )
 {
     TINYCLR_HEADER(); hr = S_OK;
     {
@@ -101,7 +101,7 @@ HRESULT Library_MathFuncs_CMSIS_Support::VectorFill___STATIC__VOID__I4__SZARRAY_
         CLR_RT_TypedArray_INT32 param1;
         TINYCLR_CHECK_HRESULT( Interop_Marshal_INT32_ARRAY( stack, 1, param1 ) );
 
-        Support::VectorFill( param0, param1, hr );
+        Support::VectorFill_Nat( param0, param1, hr );
         TINYCLR_CHECK_HRESULT( hr );
     }
     TINYCLR_NOCLEANUP();
