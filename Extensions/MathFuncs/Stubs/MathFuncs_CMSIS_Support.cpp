@@ -12,7 +12,6 @@
 
 #include "MathFuncs.h"
 #include "MathFuncs_CMSIS_Support.h"
-#include "arm_math.h"
 #include "arm_q31_to_float.c"
 #include "arm_float_to_q31.c"
 #include "arm_fill_q31.c"

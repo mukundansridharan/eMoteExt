@@ -14,7 +14,6 @@
 #include <tinyhal.h>
 #include "MathFuncs.h"
 #include "MathFuncs_CMSIS_MatrixFuncs.h"
-#include "arm_math.h"
 #include "arm_mat_init_q31.c"
 #include "arm_mat_add_q31.c"
 #include "arm_mat_sub_q31.c"
