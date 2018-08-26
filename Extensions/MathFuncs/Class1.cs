@@ -46,7 +46,7 @@ namespace CMSIS
             return outx;
         }
 
-        // Convert Q31 array to float; upscale
+        // Convert Q31 to float; upscale
         public static float ScaleConvertQ31ToFloat(int inx, float scaleFactor)
         {
             return ConvertQ31ToFloat(inx) * scaleFactor;

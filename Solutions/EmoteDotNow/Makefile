@@ -31,7 +31,8 @@ MISCTOOLS=../../Tools
 #####This is the library you are adding, it will create a library by name "ext.lib"####
 DLLDIR=../../Extensions/MathFuncs/Stubs
 DLLOBJS=$(DLLDIR)/MathFuncs.obj $(DLLDIR)/MathFuncs_CMSIS_Support.obj $(DLLDIR)/MathFuncs_CMSIS_Support_mshl.obj\
-		$(DLLDIR)/MathFuncs_CMSIS_MatrixFuncs.obj $(DLLDIR)/MathFuncs_CMSIS_MatrixFuncs_mshl.obj
+		$(DLLDIR)/MathFuncs_CMSIS_MatrixFuncs.obj $(DLLDIR)/MathFuncs_CMSIS_MatrixFuncs_mshl.obj\
+		$(DLLDIR)/MathFuncs_CMSIS_VectorFuncs.obj $(DLLDIR)/MathFuncs_CMSIS_VectorFuncs_mshl.obj\
 
 
 all: binary 
