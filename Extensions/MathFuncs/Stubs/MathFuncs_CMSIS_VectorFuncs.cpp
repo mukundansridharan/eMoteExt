@@ -18,7 +18,7 @@
 #include "arm_offset_q31.c"
 #include "arm_add_q31.c"
 #include "arm_sub_q31.c"
-#include "arm_dot_prod_q31.c"
+//#include "arm_dot_prod_q31.c" -- doesn't work
 #include "arm_mult_q31.c"
 
 using namespace CMSIS;
@@ -48,11 +48,25 @@ void VectorFuncs::VectorSub_Nat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArr
 	arm_sub_q31((q31_t*) param0.GetBuffer(), (q31_t*) param1.GetBuffer(), (q31_t*) param2.GetBuffer(), param2.GetSize());
 }
 
-INT32 VectorFuncs::VectorDot_Nat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr )
+// Doesn't work (Q16.48)
+/*INT32 VectorFuncs::VectorDot_Nat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr )
 {
     q63_t retVal = 0;
     arm_dot_prod_q31((q31_t*) param0.GetBuffer(), (q31_t*) param1.GetBuffer(), param1.GetSize(), &retVal);
     return clip_q63_to_q31(retVal);
+}*/
+
+INT32 VectorFuncs::VectorDot_Nat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr )
+{
+	q31_t multOutput[param1.GetSize()];
+	arm_mult_q31((q31_t*) param0.GetBuffer(), (q31_t*) param1.GetBuffer(), multOutput, param1.GetSize());
+	
+	q31_t retVal=0;
+	for(INT32 i=0; i< param1.GetSize(); i++)
+	{
+		arm_add_q31(&retVal, &multOutput[i], &retVal, 1);
+	}
+	return retVal;
 }
 
 void VectorFuncs::VectorHadamard_Nat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_INT32 param1, CLR_RT_TypedArray_INT32 param2, HRESULT &hr )

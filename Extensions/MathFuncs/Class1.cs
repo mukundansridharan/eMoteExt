@@ -240,18 +240,18 @@ namespace CMSIS
             int[] in2data = Support.ScaleConvertFloatArrToQ31(in2vec, GlobalVar.largeFactor);
             
             int outdata = VectorDot_Nat(in1data, in2data);
-            return Support.ScaleConvertQ31ToFloat(outdata, GlobalVar.largeFactor);
+            return Support.ScaleConvertQ31ToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
         }
 
         // Hadamard product of two vectors
-        public static float[] VectorHadamad(float[] in1vec, float[] in2vec)
+        public static float[] VectorHadamard(float[] in1vec, float[] in2vec)
         {
             int[] in1data = Support.ScaleConvertFloatArrToQ31(in1vec, GlobalVar.largeFactor);
             int[] in2data = Support.ScaleConvertFloatArrToQ31(in2vec, GlobalVar.largeFactor);
             int[] outdata = new int[in1vec.Length];
 
             VectorHadamard_Nat(in1data, in2data, outdata);
-            return Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor);
+            return Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
         }
 
 
