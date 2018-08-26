@@ -16,6 +16,9 @@
 <Compile Include="MathFuncs_CMSIS_Support_mshl.cpp" />
 <HFile Include="MathFuncs_CMSIS_Support.h" />
 <Compile Include="MathFuncs_CMSIS_Support.cpp" />
+<Compile Include="MathFuncs_CMSIS_VectorFuncs_mshl.cpp" />
+<HFile Include="MathFuncs_CMSIS_VectorFuncs.h" />
+<Compile Include="MathFuncs_CMSIS_VectorFuncs.cpp" />
 </ItemGroup>
 <Import Project="$(SPOCLIENT)\tools\targets\Microsoft.SPOT.System.Targets" />
 </Project>
