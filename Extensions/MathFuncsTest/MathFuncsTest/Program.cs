@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Microsoft.SPOT;
 using CMSIS;
 
@@ -8,7 +9,8 @@ namespace MathFuncsTest
     {
         public static void Main()
         {
-
+            Thread.Sleep(5000);
+            
             /*Conversion between float and Q31*/
             float fl1 = 1.18f;
             int int1 = 25;
