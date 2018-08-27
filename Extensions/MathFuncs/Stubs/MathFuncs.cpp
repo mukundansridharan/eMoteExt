@@ -28,6 +28,17 @@ static const CLR_RT_MethodHandler method_lookup[] =
     NULL,
     NULL,
     NULL,
+    Library_MathFuncs_CMSIS_Stats::Max_Nat___STATIC__I4__SZARRAY_I4__BYREF_I4,
+    Library_MathFuncs_CMSIS_Stats::Min_Nat___STATIC__I4__SZARRAY_I4__BYREF_I4,
+    Library_MathFuncs_CMSIS_Stats::Mean_Nat___STATIC__I4__SZARRAY_I4,
+    Library_MathFuncs_CMSIS_Stats::StD_Nat___STATIC__I4__SZARRAY_I4,
+    Library_MathFuncs_CMSIS_Stats::Var_Nat___STATIC__I4__SZARRAY_I4,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
     NULL,
     Library_MathFuncs_CMSIS_Support::ConvertFloatToQ31___STATIC__I4__R4,
     Library_MathFuncs_CMSIS_Support::ConvertQ31ToFloat___STATIC__R4__I4,
@@ -55,7 +66,7 @@ static const CLR_RT_MethodHandler method_lookup[] =
 const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_MathFuncs =
 {
     "MathFuncs", 
-    0x9489DFF9,
+    0x28BF282F,
     method_lookup
 };
 

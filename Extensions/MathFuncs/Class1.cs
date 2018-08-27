@@ -24,6 +24,71 @@ namespace CMSIS
         }
     };
 
+    public class Stats
+    {
+        // Max of vector
+        float Max(float[] invec, out int outIndex)
+        {
+            int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
+
+            int outVal = Max_Nat(indata, out outIndex);
+            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor);
+        }
+
+        // Min of vector
+        float Min(float[] invec, out int outIndex)
+        {
+            int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
+
+            int outVal = Min_Nat(indata, out outIndex);
+            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor);
+        }
+
+        // Mean of vector
+        float Mean(float[] invec)
+        {
+            int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
+
+            int outVal = Mean_Nat(indata);
+            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor);
+        }
+
+        // Standard deviation of vector
+        float StD(float[] invec)
+        {
+            int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
+
+            int outVal = StD_Nat(indata);
+            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor);
+        }
+
+        // Variance of vector
+        float Var(float[] invec)
+        {
+            int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
+
+            int outVal = Var_Nat(indata);
+            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor);
+        }
+
+
+        // Natives
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public static int Max_Nat(int[] vec, out int maxIndex);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public static int Min_Nat(int[] vec, out int minIndex);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public static int Mean_Nat(int[] vec);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public static int StD_Nat(int[] vec);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public static int Var_Nat(int[] vec);
+    }
+
     public class Support
     {
         // Downscale any float; convert to Q31
