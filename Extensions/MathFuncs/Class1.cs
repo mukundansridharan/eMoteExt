@@ -68,7 +68,7 @@ namespace CMSIS
             int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
 
             int outVal = Var_Nat(indata);
-            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor);
+            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor * GlobalVar.largeFactor);
         }
 
 
