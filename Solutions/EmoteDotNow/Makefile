@@ -33,7 +33,7 @@ DLLDIR=../../Extensions/MathFuncs/Stubs
 DLLOBJS=$(DLLDIR)/MathFuncs.obj $(DLLDIR)/MathFuncs_CMSIS_Support.obj $(DLLDIR)/MathFuncs_CMSIS_Support_mshl.obj\
 		$(DLLDIR)/MathFuncs_CMSIS_MatrixFuncs.obj $(DLLDIR)/MathFuncs_CMSIS_MatrixFuncs_mshl.obj\
 		$(DLLDIR)/MathFuncs_CMSIS_VectorFuncs.obj $(DLLDIR)/MathFuncs_CMSIS_VectorFuncs_mshl.obj\
-
+		$(DLLDIR)/MathFuncs_CMSIS_Stats.obj $(DLLDIR)/MathFuncs_CMSIS_Stats_mshl.obj
 
 all: binary 
 
@@ -62,7 +62,8 @@ AM_LIBLIST := $(foreach f,$(LIBS_ANY), $(LIBS_ANY_DIR)/$(f))
 OBJS_CLRSTART=$(LIBS)/$(FLAVER)/$(BUILD)/$(SOLUTION)/obj/Solutions/$(SOLUTION)/TinyCLR
 
 INC=-I../../Include/DeviceCode -I../../Include/CLR -I../../Include/Support -I$(LIBS_ANY_DIR) -I../../CMSIS_5/Core/Include -I../../CMSIS_5/DSP/Include\
-		-I../../CMSIS_5/DSP/Source/BasicMathFunctions -I../../CMSIS_5/DSP/Source/MatrixFunctions -I../../CMSIS_5/DSP/Source/SupportFunctions -I.
+		-I../../CMSIS_5/DSP/Source/BasicMathFunctions -I../../CMSIS_5/DSP/Source/MatrixFunctions -I../../CMSIS_5/DSP/Source/SupportFunctions\
+			-I../../CMSIS_5/DSP/Source/StatisticsFunctions -I.
 
 CFLAGS	= -xc++  -Wno-invalid-offsetof -fcheck-new  -fno-threadsafe-statics\
 			-mslow-flash-data -fdata-sections -ffunction-sections -fdollars-in-identifiers -fno-exceptions\
