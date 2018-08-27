@@ -11,15 +11,7 @@ namespace MathFuncsTest
         {
             Thread.Sleep(5000);
             
-            /*Conversion between float and Q31*/
-            float fl1 = 1.18f;
-            int int1 = 25;
-
-            Debug.Print(fl1 + " to Q31 = " + Support.ConvertFloatToQ31(fl1) + " and back to float = " + Support.ConvertQ31ToFloat(Support.ConvertFloatToQ31(fl1)));
-            Debug.Print(int1 + " to float = " + Support.ConvertQ31ToFloat(int1) + " and back to int = " + Support.ConvertFloatToQ31(Support.ConvertQ31ToFloat(int1)));
-
-
-            /*Matrix initialization*/
+           /*Matrix initialization*/
             float[] floatarr1 = new float[] { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f };
             float[] floatarr2 = new float[] { 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f };
             float[] floatarr3 = new float[] { 8.0f, 7.0f, 6.0f, 5.0f, 4.0f, 3.0f };
@@ -274,7 +266,6 @@ namespace MathFuncsTest
             foreach (var item in vec1offset)
             {
                 Debug.Print(item.ToString());
-
             }
 
             /*Vector addition*/
@@ -344,6 +335,26 @@ namespace MathFuncsTest
             Debug.Print("######################");
 
             Debug.Print("Value:" + vecdot);
+
+            /*Vector statistics*/
+            Debug.Print("#######################");
+            Debug.Print("# VECTOR 1 STATISTICS #");
+            Debug.Print("#######################");
+
+            Debug.Print("Data:");
+            foreach (var item in vec1)
+            {
+                Debug.Print(item.ToString());
+            }
+
+            UInt32 maxIndex, minIndex;
+            float max = Stats.Max(vec1, out maxIndex);
+            float min = Stats.Min(vec1, out minIndex);
+            Debug.Print("Max: " + max + " at index: " + maxIndex);
+            Debug.Print("Min: " + min + " at index: " + minIndex);
+            Debug.Print("Mean: " + Stats.Mean(vec1));
+            Debug.Print("Standard deviation: " + Stats.StD(vec1));
+            Debug.Print("Variance: " + Stats.Var(vec1));
         }
     }
 }
