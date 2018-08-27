@@ -27,7 +27,7 @@ namespace CMSIS
     public class Stats
     {
         // Max of vector
-        float Max(float[] invec, out int outIndex)
+        public static float Max(float[] invec, out uint outIndex)
         {
             int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
 
@@ -36,7 +36,7 @@ namespace CMSIS
         }
 
         // Min of vector
-        float Min(float[] invec, out int outIndex)
+        public static float Min(float[] invec, out uint outIndex)
         {
             int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
 
@@ -45,7 +45,7 @@ namespace CMSIS
         }
 
         // Mean of vector
-        float Mean(float[] invec)
+        public static float Mean(float[] invec)
         {
             int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
 
@@ -54,7 +54,7 @@ namespace CMSIS
         }
 
         // Standard deviation of vector
-        float StD(float[] invec)
+        public static float StD(float[] invec)
         {
             int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
 
@@ -63,7 +63,7 @@ namespace CMSIS
         }
 
         // Variance of vector
-        float Var(float[] invec)
+        public static float Var(float[] invec)
         {
             int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
 
@@ -74,19 +74,19 @@ namespace CMSIS
 
         // Natives
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static int Max_Nat(int[] vec, out int maxIndex);
+        extern static int Max_Nat(int[] vec, out uint maxIndex);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static int Min_Nat(int[] vec, out int minIndex);
+        extern static int Min_Nat(int[] vec, out uint minIndex);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static int Mean_Nat(int[] vec);
+        extern static int Mean_Nat(int[] vec);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static int StD_Nat(int[] vec);
+        extern static int StD_Nat(int[] vec);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static int Var_Nat(int[] vec);
+        extern static int Var_Nat(int[] vec);
     }
 
     public class Support
@@ -150,22 +150,22 @@ namespace CMSIS
 
         // Natives
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static int ConvertFloatToQ31(float x);
+        extern static int ConvertFloatToQ31(float x);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static float ConvertQ31ToFloat(int x);
+        extern static float ConvertQ31ToFloat(int x);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static void ConvertFloatToQ31(float[] inx, int[] outx);
+        extern static void ConvertFloatToQ31(float[] inx, int[] outx);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static void ConvertQ31ToFloat(int[] inx, float[] outx);
+        extern static void ConvertQ31ToFloat(int[] inx, float[] outx);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static void VectorCopy_Nat(int[] inx, int[] outx);
+        extern static void VectorCopy_Nat(int[] inx, int[] outx);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern public static void VectorFill_Nat(int val, int[] outx);
+        extern static void VectorFill_Nat(int val, int[] outx);
     }
 
     public class MatrixFuncs
