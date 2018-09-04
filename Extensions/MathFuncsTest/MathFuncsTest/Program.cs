@@ -155,7 +155,7 @@ namespace MathFuncsTest
             }
 
             Debug.Print("######################");
-            Debug.Print("# MATRIX 1 TRANSPOSE #");
+            Debug.Print("# MATRIX 3 TRANSPOSE #");
             Debug.Print("######################");
 
             outmat = MatrixFuncs.MatrixTrans(M3);
@@ -168,7 +168,7 @@ namespace MathFuncsTest
 
             /*Vector copy*/
             Debug.Print("############");
-            Debug.Print("# VECTOR 1 #");
+            Debug.Print("# VECTOR 0 #");
             Debug.Print("############");
 
             Debug.Print("Data:");
@@ -181,7 +181,7 @@ namespace MathFuncsTest
             float[] copyarr1 = Support.VectorCopy(floatarr1);
 
             Debug.Print("#################");
-            Debug.Print("# VECTOR 1 COPY #");
+            Debug.Print("# VECTOR 0 COPY #");
             Debug.Print("#################");
 
             Debug.Print("Data:");
