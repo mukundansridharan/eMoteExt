@@ -355,6 +355,8 @@ namespace MathFuncsTest
             Debug.Print("Mean: " + Stats.Mean(vec1));
             Debug.Print("Standard deviation: " + Stats.StD(vec1));
             Debug.Print("Variance: " + Stats.Var(vec1));
+            
+            Debug.Print("\n\nEND UNIT TESTS");
         }
     }
 }
