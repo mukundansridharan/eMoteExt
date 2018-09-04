@@ -27,7 +27,7 @@
  */
 
 #include "arm_math.h"
-
+#include "arm_sqrt_q15.c"
 /**
  * @ingroup groupStats
  */
