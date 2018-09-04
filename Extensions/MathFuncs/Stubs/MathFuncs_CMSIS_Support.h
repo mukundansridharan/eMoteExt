@@ -20,10 +20,10 @@ namespace CMSIS
     {
         // Helper Functions to access fields of managed object
         // Declaration of stubs. These functions are implemented by Interop code developers
-        static INT32 ConvertFloatToQ31( float param0, HRESULT &hr );
-        static float ConvertQ31ToFloat( INT32 param0, HRESULT &hr );
-        static void ConvertFloatToQ31( CLR_RT_TypedArray_float param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr );
-        static void ConvertQ31ToFloat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_float param1, HRESULT &hr );
+        static INT32 ConvertFloatToQ15( float param0, HRESULT &hr );
+        static float ConvertQ15ToFloat( INT32 param0, HRESULT &hr );
+        static void ConvertFloatToQ15( CLR_RT_TypedArray_float param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr );
+        static void ConvertQ15ToFloat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_float param1, HRESULT &hr );
         static void VectorCopy_Nat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr );
         static void VectorFill_Nat( INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr );
     };
