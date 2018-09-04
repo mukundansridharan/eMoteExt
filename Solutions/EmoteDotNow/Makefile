@@ -63,7 +63,7 @@ OBJS_CLRSTART=$(LIBS)/$(FLAVER)/$(BUILD)/$(SOLUTION)/obj/Solutions/$(SOLUTION)/T
 
 INC=-I../../Include/DeviceCode -I../../Include/CLR -I../../Include/Support -I$(LIBS_ANY_DIR) -I../../CMSIS_5/Core/Include -I../../CMSIS_5/DSP/Include\
 		-I../../CMSIS_5/DSP/Source/BasicMathFunctions -I../../CMSIS_5/DSP/Source/MatrixFunctions -I../../CMSIS_5/DSP/Source/SupportFunctions\
-			-I../../CMSIS_5/DSP/Source/StatisticsFunctions -I.
+			-I../../CMSIS_5/DSP/Source/StatisticsFunctions -I../../CMSIS_5/DSP/Source/FastMathFunctions -I.
 
 CFLAGS	= -xc++  -Wno-invalid-offsetof -fcheck-new  -fno-threadsafe-statics\
 			-mslow-flash-data -fdata-sections -ffunction-sections -fdollars-in-identifiers -fno-exceptions\
