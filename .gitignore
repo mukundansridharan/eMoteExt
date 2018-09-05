@@ -1,4 +1,5 @@
 **/BuildOutput
+!**/BuildOutput/Debug/bin/
 **/.project
 **/.cproject
 **/InteropAssembliesTable.lib
