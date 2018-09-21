@@ -336,6 +336,48 @@ namespace MathFuncsTest
 
             Debug.Print("Value:" + vecdot);
 
+            /*Vector reciprocal*/
+            float[] vec1recip = VectorFuncs.VectorRecip(vec1);
+
+            Debug.Print("#######################");
+            Debug.Print("# VECTOR 1 RECIPROCAL #");
+            Debug.Print("#######################");
+            foreach (var item in vec1recip)
+            {
+                Debug.Print(item.ToString());
+            }
+
+            float[] vec2recip = VectorFuncs.VectorRecip(vec2);
+
+            Debug.Print("#######################");
+            Debug.Print("# VECTOR 2 RECIPROCAL #");
+            Debug.Print("#######################");
+            foreach (var item in vec2recip)
+            {
+                Debug.Print(item.ToString());
+            }
+
+            /*Vector scaling*/
+            float[] vec1sc = VectorFuncs.VectorScale(vec1, scal1);
+
+            Debug.Print("##########################");
+            Debug.Print("# VECTOR 1 SCALED BY 3.5 #");
+            Debug.Print("##########################");
+            foreach (var item in vec1sc)
+            {
+                Debug.Print(item.ToString());
+            }
+
+            float[] vec2sc = VectorFuncs.VectorScale(vec2, scal1);
+
+            Debug.Print("##########################");
+            Debug.Print("# VECTOR 2 SCALED BY 3.5 #");
+            Debug.Print("##########################");
+            foreach (var item in vec2sc)
+            {
+                Debug.Print(item.ToString());
+            }
+
             /*Vector statistics*/
             Debug.Print("#######################");
             Debug.Print("# VECTOR 1 STATISTICS #");

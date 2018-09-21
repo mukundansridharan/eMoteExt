@@ -22,6 +22,24 @@ namespace CMSIS
             this.cols = cols;
             this.data = data;
         }
+
+        // Overload operator + (m1 + m2)
+        public static Matrix operator +(Matrix m1, Matrix m2)
+        {
+            return MatrixFuncs.MatrixAdd(m1, m2);
+        }
+
+        // Overload operator - (m1 - m2)
+        public static Matrix operator -(Matrix m1, Matrix m2)
+        {
+            return MatrixFuncs.MatrixSub(m1, m2);
+        }
+
+        // Overload operator * (m1 * m2)
+        public static Matrix operator *(Matrix m1, Matrix m2)
+        {
+            return MatrixFuncs.MatrixMult(m1, m2);
+        }
     };
 
     public class Stats
@@ -170,7 +188,6 @@ namespace CMSIS
 
     public class MatrixFuncs
     {
-
         // Multiply two matrices
         public static Matrix MatrixMult(Matrix m1, Matrix m2)
         {
@@ -244,6 +261,40 @@ namespace CMSIS
             out UInt16 outrows, out UInt16 outcols, int[] outdata);
     }
 
+    public class Vector
+    {
+        float[] vec;
+
+        public Vector(float[] v)
+        {
+            vec = v;
+        }
+
+        // Overload operator + (v1 + v2)
+        public static Vector operator +(Vector v1, Vector v2)
+        {
+            return new Vector(VectorFuncs.VectorAdd(v1.vec, v2.vec));
+        }
+
+        // Overload operator - (v1 - v2)
+        public static Vector operator -(Vector v1, Vector v2)
+        {
+            return new Vector(VectorFuncs.VectorSub(v1.vec, v2.vec));
+        }
+
+        // Oveload operator * (s1 * v1)
+        public static Vector operator *(float s1, Vector v1)
+        {
+            return new Vector(VectorFuncs.VectorScale(v1.vec, s1));
+        }
+
+        // Oveload operator / (s1 / v1)
+        public static Vector operator /(float s1, Vector v1)
+        {
+            return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), s1));
+        }
+    }
+
     public class VectorFuncs
     {
         // Find absolute of vector
@@ -266,7 +317,7 @@ namespace CMSIS
             return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
         }
 
-        // Add an offset to vector
+        // Add an scalar to vector
         public static float[] VectorOffset(float[] invec, float offset)
         {
             int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
@@ -274,6 +325,16 @@ namespace CMSIS
 
             VectorOffset_Nat(indata, Support.ScaleConvertFloatToQ15(offset, GlobalVar.largeFactor), outdata);
             return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+        }
+
+        // Scale vector by scalar
+        public static float[] VectorScale(float[] invec, float scale)
+        {
+            int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
+            int[] outdata = new int[invec.Length];
+
+            VectorScale_Nat(indata, Support.ScaleConvertFloatToQ15(scale, GlobalVar.largeFactor), outdata);
+            return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
         }
 
         // Add two vectors
@@ -296,6 +357,24 @@ namespace CMSIS
 
             VectorSub_Nat(in1data, in2data, outdata);
             return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+        }
+
+        // Reciprocal of vector
+        public static float[] VectorRecip(float[] in1vec)
+        {
+            /* VectorRecip_Nat doesn't work: don't know how to interpret result (https://voltampmedia.com/2011/09/27/using-arms-cmsis-dsp-library-arm_recip_q15/)
+            int[] in1data = Support.ScaleConvertFloatArrToQ15(in1vec, GlobalVar.largeFactor);
+            int[] outdata = new int[in1vec.Length];
+
+            VectorRecip_Nat(in1data, outdata);
+            return Support.ScaleConvertQ15ArrToFloat(outdata, 1.0f/GlobalVar.largeFactor);*/
+
+            // Simply compute reciprocal. TODO: Change to faster implementation
+            float[] outdata = new float[in1vec.Length];
+            for (int i = 0; i < in1vec.Length; i++)
+                outdata[i] = 1.0f / in1vec[i];
+
+            return outdata;
         }
 
         // Dot product of two vectors
@@ -341,5 +420,12 @@ namespace CMSIS
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern static void VectorHadamard_Nat(int[] intx, int[] inty, int[] outx);
+
+        // Doesn't work: don't know how to interpret result (https://voltampmedia.com/2011/09/27/using-arms-cmsis-dsp-library-arm_recip_q15/)
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern static void VectorRecip_Nat(int[] intx, int[] outx);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern static void VectorScale_Nat(int[] intx, int scale, int[] outx);
     }
 }
