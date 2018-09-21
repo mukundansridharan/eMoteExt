@@ -58,6 +58,15 @@ struct Library_MathFuncs_CMSIS_Support
 
 };
 
+struct Library_MathFuncs_CMSIS_Vector
+{
+    static const int FIELD__vec = 1;
+
+
+    //--//
+
+};
+
 struct Library_MathFuncs_CMSIS_VectorFuncs
 {
     TINYCLR_NATIVE_DECLARE(VectorAbs_Nat___STATIC__VOID__SZARRAY_I4__SZARRAY_I4);
@@ -67,6 +76,8 @@ struct Library_MathFuncs_CMSIS_VectorFuncs
     TINYCLR_NATIVE_DECLARE(VectorSub_Nat___STATIC__VOID__SZARRAY_I4__SZARRAY_I4__SZARRAY_I4);
     TINYCLR_NATIVE_DECLARE(VectorDot_Nat___STATIC__I4__SZARRAY_I4__SZARRAY_I4);
     TINYCLR_NATIVE_DECLARE(VectorHadamard_Nat___STATIC__VOID__SZARRAY_I4__SZARRAY_I4__SZARRAY_I4);
+    TINYCLR_NATIVE_DECLARE(VectorRecip_Nat___STATIC__VOID__SZARRAY_I4__SZARRAY_I4);
+    TINYCLR_NATIVE_DECLARE(VectorScale_Nat___STATIC__VOID__SZARRAY_I4__I4__SZARRAY_I4);
 
     //--//
 
