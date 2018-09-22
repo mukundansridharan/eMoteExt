@@ -41,6 +41,15 @@ namespace CMSIS
             return MatrixFuncs.MatrixMult(m1, m2);
         }
 
+        // Overload operator * (m1 * v1)
+        public static Vector operator *(Matrix m1, Vector v1)
+        {
+            Matrix m2 = new Matrix((ushort) v1.vec.Length, 1, v1.vec);
+            return new Vector(MatrixFuncs.MatrixMult(m1, m2).data);
+        }
+
+        // 
+
         // Transpose
         public Matrix Transpose()
         {
@@ -155,11 +164,11 @@ namespace CMSIS
             return outx;
         }
 
-        // Deep-copy one vector into another
-        public static float[] VectorCopy(float[] invec)
+        // Copy one vector into another
+        public static float[] VectorCopy(float[] invec, int index, uint length)
         {
-            int[] outvec = new int[invec.Length];
-            VectorCopy_Nat(ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor), outvec);
+            int[] outvec = new int[length];
+            VectorCopy_Nat(ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor), index, outvec, length);
             return ScaleConvertQ15ArrToFloat(outvec, GlobalVar.largeFactor);
         }
 
@@ -185,7 +194,7 @@ namespace CMSIS
         extern static void ConvertQ15ToFloat(int[] inx, float[] outx);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static void VectorCopy_Nat(int[] inx, int[] outx);
+        extern static void VectorCopy_Nat(int[] inx, int index, int[] outx, uint length);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern static void VectorFill_Nat(int val, int[] outx);
@@ -410,6 +419,17 @@ namespace CMSIS
         public Vector PointwiseExp()
         {
             return new Vector(VectorFuncs.VectorExp(this.vec));
+        }
+
+        // Point-wise multiplication of one vector with another
+        public Vector PointwiseMultiply(Vector v)
+        {
+            return new Vector(VectorFuncs.VectorHadamard(this.vec, v.vec));
+        }
+
+        public Vector SubVector(int index, uint count)
+        {
+            return new Vector(Support.VectorCopy(this.vec, index, count));
         }
     }
 

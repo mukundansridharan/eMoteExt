@@ -24,7 +24,7 @@ namespace CMSIS
         static float ConvertQ15ToFloat( INT32 param0, HRESULT &hr );
         static void ConvertFloatToQ15( CLR_RT_TypedArray_float param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr );
         static void ConvertQ15ToFloat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_float param1, HRESULT &hr );
-        static void VectorCopy_Nat( CLR_RT_TypedArray_INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr );
+        static void VectorCopy_Nat( CLR_RT_TypedArray_INT32 param0, INT32 param1, CLR_RT_TypedArray_INT32 param2, UINT32 param3, HRESULT &hr );
         static void VectorFill_Nat( INT32 param0, CLR_RT_TypedArray_INT32 param1, HRESULT &hr );
     };
 }

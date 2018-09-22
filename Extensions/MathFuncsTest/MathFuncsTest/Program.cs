@@ -178,7 +178,7 @@ namespace MathFuncsTest
 
             }
 
-            float[] copyarr1 = Support.VectorCopy(floatarr1);
+            float[] copyarr1 = Support.VectorCopy(floatarr1, 0, (uint)floatarr1.Length);
 
             Debug.Print("#################");
             Debug.Print("# VECTOR 0 COPY #");
@@ -188,7 +188,18 @@ namespace MathFuncsTest
             foreach (var item in copyarr1)
             {
                 Debug.Print(item.ToString());
+            }
 
+            float[] copyarr2 = Support.VectorCopy(floatarr1, 2, 3);
+
+            Debug.Print("#########################");
+            Debug.Print("# VECTOR 0 PARTIAL COPY #");
+            Debug.Print("#########################");
+
+            Debug.Print("Data:");
+            foreach (var item in copyarr2)
+            {
+                Debug.Print(item.ToString());
             }
 
             float scal1 = 3.5f;

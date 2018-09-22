@@ -22,6 +22,7 @@ static const CLR_RT_MethodHandler method_lookup[] =
     NULL,
     NULL,
     NULL,
+    NULL,
     Library_MathFuncs_CMSIS_MatrixFuncs::MatrixSub_Nat___STATIC__VOID__U2__U2__SZARRAY_I4__U2__U2__SZARRAY_I4__BYREF_U2__BYREF_U2__SZARRAY_I4,
     Library_MathFuncs_CMSIS_MatrixFuncs::MatrixAdd_Nat___STATIC__VOID__U2__U2__SZARRAY_I4__U2__U2__SZARRAY_I4__BYREF_U2__BYREF_U2__SZARRAY_I4,
     Library_MathFuncs_CMSIS_MatrixFuncs::MatrixMult_Nat___STATIC__VOID__U2__U2__SZARRAY_I4__U2__U2__SZARRAY_I4__BYREF_U2__BYREF_U2__SZARRAY_I4,
@@ -48,8 +49,10 @@ static const CLR_RT_MethodHandler method_lookup[] =
     Library_MathFuncs_CMSIS_Support::ConvertQ15ToFloat___STATIC__R4__I4,
     Library_MathFuncs_CMSIS_Support::ConvertFloatToQ15___STATIC__VOID__SZARRAY_R4__SZARRAY_I4,
     Library_MathFuncs_CMSIS_Support::ConvertQ15ToFloat___STATIC__VOID__SZARRAY_I4__SZARRAY_R4,
-    Library_MathFuncs_CMSIS_Support::VectorCopy_Nat___STATIC__VOID__SZARRAY_I4__SZARRAY_I4,
+    Library_MathFuncs_CMSIS_Support::VectorCopy_Nat___STATIC__VOID__SZARRAY_I4__I4__SZARRAY_I4__U4,
     Library_MathFuncs_CMSIS_Support::VectorFill_Nat___STATIC__VOID__I4__SZARRAY_I4,
+    NULL,
+    NULL,
     NULL,
     NULL,
     NULL,
@@ -98,7 +101,7 @@ static const CLR_RT_MethodHandler method_lookup[] =
 const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_MathFuncs =
 {
     "MathFuncs", 
-    0x9CE3D7D8,
+    0x0F20B169,
     method_lookup
 };
 
