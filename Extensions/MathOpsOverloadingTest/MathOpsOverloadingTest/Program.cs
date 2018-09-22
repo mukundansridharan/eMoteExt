@@ -102,6 +102,7 @@ namespace MathFuncsTest
             /*Vector definitions*/
             Vector vec1 = new Vector(new float[] { 1.0200f, 2.0400f, 6.0900f, -3.1200f, 9.3300f });
             Vector vec2 = new Vector(new float[] { -12.1100f, 2.4500f, 6.6000f, 4.5000f, -3.2200f });
+            Vector vec3 = new Vector(new float[] { -12.1100f, 2.4500f, 6.6000f });
 
             float scal1 = 3.5f;
 
@@ -248,6 +249,32 @@ namespace MathFuncsTest
             Debug.Print("# VECTOR 2 SCALED BY 3.5 #");
             Debug.Print("##########################");
             foreach (var item in vec2sc.vec)
+            {
+                Debug.Print(item.ToString());
+            }
+
+            // Matrix * Vector
+            Vector vmult = M1 * vec3;
+            Debug.Print("############");
+            Debug.Print("# MATRIX 1 #");
+            Debug.Print("############");
+            foreach (var item in M1.data)
+            {
+                Debug.Print(item.ToString());
+            }
+
+            Debug.Print("############");
+            Debug.Print("# VECTOR 3 #");
+            Debug.Print("############");
+            foreach (var item in vec3.vec)
+            {
+                Debug.Print(item.ToString());
+            }
+
+            Debug.Print("#######################");
+            Debug.Print("# MATRIX 1 * VECTOR 3 #");
+            Debug.Print("#######################");
+            foreach (var item in vmult.vec)
             {
                 Debug.Print(item.ToString());
             }
