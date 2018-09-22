@@ -10,7 +10,7 @@ namespace CMSIS
         public const float largeFactor = 20.0f;
     }
 
-    public struct Matrix
+    public class Matrix
     {
         public UInt16 rows;
         public UInt16 cols;
@@ -40,7 +40,13 @@ namespace CMSIS
         {
             return MatrixFuncs.MatrixMult(m1, m2);
         }
-    };
+
+        // Transpose
+        public Matrix Transpose()
+        {
+            return MatrixFuncs.MatrixTrans(this);
+        }
+    }
 
     public class Stats
     {
@@ -164,7 +170,6 @@ namespace CMSIS
             VectorFill_Nat(ScaleConvertFloatToQ15(val, GlobalVar.largeFactor), outvec);
             return ScaleConvertQ15ArrToFloat(outvec, GlobalVar.largeFactor);
         }
-
 
         // Natives
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -394,6 +399,18 @@ namespace CMSIS
                 return v1;
             return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), 1.0f / (float) s1));
         }
+
+        // Point-wise tanh of vector
+        public Vector PointwiseTanh()
+        {
+            return new Vector(VectorFuncs.VectorTanh(this.vec));
+        }
+
+        // Point-wise exponentiation of vector
+        public Vector PointwiseExp()
+        {
+            return new Vector(VectorFuncs.VectorExp(this.vec));
+        }
     }
 
     public class VectorFuncs
@@ -408,7 +425,7 @@ namespace CMSIS
             return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
         }
 
-        // Negate Vector
+        // Negate vector
         public static float[] VectorNegate(float[] invec)
         {
             int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
@@ -463,8 +480,9 @@ namespace CMSIS
         // Reciprocal of vector
         public static float[] VectorRecip(float[] in1vec)
         {
-            /* VectorRecip_Nat doesn't work: don't know how to interpret result (https://voltampmedia.com/2011/09/27/using-arms-cmsis-dsp-library-arm_recip_q15/)
-            int[] in1data = Support.ScaleConvertFloatArrToQ15(in1vec, GlobalVar.largeFactor);
+            // VectorRecip_Nat doesn't work: don't know how to interpret result
+            // (https://voltampmedia.com/2011/09/27/using-arms-cmsis-dsp-library-arm_recip_q15/)
+            /*int[] in1data = Support.ScaleConvertFloatArrToQ15(in1vec, GlobalVar.largeFactor);
             int[] outdata = new int[in1vec.Length];
 
             VectorRecip_Nat(in1data, outdata);
@@ -497,6 +515,39 @@ namespace CMSIS
 
             VectorHadamard_Nat(in1data, in2data, outdata);
             return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
+        }
+
+        // Tanh of vector: double function
+        /*
+         TODO: Simplifying formula: tanh(x) = x if |x| < 1; sign(x) otherwise
+         */
+        public static float[] VectorTanh(float[] invec)
+        {
+            float[] outvec = new float[invec.Length];
+
+            for(int i=0; i< invec.Length; i++)
+            {
+                /*if (invec[i] < 1.0f && invec[i] > -1.0f)
+                    outvec[i] = invec[i];
+                else if (invec[i] > 1)
+                    outvec[i] = 1;
+                else if (invec[i] < -1)
+                    outvec[i] = -1;*/
+                outvec[i] = (float) System.Math.Tanh(invec[i]);
+            }
+
+            return outvec;
+        }
+
+        // Exponentiation of vector: double function
+        public static float[] VectorExp(float[] invec)
+        {
+            float[] outvec = new float[invec.Length];
+
+            for (int i = 0; i < invec.Length; i++)
+                outvec[i] = (float) System.Math.Exp(invec[i]);
+
+            return outvec;
         }
 
 
