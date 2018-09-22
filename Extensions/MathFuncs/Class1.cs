@@ -263,7 +263,7 @@ namespace CMSIS
 
     public class Vector
     {
-        float[] vec;
+        public float[] vec;
 
         public Vector(float[] v)
         {
@@ -276,10 +276,64 @@ namespace CMSIS
             return new Vector(VectorFuncs.VectorAdd(v1.vec, v2.vec));
         }
 
+        // Overload operator + (v1 + s1) (Add offset)
+        public static Vector operator +(Vector v1, float s1)
+        {
+            return new Vector(VectorFuncs.VectorOffset(v1.vec, s1));
+        }
+
+        // Overload operator + (v1 + s1) (Add offset)
+        public static Vector operator +(Vector v1, int s1)
+        {
+            return new Vector(VectorFuncs.VectorOffset(v1.vec, (float) s1));
+        }
+
+        // Overload operator + (s1 + v1) (Add offset)
+        public static Vector operator +(float s1, Vector v1)
+        {
+            return new Vector(VectorFuncs.VectorOffset(v1.vec, s1));
+        }
+
+        // Overload operator + (s1 + v1) (Add offset)
+        public static Vector operator +(int s1, Vector v1)
+        {
+            return new Vector(VectorFuncs.VectorOffset(v1.vec, (float)s1));
+        }
+
+        // Overload operator - (-v1)
+        public static Vector operator -(Vector v1)
+        {
+            return new Vector(VectorFuncs.VectorNegate(v1.vec));
+        }
+
         // Overload operator - (v1 - v2)
         public static Vector operator -(Vector v1, Vector v2)
         {
             return new Vector(VectorFuncs.VectorSub(v1.vec, v2.vec));
+        }
+
+        // Overload operator - (v1 - s1) (Subtract offset)
+        public static Vector operator -(Vector v1, float s1)
+        {
+            return new Vector(VectorFuncs.VectorOffset(v1.vec, -s1));
+        }
+
+        // Overload operator - (v1 - s1) (Subtract offset)
+        public static Vector operator -(Vector v1, int s1)
+        {
+            return new Vector(VectorFuncs.VectorOffset(v1.vec, -(float)s1));
+        }
+
+        // Overload operator - (s1 - v1) (Subtract from scalar)
+        public static Vector operator -(float s1, Vector v1)
+        {
+            return new Vector(VectorFuncs.VectorOffset((-v1).vec, s1));
+        }
+
+        // Overload operator - (s1 - v1) (Subtract from scalar)
+        public static Vector operator -(int s1, Vector v1)
+        {
+            return new Vector(VectorFuncs.VectorOffset((-v1).vec, (float) s1));
         }
 
         // Oveload operator * (s1 * v1)
@@ -288,10 +342,57 @@ namespace CMSIS
             return new Vector(VectorFuncs.VectorScale(v1.vec, s1));
         }
 
+        // Oveload operator * (s1 * v1)
+        public static Vector operator *(int s1, Vector v1)
+        {
+            return new Vector(VectorFuncs.VectorScale(v1.vec, (float) s1));
+        }
+
+        // Oveload operator * (v1 * s1)
+        public static Vector operator *(Vector v1, float s1)
+        {
+            return new Vector(VectorFuncs.VectorScale(v1.vec, s1));
+        }
+
+        // Oveload operator * (v1 * s1)
+        public static Vector operator *(Vector v1, int s1)
+        {
+            return new Vector(VectorFuncs.VectorScale(v1.vec, (float) s1));
+        }
+
         // Oveload operator / (s1 / v1)
         public static Vector operator /(float s1, Vector v1)
         {
-            return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), s1));
+            if (s1 == 1.0f)
+                return new Vector(VectorFuncs.VectorRecip(v1.vec));
+            else
+                return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), s1));
+        }
+
+        // Oveload operator / (s1 / v1)
+        public static Vector operator /(int s1, Vector v1)
+        {
+            if (s1 == 1)
+                return new Vector(VectorFuncs.VectorRecip(v1.vec));
+            else
+                return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), (float) s1));
+        }
+
+        // Oveload operator / (v1 / s1)
+        public static Vector operator /(Vector v1, float s1)
+        {
+            if (s1 == 1.0f)
+                return v1;
+            else
+                return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), 1.0f / s1));
+        }
+
+        // Oveload operator / (v1 / s1)
+        public static Vector operator /(Vector v1, int s1)
+        {
+            if (s1 == 1)
+                return v1;
+            return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), 1.0f / (float) s1));
         }
     }
 
