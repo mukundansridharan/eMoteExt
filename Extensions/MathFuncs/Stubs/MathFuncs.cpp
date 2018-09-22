@@ -87,6 +87,7 @@ static const CLR_RT_MethodHandler method_lookup[] =
     NULL,
     NULL,
     NULL,
+    NULL,
     Library_MathFuncs_CMSIS_VectorFuncs::VectorAbs_Nat___STATIC__VOID__SZARRAY_I4__SZARRAY_I4,
     Library_MathFuncs_CMSIS_VectorFuncs::VectorNegate_Nat___STATIC__VOID__SZARRAY_I4__SZARRAY_I4,
     Library_MathFuncs_CMSIS_VectorFuncs::VectorOffset_Nat___STATIC__VOID__SZARRAY_I4__I4__SZARRAY_I4,
@@ -101,7 +102,7 @@ static const CLR_RT_MethodHandler method_lookup[] =
 const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_MathFuncs =
 {
     "MathFuncs", 
-    0x0F20B169,
+    0x09A605E6,
     method_lookup
 };
 

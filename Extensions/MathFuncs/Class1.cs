@@ -409,6 +409,12 @@ namespace CMSIS
             return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), 1.0f / (float) s1));
         }
 
+        // Build empty vector of given length
+        public static Vector BuildDense(int size)
+        {
+            return new Vector(Support.VectorFill(size, 0.0f));
+        }
+
         // Point-wise tanh of vector
         public Vector PointwiseTanh()
         {
