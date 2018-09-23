@@ -6,5 +6,6 @@
 **/ext.lib
 **/bin/Debug
 **/obj/Debug
+**/Stubs
 *.suo
 *.cache
