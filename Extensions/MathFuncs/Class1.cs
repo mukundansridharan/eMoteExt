@@ -1,6 +1,8 @@
 using System;
 using System.Runtime.CompilerServices;
 using Microsoft.SPOT;
+using Microsoft.SPOT.Hardware;
+using Samraksh.eMote.DotNow;
 
 namespace CMSIS
 {
@@ -47,8 +49,6 @@ namespace CMSIS
             Matrix m2 = new Matrix((ushort) v1.vec.Length, 1, v1.vec);
             return new Vector(MatrixFuncs.MatrixMult(m1, m2).data);
         }
-
-        // 
 
         // Transpose
         public Matrix Transpose()
@@ -202,6 +202,12 @@ namespace CMSIS
 
     public class MatrixFuncs
     {
+#if LOGIC
+        private static OutputPort mat_mult = new OutputPort(Pins.GPIO_J12_PIN1, false);
+        private static OutputPort mat_add = new OutputPort(Pins.GPIO_J12_PIN2, false);
+        private static OutputPort mat_trans = new OutputPort(Pins.GPIO_J12_PIN3, false);
+#endif
+
         // Multiply two matrices
         public static Matrix MatrixMult(Matrix m1, Matrix m2)
         {
@@ -210,7 +216,13 @@ namespace CMSIS
             Matrix outmat = new Matrix(0, 0, new float[m1.rows * m2.cols]);
 
             int[] outdata = new int[m1.rows * m2.cols];
+#if LOGIC
+            mat_mult.Write(true);
+#endif
             MatrixMult_Nat(m1.rows, m1.cols, m1dat, m2.rows, m2.cols, m2dat, out outmat.rows, out outmat.cols, outdata);
+#if LOGIC
+            mat_mult.Write(false);
+#endif
             outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
             return outmat;
         }
@@ -223,7 +235,13 @@ namespace CMSIS
             Matrix outmat = new Matrix(0, 0, new float[m1.rows * m2.cols]);
 
             int[] outdata = new int[m1.rows * m2.cols];
+#if LOGIC
+            mat_add.Write(true);
+#endif
             MatrixAdd_Nat(m1.rows, m1.cols, m1dat, m2.rows, m2.cols, m2dat, out outmat.rows, out outmat.cols, outdata);
+#if LOGIC
+            mat_add.Write(false);
+#endif
             outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
             return outmat;
         }
@@ -248,7 +266,13 @@ namespace CMSIS
             Matrix outmat = new Matrix(0, 0, new float[m1.rows * m1.cols]);
 
             int[] outdata = new int[m1.rows * m1.cols];
+#if LOGIC
+            mat_trans.Write(true);
+#endif
             MatrixTrans_Nat(m1.rows, m1.cols, m1dat, out outmat.rows, out outmat.cols, outdata);
+#if LOGIC
+            mat_trans.Write(false);
+#endif
             outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
             return outmat;
         }
@@ -441,6 +465,14 @@ namespace CMSIS
 
     public class VectorFuncs
     {
+#if LOGIC
+        private static OutputPort vec_offset = new OutputPort(Pins.GPIO_J12_PIN4, false);
+        private static OutputPort vec_scale = new OutputPort(Pins.GPIO_J12_PIN5, false);
+        private static OutputPort vec_add = new OutputPort(Pins.GPIO_J11_PIN3, false);
+        private static OutputPort vec_recip = new OutputPort(Pins.GPIO_J11_PIN4, false);
+        private static OutputPort vec_had = new OutputPort(Pins.GPIO_J11_PIN5, false);
+#endif
+
         // Find absolute of vector
         public static float[] VectorAbs(float[] invec)
         {
@@ -466,8 +498,13 @@ namespace CMSIS
         {
             int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
             int[] outdata = new int[invec.Length];
-
+#if LOGIC
+            vec_offset.Write(true);
+#endif
             VectorOffset_Nat(indata, Support.ScaleConvertFloatToQ15(offset, GlobalVar.largeFactor), outdata);
+#if LOGIC
+            vec_offset.Write(false);
+#endif
             return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
         }
 
@@ -476,8 +513,13 @@ namespace CMSIS
         {
             int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
             int[] outdata = new int[invec.Length];
-
+#if LOGIC
+            vec_scale.Write(true);
+#endif
             VectorScale_Nat(indata, Support.ScaleConvertFloatToQ15(scale, GlobalVar.largeFactor), outdata);
+#if LOGIC
+            vec_scale.Write(false);
+#endif
             return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
         }
 
@@ -487,8 +529,13 @@ namespace CMSIS
             int[] in1data = Support.ScaleConvertFloatArrToQ15(in1vec, GlobalVar.largeFactor);
             int[] in2data = Support.ScaleConvertFloatArrToQ15(in2vec, GlobalVar.largeFactor);
             int[] outdata = new int[in1vec.Length];
-
+#if LOGIC
+            vec_add.Write(true);
+#endif
             VectorAdd_Nat(in1data, in2data, outdata);
+#if LOGIC
+            vec_add.Write(false);
+#endif
             return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
         }
 
@@ -513,12 +560,16 @@ namespace CMSIS
 
             VectorRecip_Nat(in1data, outdata);
             return Support.ScaleConvertQ15ArrToFloat(outdata, 1.0f/GlobalVar.largeFactor);*/
-
+#if LOGIC
+            vec_recip.Write(true);
+#endif
             // Simply compute reciprocal. TODO: Change to faster implementation
             float[] outdata = new float[in1vec.Length];
             for (int i = 0; i < in1vec.Length; i++)
                 outdata[i] = 1.0f / in1vec[i];
-
+#if LOGIC
+            vec_recip.Write(false);
+#endif
             return outdata;
         }
 
@@ -538,8 +589,13 @@ namespace CMSIS
             int[] in1data = Support.ScaleConvertFloatArrToQ15(in1vec, GlobalVar.largeFactor);
             int[] in2data = Support.ScaleConvertFloatArrToQ15(in2vec, GlobalVar.largeFactor);
             int[] outdata = new int[in1vec.Length];
-
+#if LOGIC
+            vec_had.Write(true);
+#endif
             VectorHadamard_Nat(in1data, in2data, outdata);
+#if LOGIC
+            vec_had.Write(false);
+#endif
             return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
         }
 

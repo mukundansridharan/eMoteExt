@@ -4,4 +4,12 @@
     <DeployTransport>Serial</DeployTransport>
     <DeployDevice>COM5</DeployDevice>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DeployTransport>Serial</DeployTransport>
+    <DeployDevice>COM5</DeployDevice>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Logic|AnyCPU'">
+    <DeployTransport>Serial</DeployTransport>
+    <DeployDevice>COM5</DeployDevice>
+  </PropertyGroup>
 </Project>

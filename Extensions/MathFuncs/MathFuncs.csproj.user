@@ -5,4 +5,7 @@
     <DeployTransport>Serial</DeployTransport>
     <MF_GenerateStubsDirectory>C:\Users\roy17\Documents\eMoteExt\Extensions\MathFuncs\Stubs\</MF_GenerateStubsDirectory>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Logic|AnyCPU'">
+    <MF_GenerateStubs>True</MF_GenerateStubs>
+  </PropertyGroup>
 </Project>
