@@ -1,4 +1,4 @@
-# eMoteExt Repository
+# eMoteExt Repository (branch CMSIS)
 
 # Overview
 This repo deals with extending the eMote OS. The basic idea is that, Samraksh will build part of the solution and will populate this repo with binary libraries and all header files that go with it. The users of this repo can add whatever stuff they want, native and c#, and can complete the build process (linking and executable creation) to create custom versions of emote OS. All libraries are static. Also, there is very little dynamic memory allocation in eMote, hence do not use 'new' or 'malloc' on the native side code, unless you know exactly what you are doing.
