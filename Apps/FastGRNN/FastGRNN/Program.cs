@@ -48,7 +48,7 @@ namespace FastGRNN
             
             // Print logits
             Debug.Print("Logits: ");
-            foreach(var item in logits.vec)
+            foreach(var item in logits.GetData())
                 Debug.Print(""+item);
         }
     }

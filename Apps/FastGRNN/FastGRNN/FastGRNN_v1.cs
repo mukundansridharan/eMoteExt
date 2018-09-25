@@ -129,7 +129,7 @@ namespace FastGRNN
         {
             weight_ih = wih; weight_hh = whh;
 
-            i_size = weight_ih.rows; h_size = weight_ih.cols;
+            i_size = weight_ih.GetRows(); h_size = weight_ih.GetCols();
             bias_z = bz; bias_h = bh;
             zeta = zt; nu = n;
 
@@ -143,7 +143,7 @@ namespace FastGRNN
         public Vector fastgrnn_calculations(Vector input, uint window, int stride)
         {
             hidden = Vector.BuildDense(h_size);
-            int cut_length = input.vec.Length;
+            int cut_length = input.GetData().Length;
             int time_steps = (int)(Math.Ceiling((double)(cut_length - window) / stride));
             Microsoft.SPOT.Debug.Print("RNN time steps: " + time_steps);
             //int time_steps = (int)(Math.Floor((double)(cut_length - window + stride)/stride));
