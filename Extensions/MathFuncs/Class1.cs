@@ -708,7 +708,7 @@ namespace CMSIS
             vec_scale.Write(false);
 #endif
             if (invec.IsFloat())
-                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor));
             else
                 return new Vector(outdata);
         }
