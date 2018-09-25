@@ -25,8 +25,8 @@ namespace MathFuncsTest
             Debug.Print("# MATRIX 1 #");
             Debug.Print("############");
 
-            Debug.Print("Rows: " + M1.rows + "; cols: " + M1.cols + "; data:");
-            foreach (var item in M1.data)
+            Debug.Print("Rows: " + M1.GetRows() + "; cols: " + M1.GetCols() + "; data:");
+            foreach (var item in M1.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -35,8 +35,8 @@ namespace MathFuncsTest
             Debug.Print("# MATRIX 2 #");
             Debug.Print("############");
 
-            Debug.Print("Rows: " + M2.rows + "; cols: " + M2.cols + "; data:");
-            foreach (var item in M2.data)
+            Debug.Print("Rows: " + M2.GetRows() + "; cols: " + M2.GetCols() + "; data:");
+            foreach (var item in M2.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -47,8 +47,8 @@ namespace MathFuncsTest
             Debug.Print("# MATRIX MULTIPLICATION OUTPUT #");
             Debug.Print("################################");
 
-            Debug.Print("Out rows: " + outmat.rows + "; cols: " + outmat.cols + "; data:");
-            foreach (float item in outmat.data)
+            Debug.Print("Out rows: " + outmat.GetRows() + "; cols: " + outmat.GetCols() + "; data:");
+            foreach (float item in outmat.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -58,8 +58,8 @@ namespace MathFuncsTest
             Debug.Print("# MATRIX 1 #");
             Debug.Print("############");
 
-            Debug.Print("Rows: " + M1.rows + "; cols: " + M1.cols + "; data:");
-            foreach (var item in M1.data)
+            Debug.Print("Rows: " + M1.GetRows() + "; cols: " + M1.GetCols() + "; data:");
+            foreach (var item in M1.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -68,8 +68,8 @@ namespace MathFuncsTest
             Debug.Print("# MATRIX 3 #");
             Debug.Print("############");
 
-            Debug.Print("Rows: " + M3.rows + "; cols: " + M3.cols + "; data:");
-            foreach (var item in M3.data)
+            Debug.Print("Rows: " + M3.GetRows() + "; cols: " + M3.GetCols() + "; data:");
+            foreach (var item in M3.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -80,8 +80,8 @@ namespace MathFuncsTest
             Debug.Print("# MATRIX ADDITION OUTPUT #");
             Debug.Print("##########################");
 
-            Debug.Print("Out rows: " + outmat.rows + "; cols: " + outmat.cols + "; data:");
-            foreach (float item in outmat.data)
+            Debug.Print("Out rows: " + outmat.GetRows() + "; cols: " + outmat.GetCols() + "; data:");
+            foreach (float item in outmat.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -93,8 +93,8 @@ namespace MathFuncsTest
             Debug.Print("# MATRIX SUBTRACTION OUTPUT #");
             Debug.Print("#############################");
 
-            Debug.Print("Out rows: " + outmat.rows + "; cols: " + outmat.cols + "; data:");
-            foreach (float item in outmat.data)
+            Debug.Print("Out rows: " + outmat.GetRows() + "; cols: " + outmat.GetCols() + "; data:");
+            foreach (float item in outmat.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -112,7 +112,7 @@ namespace MathFuncsTest
             Debug.Print("############");
 
             Debug.Print("Data:");
-            foreach (var item in vec1.vec)
+            foreach (var item in vec1.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -125,7 +125,7 @@ namespace MathFuncsTest
             Debug.Print("Scalar: " + scal1);
 
             Debug.Print("Data:");
-            foreach (var item in vec1offset.vec)
+            foreach (var item in vec1offset.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -138,7 +138,7 @@ namespace MathFuncsTest
             Debug.Print("Scalar: " + scal1);
 
             Debug.Print("Data:");
-            foreach (var item in scal1minusvec1.vec)
+            foreach (var item in scal1minusvec1.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -148,7 +148,7 @@ namespace MathFuncsTest
             Debug.Print("############");
 
             Debug.Print("Data:");
-            foreach (var item in vec2.vec)
+            foreach (var item in vec2.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -160,7 +160,7 @@ namespace MathFuncsTest
             Debug.Print("###################################");
 
             Debug.Print("Data:");
-            foreach (var item in oneminusvec2.vec)
+            foreach (var item in oneminusvec2.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -171,7 +171,7 @@ namespace MathFuncsTest
             Debug.Print("############");
 
             Debug.Print("Data:");
-            foreach (var item in vec1.vec)
+            foreach (var item in vec1.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -181,7 +181,7 @@ namespace MathFuncsTest
             Debug.Print("############");
 
             Debug.Print("Data:");
-            foreach (var item in vec2.vec)
+            foreach (var item in vec2.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -193,7 +193,7 @@ namespace MathFuncsTest
             Debug.Print("##############");
 
             Debug.Print("Data:");
-            foreach (var item in vecadd.vec)
+            foreach (var item in vecadd.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -206,7 +206,7 @@ namespace MathFuncsTest
             Debug.Print("##############");
 
             Debug.Print("Data:");
-            foreach (var item in vecsub.vec)
+            foreach (var item in vecsub.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -217,7 +217,7 @@ namespace MathFuncsTest
             Debug.Print("#######################");
             Debug.Print("# VECTOR 1 RECIPROCAL #");
             Debug.Print("#######################");
-            foreach (var item in vec1recip.vec)
+            foreach (var item in vec1recip.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -227,7 +227,7 @@ namespace MathFuncsTest
             Debug.Print("#######################");
             Debug.Print("# VECTOR 2 RECIPROCAL #");
             Debug.Print("#######################");
-            foreach (var item in vec2recip.vec)
+            foreach (var item in vec2recip.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -238,7 +238,7 @@ namespace MathFuncsTest
             Debug.Print("##########################");
             Debug.Print("# VECTOR 1 SCALED BY 3.5 #");
             Debug.Print("##########################");
-            foreach (var item in vec1sc.vec)
+            foreach (var item in vec1sc.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -248,7 +248,7 @@ namespace MathFuncsTest
             Debug.Print("##########################");
             Debug.Print("# VECTOR 2 SCALED BY 3.5 #");
             Debug.Print("##########################");
-            foreach (var item in vec2sc.vec)
+            foreach (var item in vec2sc.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -258,7 +258,7 @@ namespace MathFuncsTest
             Debug.Print("############");
             Debug.Print("# MATRIX 1 #");
             Debug.Print("############");
-            foreach (var item in M1.data)
+            foreach (var item in M1.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -266,7 +266,7 @@ namespace MathFuncsTest
             Debug.Print("############");
             Debug.Print("# VECTOR 3 #");
             Debug.Print("############");
-            foreach (var item in vec3.vec)
+            foreach (var item in vec3.GetData())
             {
                 Debug.Print(item.ToString());
             }
@@ -274,7 +274,7 @@ namespace MathFuncsTest
             Debug.Print("#######################");
             Debug.Print("# MATRIX 1 * VECTOR 3 #");
             Debug.Print("#######################");
-            foreach (var item in vmult.vec)
+            foreach (var item in vmult.GetData())
             {
                 Debug.Print(item.ToString());
             }

@@ -14,15 +14,64 @@ namespace CMSIS
 
     public class Matrix
     {
-        public UInt16 rows;
-        public UInt16 cols;
-        public float[] data;
+        internal UInt16 rows;
+        internal UInt16 cols;
+        internal float[] data;
+        internal int[] qdata;
 
+        // Test if matrix contains float or Q data
+        public bool IsFloat()
+        {
+            return (this.qdata == null && this.data != null);
+        }
+
+        public bool IsQ()
+        {
+            return (this.data == null && this.qdata != null);
+        }
+
+        // Get #rows
+        public UInt16 GetRows()
+        {
+            return rows;
+        }
+
+        // Get #cols
+        public UInt16 GetCols()
+        {
+            return cols;
+        }
+
+        // Get data
+        public float[] GetData()
+        {
+            if (IsFloat())
+                return data;
+            else
+            {
+                float[] outdat = new float[qdata.Length];
+                for (int i = 0; i < outdat.Length; i++)
+                    outdat[i] = qdata[i];
+                return outdat;
+            }
+        }
+
+        // Initialize matrix with float array
         public Matrix(UInt16 rows, UInt16 cols, float[] data)
         {
             this.rows = rows;
             this.cols = cols;
             this.data = data;
+            this.qdata = null; // Set Q array to null
+        }
+
+        // Initialize matrix with Q array
+        public Matrix(UInt16 rows, UInt16 cols, int[] data)
+        {
+            this.rows = rows;
+            this.cols = cols;
+            this.data = null; // Set float array to null
+            this.qdata = data;
         }
 
         // Overload operator + (m1 + m2)
@@ -46,8 +95,17 @@ namespace CMSIS
         // Overload operator * (m1 * v1)
         public static Vector operator *(Matrix m1, Vector v1)
         {
-            Matrix m2 = new Matrix((ushort) v1.vec.Length, 1, v1.vec);
-            return new Vector(MatrixFuncs.MatrixMult(m1, m2).data);
+            if (m1.IsFloat() && v1.IsFloat())
+            {
+                Matrix m2 = new Matrix((ushort)v1.data.Length, 1, v1.data);
+                return new Vector(MatrixFuncs.MatrixMult(m1, m2).data);
+            }
+            else if (m1.IsQ() && v1.IsQ())
+            {
+                Matrix m2 = new Matrix((ushort)v1.qdata.Length, 1, v1.qdata);
+                return new Vector(MatrixFuncs.MatrixMult(m1, m2).qdata);
+            }
+            else throw new NotImplementedException();
         }
 
         // Transpose
@@ -172,12 +230,26 @@ namespace CMSIS
             return ScaleConvertQ15ArrToFloat(outvec, GlobalVar.largeFactor);
         }
 
+        public static int[] VectorCopy(int[] invec, int index, uint length)
+        {
+            int[] outvec = new int[length];
+            VectorCopy_Nat(invec, index, outvec, length);
+            return outvec;
+        }
+
         // Fill vector with scalar
         public static float[] VectorFill(int len, float val)
         {
             int[] outvec = new int[len];
             VectorFill_Nat(ScaleConvertFloatToQ15(val, GlobalVar.largeFactor), outvec);
             return ScaleConvertQ15ArrToFloat(outvec, GlobalVar.largeFactor);
+        }
+
+        public static int[] VectorFill(int len, int val)
+        {
+            int[] outvec = new int[len];
+            VectorFill_Nat(val, outvec);
+            return outvec;
         }
 
         // Natives
@@ -211,9 +283,22 @@ namespace CMSIS
         // Multiply two matrices
         public static Matrix MatrixMult(Matrix m1, Matrix m2)
         {
-            int[] m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
-            int[] m2dat = Support.ScaleConvertFloatArrToQ15(m2.data, GlobalVar.largeFactor);
-            Matrix outmat = new Matrix(0, 0, new float[m1.rows * m2.cols]);
+            int[] m1dat, m2dat;
+            Matrix outmat;
+
+            if (m1.IsFloat() && m2.IsFloat())
+            {
+                m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
+                m2dat = Support.ScaleConvertFloatArrToQ15(m2.data, GlobalVar.largeFactor);
+                outmat = new Matrix(0, 0, new float[m1.rows * m2.cols]);
+            }
+            else if (m1.IsQ() && m2.IsQ())
+            {
+                m1dat = m1.qdata;
+                m2dat = m2.qdata;
+                outmat = new Matrix(0, 0, new int[m1.rows * m2.cols]);
+            }
+            else throw new NotSupportedException();
 
             int[] outdata = new int[m1.rows * m2.cols];
 #if LOGIC
@@ -223,16 +308,33 @@ namespace CMSIS
 #if LOGIC
             mat_mult.Write(false);
 #endif
-            outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
+            if (m1.IsFloat() && m2.IsFloat())
+                outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
+            else if (m1.IsQ() && m2.IsQ())
+                outmat.qdata = outdata;
+
             return outmat;
         }
 
         // Add two matrices
         public static Matrix MatrixAdd(Matrix m1, Matrix m2)
         {
-            int[] m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
-            int[] m2dat = Support.ScaleConvertFloatArrToQ15(m2.data, GlobalVar.largeFactor);
-            Matrix outmat = new Matrix(0, 0, new float[m1.rows * m2.cols]);
+            int[] m1dat, m2dat;
+            Matrix outmat;
+
+            if (m1.IsFloat() && m2.IsFloat())
+            {
+                m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
+                m2dat = Support.ScaleConvertFloatArrToQ15(m2.data, GlobalVar.largeFactor);
+                outmat = new Matrix(0, 0, new float[m1.rows * m2.cols]);
+            }
+            else if (m1.IsQ() && m2.IsQ())
+            {
+                m1dat = m1.qdata;
+                m2dat = m2.qdata;
+                outmat = new Matrix(0, 0, new int[m1.rows * m2.cols]);
+            }
+            else throw new NotSupportedException();
 
             int[] outdata = new int[m1.rows * m2.cols];
 #if LOGIC
@@ -242,28 +344,62 @@ namespace CMSIS
 #if LOGIC
             mat_add.Write(false);
 #endif
-            outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+
+            if (m1.IsFloat() && m2.IsFloat())
+                outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+            else if (m1.IsQ() && m2.IsQ())
+                outmat.qdata = outdata;
             return outmat;
         }
 
         // Subtract one matrix from another
         public static Matrix MatrixSub(Matrix m1, Matrix m2)
         {
-            int[] m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
-            int[] m2dat = Support.ScaleConvertFloatArrToQ15(m2.data, GlobalVar.largeFactor);
-            Matrix outmat = new Matrix(0, 0, new float[m1.rows * m2.cols]);
+            int[] m1dat, m2dat;
+            Matrix outmat;
+
+            if (m1.IsFloat() && m2.IsFloat())
+            {
+                m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
+                m2dat = Support.ScaleConvertFloatArrToQ15(m2.data, GlobalVar.largeFactor);
+                outmat = new Matrix(0, 0, new float[m1.rows * m2.cols]);
+            }
+            else if (m1.IsQ() && m2.IsQ())
+            {
+                m1dat = m1.qdata;
+                m2dat = m2.qdata;
+                outmat = new Matrix(0, 0, new int[m1.rows * m2.cols]);
+            }
+            else throw new NotSupportedException();
 
             int[] outdata = new int[m1.rows * m2.cols];
+
             MatrixSub_Nat(m1.rows, m1.cols, m1dat, m2.rows, m2.cols, m2dat, out outmat.rows, out outmat.cols, outdata);
-            outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+
+            if (m1.IsFloat() && m2.IsFloat())
+                outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+            else if (m1.IsQ() && m2.IsQ())
+                outmat.qdata = outdata;
             return outmat;
         }
 
         // Transpose a matrix
         public static Matrix MatrixTrans(Matrix m1)
         {
-            int[] m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
-            Matrix outmat = new Matrix(0, 0, new float[m1.rows * m1.cols]);
+            int[] m1dat;
+            Matrix outmat;
+
+            if (m1.IsFloat())
+            { 
+                m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
+                outmat = new Matrix(0, 0, new float[m1.rows * m1.cols]);
+            }
+            else if (m1.IsQ())
+            {
+                m1dat = m1.qdata;
+                outmat = new Matrix(0, 0, new int[m1.rows * m1.cols]);
+            }
+            else throw new NotSupportedException();
 
             int[] outdata = new int[m1.rows * m1.cols];
 #if LOGIC
@@ -273,10 +409,12 @@ namespace CMSIS
 #if LOGIC
             mat_trans.Write(false);
 #endif
-            outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+            if (m1.IsFloat())
+                outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+            else if (m1.IsQ())
+                outmat.qdata = outdata;
             return outmat;
         }
-
 
         // Natives
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -301,119 +439,110 @@ namespace CMSIS
 
     public class Vector
     {
-        public float[] vec;
+        internal float[] data;
+        internal int[] qdata;
 
+        // Test if vector is float or Q
+        public bool IsFloat()
+        {
+            return (qdata == null && data != null);
+        }
+
+        public bool IsQ()
+        {
+            return (data == null && qdata != null);
+        }
+
+        // Get data
+        public float[] GetData()
+        {
+            if (IsFloat())
+                return data;
+            else
+            {
+                float[] outdat = new float[qdata.Length];
+                for (int i = 0; i < outdat.Length; i++)
+                    outdat[i] = qdata[i];
+                return outdat;
+            }
+        }
+
+       // Initialize vector with float array
         public Vector(float[] v)
         {
-            vec = v;
+            data = v;
+            qdata = null; // Set Q array to null
+        }
+
+        // Initialize vector with Q array
+        public Vector(int[] v)
+        {
+            qdata = v;
+            data = null; // Set float array to null
         }
 
         // Overload operator + (v1 + v2)
         public static Vector operator +(Vector v1, Vector v2)
         {
-            return new Vector(VectorFuncs.VectorAdd(v1.vec, v2.vec));
+
+            return VectorFuncs.VectorAdd(v1, v2);
         }
 
         // Overload operator + (v1 + s1) (Add offset)
         public static Vector operator +(Vector v1, float s1)
         {
-            return new Vector(VectorFuncs.VectorOffset(v1.vec, s1));
-        }
-
-        // Overload operator + (v1 + s1) (Add offset)
-        public static Vector operator +(Vector v1, int s1)
-        {
-            return new Vector(VectorFuncs.VectorOffset(v1.vec, (float) s1));
+            return VectorFuncs.VectorOffset(v1, s1);
         }
 
         // Overload operator + (s1 + v1) (Add offset)
         public static Vector operator +(float s1, Vector v1)
         {
-            return new Vector(VectorFuncs.VectorOffset(v1.vec, s1));
-        }
-
-        // Overload operator + (s1 + v1) (Add offset)
-        public static Vector operator +(int s1, Vector v1)
-        {
-            return new Vector(VectorFuncs.VectorOffset(v1.vec, (float)s1));
+            return VectorFuncs.VectorOffset(v1, s1);
         }
 
         // Overload operator - (-v1)
         public static Vector operator -(Vector v1)
         {
-            return new Vector(VectorFuncs.VectorNegate(v1.vec));
+            return VectorFuncs.VectorNegate(v1);
         }
 
         // Overload operator - (v1 - v2)
         public static Vector operator -(Vector v1, Vector v2)
         {
-            return new Vector(VectorFuncs.VectorSub(v1.vec, v2.vec));
+            return VectorFuncs.VectorSub(v1, v2);
         }
 
         // Overload operator - (v1 - s1) (Subtract offset)
         public static Vector operator -(Vector v1, float s1)
         {
-            return new Vector(VectorFuncs.VectorOffset(v1.vec, -s1));
-        }
-
-        // Overload operator - (v1 - s1) (Subtract offset)
-        public static Vector operator -(Vector v1, int s1)
-        {
-            return new Vector(VectorFuncs.VectorOffset(v1.vec, -(float)s1));
+            return VectorFuncs.VectorOffset(v1, -s1);
         }
 
         // Overload operator - (s1 - v1) (Subtract from scalar)
         public static Vector operator -(float s1, Vector v1)
         {
-            return new Vector(VectorFuncs.VectorOffset((-v1).vec, s1));
-        }
-
-        // Overload operator - (s1 - v1) (Subtract from scalar)
-        public static Vector operator -(int s1, Vector v1)
-        {
-            return new Vector(VectorFuncs.VectorOffset((-v1).vec, (float) s1));
+            return VectorFuncs.VectorOffset((-v1), s1);
         }
 
         // Oveload operator * (s1 * v1)
         public static Vector operator *(float s1, Vector v1)
         {
-            return new Vector(VectorFuncs.VectorScale(v1.vec, s1));
-        }
-
-        // Oveload operator * (s1 * v1)
-        public static Vector operator *(int s1, Vector v1)
-        {
-            return new Vector(VectorFuncs.VectorScale(v1.vec, (float) s1));
+            return VectorFuncs.VectorScale(v1, s1);
         }
 
         // Oveload operator * (v1 * s1)
         public static Vector operator *(Vector v1, float s1)
         {
-            return new Vector(VectorFuncs.VectorScale(v1.vec, s1));
-        }
-
-        // Oveload operator * (v1 * s1)
-        public static Vector operator *(Vector v1, int s1)
-        {
-            return new Vector(VectorFuncs.VectorScale(v1.vec, (float) s1));
+            return VectorFuncs.VectorScale(v1, s1);
         }
 
         // Oveload operator / (s1 / v1)
         public static Vector operator /(float s1, Vector v1)
         {
             if (s1 == 1.0f)
-                return new Vector(VectorFuncs.VectorRecip(v1.vec));
+                return VectorFuncs.VectorRecip(v1);
             else
-                return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), s1));
-        }
-
-        // Oveload operator / (s1 / v1)
-        public static Vector operator /(int s1, Vector v1)
-        {
-            if (s1 == 1)
-                return new Vector(VectorFuncs.VectorRecip(v1.vec));
-            else
-                return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), (float) s1));
+                return VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1), s1);
         }
 
         // Oveload operator / (v1 / s1)
@@ -422,15 +551,7 @@ namespace CMSIS
             if (s1 == 1.0f)
                 return v1;
             else
-                return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), 1.0f / s1));
-        }
-
-        // Oveload operator / (v1 / s1)
-        public static Vector operator /(Vector v1, int s1)
-        {
-            if (s1 == 1)
-                return v1;
-            return new Vector(VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1.vec), 1.0f / (float) s1));
+                return VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1), 1.0f / s1);
         }
 
         // Build empty vector of given length
@@ -442,24 +563,24 @@ namespace CMSIS
         // Point-wise tanh of vector
         public Vector PointwiseTanh()
         {
-            return new Vector(VectorFuncs.VectorTanh(this.vec));
+            return VectorFuncs.VectorTanh(this);
         }
 
         // Point-wise exponentiation of vector
         public Vector PointwiseExp()
         {
-            return new Vector(VectorFuncs.VectorExp(this.vec));
+            return VectorFuncs.VectorExp(this);
         }
 
         // Point-wise multiplication of one vector with another
         public Vector PointwiseMultiply(Vector v)
         {
-            return new Vector(VectorFuncs.VectorHadamard(this.vec, v.vec));
+            return VectorFuncs.VectorHadamard(this, v);
         }
 
         public Vector SubVector(int index, uint count)
         {
-            return new Vector(Support.VectorCopy(this.vec, index, count));
+            return new Vector(Support.VectorCopy(this.data, index, count));
         }
     }
 
@@ -474,61 +595,142 @@ namespace CMSIS
 #endif
 
         // Find absolute of vector
-        public static float[] VectorAbs(float[] invec)
+        public static Vector VectorAbs(Vector invec)
         {
-            int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
-            int[] outdata = new int[invec.Length];
+            int[] indata;
+            int[] outdata;
+
+            if (invec.IsFloat())
+            {
+                indata = Support.ScaleConvertFloatArrToQ15(invec.data, GlobalVar.largeFactor);
+                outdata = new int[invec.data.Length];
+            }
+            else if (invec.IsQ())
+            {
+                indata = invec.qdata;
+                outdata = new int[invec.qdata.Length];
+            }
+            else throw new NotImplementedException();
 
             VectorAbs_Nat(indata, outdata);
-            return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+
+            if (invec.IsFloat())
+                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+            else
+                return new Vector(outdata);
         }
 
         // Negate vector
-        public static float[] VectorNegate(float[] invec)
+        public static Vector VectorNegate(Vector invec)
         {
-            int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
-            int[] outdata = new int[invec.Length];
+            int[] indata;
+            int[] outdata;
+
+            if (invec.IsFloat())
+            {
+                indata = Support.ScaleConvertFloatArrToQ15(invec.data, GlobalVar.largeFactor);
+                outdata = new int[invec.data.Length];
+            }
+            else if (invec.IsQ())
+            {
+                indata = invec.qdata;
+                outdata = new int[invec.qdata.Length];
+            }
+            else throw new NotImplementedException();
 
             VectorNegate_Nat(indata, outdata);
-            return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+
+            if (invec.IsFloat())
+                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+            else
+                return new Vector(outdata);
         }
 
         // Add an scalar to vector
-        public static float[] VectorOffset(float[] invec, float offset)
+        public static Vector VectorOffset(Vector invec, float offset)
         {
-            int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
-            int[] outdata = new int[invec.Length];
+            int[] indata;
+            int[] outdata;
+            int offset_loc;
+
+            if (invec.IsFloat())
+            {
+                indata = Support.ScaleConvertFloatArrToQ15(invec.data, GlobalVar.largeFactor);
+                offset_loc = Support.ScaleConvertFloatToQ15(offset, GlobalVar.largeFactor);
+                outdata = new int[invec.data.Length];
+            }
+            else if (invec.IsQ() && (int)offset==offset)
+            {
+                indata = invec.qdata;
+                offset_loc = (int)offset;
+                outdata = new int[invec.qdata.Length];
+            }
+            else throw new NotImplementedException();
+
 #if LOGIC
             vec_offset.Write(true);
 #endif
-            VectorOffset_Nat(indata, Support.ScaleConvertFloatToQ15(offset, GlobalVar.largeFactor), outdata);
+            VectorOffset_Nat(indata, offset_loc, outdata);
 #if LOGIC
             vec_offset.Write(false);
 #endif
-            return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+            if (invec.IsFloat())
+                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+            else
+                return new Vector(outdata);
         }
 
         // Scale vector by scalar
-        public static float[] VectorScale(float[] invec, float scale)
+        public static Vector VectorScale(Vector invec, float scale)
         {
-            int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
-            int[] outdata = new int[invec.Length];
+            int[] indata;
+            int[] outdata;
+            int scale_loc;
+
+            if (invec.IsFloat())
+            {
+                indata = Support.ScaleConvertFloatArrToQ15(invec.data, GlobalVar.largeFactor);
+                scale_loc = Support.ScaleConvertFloatToQ15(scale, GlobalVar.largeFactor);
+                outdata = new int[invec.data.Length];
+            }
+            else if (invec.IsQ() && (int)scale == scale)
+            {
+                indata = invec.qdata;
+                scale_loc = (int)scale;
+                outdata = new int[invec.qdata.Length];
+            }
+            else throw new NotImplementedException();
 #if LOGIC
             vec_scale.Write(true);
 #endif
-            VectorScale_Nat(indata, Support.ScaleConvertFloatToQ15(scale, GlobalVar.largeFactor), outdata);
+            VectorScale_Nat(indata, scale_loc, outdata);
 #if LOGIC
             vec_scale.Write(false);
 #endif
-            return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
+            if (invec.IsFloat())
+                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+            else
+                return new Vector(outdata);
         }
 
         // Add two vectors
-        public static float[] VectorAdd(float[] in1vec, float[] in2vec)
+        public static Vector VectorAdd(Vector in1vec, Vector in2vec)
         {
-            int[] in1data = Support.ScaleConvertFloatArrToQ15(in1vec, GlobalVar.largeFactor);
-            int[] in2data = Support.ScaleConvertFloatArrToQ15(in2vec, GlobalVar.largeFactor);
-            int[] outdata = new int[in1vec.Length];
+            int[] in1data, in2data, outdata;
+
+            if (in1vec.IsFloat() && in2vec.IsFloat())
+            {
+                in1data = Support.ScaleConvertFloatArrToQ15(in1vec.data, GlobalVar.largeFactor);
+                in2data = Support.ScaleConvertFloatArrToQ15(in2vec.data, GlobalVar.largeFactor);
+                outdata = new int[in1vec.data.Length];
+            }
+            else if (in1vec.IsQ() && in2vec.IsQ())
+            {
+                in1data = in1vec.qdata;
+                in2data = in2vec.qdata;
+                outdata = new int[in1vec.qdata.Length];
+            }
+            else throw new NotImplementedException();
 #if LOGIC
             vec_add.Write(true);
 #endif
@@ -536,22 +738,41 @@ namespace CMSIS
 #if LOGIC
             vec_add.Write(false);
 #endif
-            return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+            if (in1vec.IsFloat() && in2vec.IsFloat())
+                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+            else
+                return new Vector(outdata);
         }
 
         // Subtract one vector from another
-        public static float[] VectorSub(float[] in1vec, float[] in2vec)
+        public static Vector VectorSub(Vector in1vec, Vector in2vec)
         {
-            int[] in1data = Support.ScaleConvertFloatArrToQ15(in1vec, GlobalVar.largeFactor);
-            int[] in2data = Support.ScaleConvertFloatArrToQ15(in2vec, GlobalVar.largeFactor);
-            int[] outdata = new int[in1vec.Length];
+            int[] in1data, in2data, outdata;
+
+            if (in1vec.IsFloat() && in2vec.IsFloat())
+            {
+                in1data = Support.ScaleConvertFloatArrToQ15(in1vec.data, GlobalVar.largeFactor);
+                in2data = Support.ScaleConvertFloatArrToQ15(in2vec.data, GlobalVar.largeFactor);
+                outdata = new int[in1vec.data.Length];
+            }
+            else if (in1vec.IsQ() && in2vec.IsQ())
+            {
+                in1data = in1vec.qdata;
+                in2data = in2vec.qdata;
+                outdata = new int[in1vec.qdata.Length];
+            }
+            else throw new NotImplementedException();
 
             VectorSub_Nat(in1data, in2data, outdata);
-            return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+
+            if (in1vec.IsFloat() && in2vec.IsFloat())
+                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+            else
+                return new Vector(outdata);
         }
 
-        // Reciprocal of vector
-        public static float[] VectorRecip(float[] in1vec)
+        // Reciprocal of vector - float implementation
+        public static Vector VectorRecip(Vector in1vec)
         {
             // VectorRecip_Nat doesn't work: don't know how to interpret result
             // (https://voltampmedia.com/2011/09/27/using-arms-cmsis-dsp-library-arm_recip_q15/)
@@ -564,31 +785,58 @@ namespace CMSIS
             vec_recip.Write(true);
 #endif
             // Simply compute reciprocal. TODO: Change to faster implementation
-            float[] outdata = new float[in1vec.Length];
-            for (int i = 0; i < in1vec.Length; i++)
-                outdata[i] = 1.0f / in1vec[i];
+            float[] outdata = new float[in1vec.data.Length];
+            for (int i = 0; i < in1vec.data.Length; i++)
+                outdata[i] = 1.0f / in1vec.data[i];
 #if LOGIC
             vec_recip.Write(false);
 #endif
-            return outdata;
+            return new Vector(outdata);
         }
 
         // Dot product of two vectors
-        public static float VectorDot(float[] in1vec, float[] in2vec)
+        public static float VectorDot(Vector in1vec, Vector in2vec)
         {
-            int[] in1data = Support.ScaleConvertFloatArrToQ15(in1vec, GlobalVar.largeFactor);
-            int[] in2data = Support.ScaleConvertFloatArrToQ15(in2vec, GlobalVar.largeFactor);
-            
+            int[] in1data, in2data;
+
+            if (in1vec.IsFloat() && in2vec.IsFloat())
+            {
+                in1data = Support.ScaleConvertFloatArrToQ15(in1vec.data, GlobalVar.largeFactor);
+                in2data = Support.ScaleConvertFloatArrToQ15(in2vec.data, GlobalVar.largeFactor);
+            }
+            else if (in1vec.IsQ() && in2vec.IsQ())
+            {
+                in1data = in1vec.qdata;
+                in2data = in2vec.qdata;
+            }
+            else throw new NotImplementedException();
+
             int outdata = VectorDot_Nat(in1data, in2data);
-            return Support.ScaleConvertQ15ToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
+
+            if (in1vec.IsFloat() && in2vec.IsFloat())
+                return Support.ScaleConvertQ15ToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
+            else
+                return outdata;
         }
 
         // Hadamard product of two vectors
-        public static float[] VectorHadamard(float[] in1vec, float[] in2vec)
+        public static Vector VectorHadamard(Vector in1vec, Vector in2vec)
         {
-            int[] in1data = Support.ScaleConvertFloatArrToQ15(in1vec, GlobalVar.largeFactor);
-            int[] in2data = Support.ScaleConvertFloatArrToQ15(in2vec, GlobalVar.largeFactor);
-            int[] outdata = new int[in1vec.Length];
+            int[] in1data, in2data, outdata;
+
+            if (in1vec.IsFloat() && in2vec.IsFloat())
+            {
+                in1data = Support.ScaleConvertFloatArrToQ15(in1vec.data, GlobalVar.largeFactor);
+                in2data = Support.ScaleConvertFloatArrToQ15(in2vec.data, GlobalVar.largeFactor);
+                outdata = new int[in1vec.data.Length];
+            }
+            else if (in1vec.IsQ() && in2vec.IsQ())
+            {
+                in1data = in1vec.qdata;
+                in2data = in2vec.qdata;
+                outdata = new int[in1vec.qdata.Length];
+            }
+            else throw new NotImplementedException();
 #if LOGIC
             vec_had.Write(true);
 #endif
@@ -596,18 +844,21 @@ namespace CMSIS
 #if LOGIC
             vec_had.Write(false);
 #endif
-            return Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
+            if (in1vec.IsFloat() && in2vec.IsFloat())
+                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor));
+            else
+                return new Vector(outdata);
         }
 
         // Tanh of vector: double function
         /*
          TODO: Simplifying formula: tanh(x) = x if |x| < 1; sign(x) otherwise
          */
-        public static float[] VectorTanh(float[] invec)
+        public static Vector VectorTanh(Vector invec)
         {
-            float[] outvec = new float[invec.Length];
+            float[] outvec = new float[invec.data.Length];
 
-            for(int i=0; i< invec.Length; i++)
+            for (int i = 0; i < invec.data.Length; i++)
             {
                 /*if (invec[i] < 1.0f && invec[i] > -1.0f)
                     outvec[i] = invec[i];
@@ -615,23 +866,22 @@ namespace CMSIS
                     outvec[i] = 1;
                 else if (invec[i] < -1)
                     outvec[i] = -1;*/
-                outvec[i] = (float) System.Math.Tanh(invec[i]);
+                outvec[i] = (float)System.Math.Tanh(invec.data[i]);
             }
 
-            return outvec;
+            return new Vector(outvec);
         }
 
         // Exponentiation of vector: double function
-        public static float[] VectorExp(float[] invec)
+        public static Vector VectorExp(Vector invec)
         {
-            float[] outvec = new float[invec.Length];
+            float[] outvec = new float[invec.data.Length];
 
-            for (int i = 0; i < invec.Length; i++)
-                outvec[i] = (float) System.Math.Exp(invec[i]);
+            for (int i = 0; i < invec.data.Length; i++)
+                outvec[i] = (float) System.Math.Exp(invec.data[i]);
 
-            return outvec;
+            return new Vector(outvec);
         }
-
 
         // Natives
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
