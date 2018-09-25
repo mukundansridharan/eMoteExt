@@ -10,6 +10,16 @@ namespace MathFuncsTest
         public static void Main()
         {
             Thread.Sleep(5000);
+
+            /*Convert sample radar values (interpreted as fixed) to floats*/
+            int val1 = 2063;
+            int val2 = 1954;
+            int val3 = 1949;
+
+            Debug.Print("Q15 " + val1 + " in floating is: " + Support.ScaleConvertQ15ToFloat(val1, GlobalVar.largeFactor));
+            Debug.Print("Q15 " + val2 + " in floating is: " + Support.ScaleConvertQ15ToFloat(val2, GlobalVar.largeFactor));
+            Debug.Print("Q15 " + val3 + " in floating is: " + Support.ScaleConvertQ15ToFloat(val3, GlobalVar.largeFactor));
+
             
            /*Matrix initialization*/
             float[] floatarr1 = new float[] { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f };
