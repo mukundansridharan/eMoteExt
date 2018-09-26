@@ -9,7 +9,7 @@ namespace CMSIS
     public static class GlobalVar
     {
         // Q15 conversion factor
-        public const float largeFactor = 20.0f;
+        public const float largeFactor = 6.0f;
     }
 
     public class Matrix
@@ -551,7 +551,7 @@ namespace CMSIS
             if (s1 == 1.0f)
                 return v1;
             else
-                return VectorFuncs.VectorScale(VectorFuncs.VectorRecip(v1), 1.0f / s1);
+                return VectorFuncs.VectorScale(v1, 1.0f / s1);
         }
 
         // Build empty vector of given length
