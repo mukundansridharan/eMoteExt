@@ -31,7 +31,6 @@ namespace FastGRNN
             var bias = new Vector(bias_d);
             var bias_z = new Vector(bias_z_d);
             var bias_h = new Vector(bias_h_d);
-            var input = new Vector(input_d);
             uint window = 32;
             int stride = 16;
             /*End user input*/
@@ -40,8 +39,7 @@ namespace FastGRNN
             fastgrnn_v1 ins1;
             ins1 = new fastgrnn_v1(weight_ih, weight_hh, bias_z, bias_h, zeta, nu);
 
-            Vector input_norm = (input - mean) / std;
-
+            Vector input_norm = new Vector(Normalize(input_d, mean, std));
             
             // Run FastGRNN to get logits
             Vector logits = weight.Transpose() * ins1.fastgrnn_calculations(input_norm, window, stride) + bias;
@@ -50,6 +48,17 @@ namespace FastGRNN
             Debug.Print("Logits: ");
             foreach(var item in logits.GetData())
                 Debug.Print(""+item);
+        }
+
+        private static float[] Normalize(float[] input, float mean, float std)
+        {
+            float[] norm = new float[input.Length];
+
+            for (int i = 0; i < norm.Length; i++)
+            {
+                norm[i] = (input[i] - mean) / std;
+            }
+            return norm;
         }
     }
 }
