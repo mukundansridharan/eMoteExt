@@ -10,6 +10,6 @@ For general instructions on how to build interops, kindly check the master [READ
 - [FastGRNN eMote app](https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/Apps/FastGRNN)
 - [CMSIS interops](https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/Extensions/MathFuncs)
 - Interops test apps:
-	- [Core functions test] (https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/Extensions/MathFuncsTest)
-	- [Operator overloading test] (https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/Extensions/MathOpsOverloadingTest)
+	- [Core functions test](https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/Extensions/MathFuncsTest)
+	- [Operator overloading test](https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/Extensions/MathOpsOverloadingTest)
 - [CMSIS native](https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/CMSIS_5)
