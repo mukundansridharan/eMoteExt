@@ -6,8 +6,9 @@ This branch is aimed at creating C# interops corresponging to [CMSIS Version 5](
 For general instructions on how to build interops, kindly check the master [README](https://github.com/MukundanAtSamraksh/eMoteExt/blob/master/README.md).
 
 # Roadmap
-- [C# FastGRNN PC application](https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/Support/FastGRNN), written by [Pranshu Jain](https://github.com/pranshu93).
+- [C# FastGRNN PC application](https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/Support/FastGRNN), written by [Pranshu Jain](https://github.com/pranshu93)
 - [FastGRNN eMote app](https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/Apps/FastGRNN)
+	- [Version 1](https://github.com/MukundanAtSamraksh/eMoteExt/blob/cmsis/Apps/FastGRNN/FastGRNN/FastGRNN_v1.cs) converts float operands to Q15 fixed point for the RNN operations, and converts their outputs back to floats
 - [CMSIS interops](https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/Extensions/MathFuncs)
 - Interops test apps:
 	- [Core functions test](https://github.com/MukundanAtSamraksh/eMoteExt/tree/cmsis/Extensions/MathFuncsTest)
