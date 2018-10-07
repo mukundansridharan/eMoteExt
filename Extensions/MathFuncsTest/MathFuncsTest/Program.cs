@@ -16,9 +16,18 @@ namespace MathFuncsTest
             int val2 = 1954;
             int val3 = 1949;
 
-            Debug.Print("Q15 " + val1 + " in floating is: " + Support.ScaleConvertQ15ToFloat(val1, GlobalVar.largeFactor));
-            Debug.Print("Q15 " + val2 + " in floating is: " + Support.ScaleConvertQ15ToFloat(val2, GlobalVar.largeFactor));
-            Debug.Print("Q15 " + val3 + " in floating is: " + Support.ScaleConvertQ15ToFloat(val3, GlobalVar.largeFactor));
+            Debug.Print("Q15 " + val1 + " in floating is: " + Support.ScaleConvertQ15ToFloat(val1, GlobalVar.largeFactor) + " and back to Q15 is " + Support.ScaleConvertFloatToQ15(Support.ScaleConvertQ15ToFloat(val1, GlobalVar.largeFactor), GlobalVar.largeFactor));
+            Debug.Print("Q15 " + val2 + " in floating is: " + Support.ScaleConvertQ15ToFloat(val2, GlobalVar.largeFactor) + " and back to Q15 is " + Support.ScaleConvertFloatToQ15(Support.ScaleConvertQ15ToFloat(val2, GlobalVar.largeFactor), GlobalVar.largeFactor));
+            Debug.Print("Q15 " + val3 + " in floating is: " + Support.ScaleConvertQ15ToFloat(val3, GlobalVar.largeFactor) + " and back to Q15 is " + Support.ScaleConvertFloatToQ15(Support.ScaleConvertQ15ToFloat(val3, GlobalVar.largeFactor), GlobalVar.largeFactor));
+
+            /*Convert small floats to Q15*/
+            float valf1 = 1.01f;
+            float valf2 = 0.89f;
+            float valf3 = 1.50f;
+
+            Debug.Print("Float " + valf1 + " in Q15 is: " + Support.ScaleConvertFloatToQ15(valf1, GlobalVar.largeFactor) + " and back to float is " + Support.ScaleConvertQ15ToFloat(Support.ScaleConvertFloatToQ15(valf1, GlobalVar.largeFactor), GlobalVar.largeFactor));
+            Debug.Print("Float " + valf2 + " in Q15 is: " + Support.ScaleConvertFloatToQ15(valf2, GlobalVar.largeFactor) + " and back to float is " + Support.ScaleConvertQ15ToFloat(Support.ScaleConvertFloatToQ15(valf2, GlobalVar.largeFactor), GlobalVar.largeFactor));
+            Debug.Print("Float " + valf3 + " in Q15 is: " + Support.ScaleConvertFloatToQ15(valf3, GlobalVar.largeFactor) + " and back to float is " + Support.ScaleConvertQ15ToFloat(Support.ScaleConvertFloatToQ15(valf3, GlobalVar.largeFactor), GlobalVar.largeFactor));
 
             
            /*Matrix initialization*/
