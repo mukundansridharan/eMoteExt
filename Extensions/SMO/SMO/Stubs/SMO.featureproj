@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FeatureName>SMO</FeatureName>
+    <Guid>{fc369357-5890-475a-ba6d-803bafdd417e}</Guid>
+    <Description>&lt;Add Feature Description Here&gt;</Description>
+    <Groups />
+    <SMO_FEATUREPROJ>True</SMO_FEATUREPROJ>
+  </PropertyGroup>
+  <ItemGroup>
+    <DriverLibs Include="SMO.$(LIB_EXT)" />
+    <InteropFeature Include="SMO" />
+    <MMP_DAT_CreateDatabase Include="$(BUILD_TREE_CLIENT)\pe\$(ENDIANNESS)\SMO.pe" />
+    <RequiredProjects Include="C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\Stubs\dotnetmf.proj" />
+  </ItemGroup>
+</Project>
