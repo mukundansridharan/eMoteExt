@@ -55,7 +55,6 @@ const CLR_RT_NativeAssemblyData *g_CLR_InteropAssembliesNativeData[] =
     &g_CLR_AssemblyNative_Samraksh_eMote_DSP,
     &g_CLR_AssemblyNative_Samraksh_eMote_ProgramManager,
     &g_CLR_AssemblyNative_UpdaterProgressCallback,
-	//&g_CLR_AssemblyNative_ExampleLib,
     &g_CLR_AssemblyNative_SMO,
     NULL
 };
