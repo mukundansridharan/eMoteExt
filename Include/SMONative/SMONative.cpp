@@ -1,7 +1,6 @@
 // SMONative.cpp : Defines the entry point for the console application.
 //
 #include <cstdlib>
-#include "stdafx.h"
 #include <cstdint>
 #include <cmath>
 #include <iostream>
