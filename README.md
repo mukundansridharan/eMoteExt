@@ -11,7 +11,7 @@ Note to folks who update binaries: The idea is that the binaries would tract the
 # Build Instructions
 - Install Visual Studio Community 2013. Install MF SDK 4.3. 
 - You will need 'make'. So you need to install mingw or cygwin or WSL or somesuch thing on Windows. The Makefile for compilation is written and tested only under mingw32, but should work with very minor changes with other types of linux emulation.
-	- If there is no 'make' in your mingw32/64 installation, get it from https://sourceforge.net/projects/ezwinports/files/make-4.2.1-without-guile-w32-bin.zip/download
+	- If there is no 'make' in your mingw32/64/Git Bash installation, look here on how to add stuff to Git Bash. The make binary is available here https://sourceforge.net/projects/ezwinports/files/make-4.2.1-without-guile-w32-bin.zip/download
 - Create a C# Library project and write a interop
 	- Use the decoreation "[MethodImplAttribute(MethodImplOptions.InternalCall)]" for methods that need to be implemented on the native side
 	- Generate the native stubs: Go to project properties > .Net MicroFramework > And check the "Generate native stubs for internal methods" check box

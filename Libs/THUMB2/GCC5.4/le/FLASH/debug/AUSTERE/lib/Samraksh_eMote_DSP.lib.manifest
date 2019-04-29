@@ -1,0 +1,37 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+<PropertyGroup>
+    <Name>Samraksh_eMote_DSP</Name>
+    <ProjectFile>dotnetmf.proj</ProjectFile>
+    <Version>4.3.1.0</Version>
+    <Platform>Austere</Platform>
+    <PlatformFamily>ARM</PlatformFamily>
+    <InstructionSet>THUMB2</InstructionSet>
+    <Compiler>GCC</Compiler>
+    <CompilerVersion>GCC5.4</CompilerVersion>
+    <TargetLocation>FLASH</TargetLocation>
+    <MemoryFlavor>FLASH</MemoryFlavor>
+    <Processor>STM32F10x</Processor>
+    <TargetPlatform>AUSTERE</TargetPlatform>
+    <Codebase>STM32F10x</Codebase>
+    <CodebaseType>Native</CodebaseType>
+    <Company>The Samraksh Company</Company>
+    <Copyright>Copyright (C) 2015 Samraksh and Microsoft.</Copyright>
+    <FileVersion>4.3.1.0</FileVersion>
+    <Configuration>Debug</Configuration>
+    <Product>Microsoft .NET Micro Framework</Product>
+    <Trademark>.NET is a trademark of Microsoft Corporation.</Trademark>
+    <Directory>DeviceCode\Targets\Native\Interop\Samraksh_eMote_DSP</Directory>
+    <AssemblyName>Samraksh_eMote_DSP</AssemblyName>
+    <OutputType>Library</OutputType>
+</PropertyGroup>
+
+<ItemGroup>
+    <ObjectFile Include="G:\Mukundan\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\debug\AUSTERE\obj\DeviceCode\Targets\Native\Interop\Samraksh_eMote_DSP\SamrakshEmoteDSP.obj" />
+    <ObjectFile Include="G:\Mukundan\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\debug\AUSTERE\obj\DeviceCode\Targets\Native\Interop\Samraksh_eMote_DSP\SamrakshEmoteDSP_Samraksh_eMote_DSP_Statistics_mshl.obj" />
+    <ObjectFile Include="G:\Mukundan\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\debug\AUSTERE\obj\DeviceCode\Targets\Native\Interop\Samraksh_eMote_DSP\SamrakshEmoteDSP_Samraksh_eMote_DSP_Statistics.obj" />
+    <ObjectFile Include="G:\Mukundan\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\debug\AUSTERE\obj\DeviceCode\Targets\Native\Interop\Samraksh_eMote_DSP\SamrakshEmoteDSP_Samraksh_eMote_DSP_Transforms_mshl.obj" />
+    <ObjectFile Include="G:\Mukundan\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\debug\AUSTERE\obj\DeviceCode\Targets\Native\Interop\Samraksh_eMote_DSP\SamrakshEmoteDSP_Samraksh_eMote_DSP_Transforms.obj" />
+</ItemGroup>
+
+</Project>
