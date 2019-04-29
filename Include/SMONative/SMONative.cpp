@@ -1,21 +1,22 @@
 // SMONative.cpp : Defines the entry point for the console application.
 //
 #include <cstdlib>
+#include "stdafx.h"
 #include <cstdint>
 #include <cmath>
 #include <iostream>
 #include "SMONative.h"
 using namespace std;
 
-uint32_t* SMONative::fixedFeature(float floatFeature[], bool flag)
+void SMONative::fixedFeature(float floatFeature[], bool flag, uint32_t normFeature[])
 {
-	uint32_t* rval = new uint32_t[nFeatures];
+	uint32_t rval[nFeatures];
 
 	if (flag)
 	{
 		for (int i = 0; i < nFeatures; i++)
 		{
-			rval[i] = floatToFixed((floatFeature[i] - minClass[i]) * scaleClass[i], 1 << 20);
+			normFeature[i] = floatToFixed((floatFeature[i] - minClass[i]) * scaleClass[i], 1 << 20);
 		}
 
 	}
@@ -23,10 +24,9 @@ uint32_t* SMONative::fixedFeature(float floatFeature[], bool flag)
 	{
 		for (int i = 0; i < nFeatures; i++)
 		{
-			rval[i] = floatToFixed((floatFeature[i] - minCount[i]) * scaleCount[i], 1 << 19);
+			normFeature[i] = floatToFixed((floatFeature[i] - minCount[i]) * scaleCount[i], 1 << 19);
 		}
 	}
-	return rval;
 }
 
 int64_t SMONative::mult(int32_t a, int32_t b)
@@ -73,8 +73,9 @@ float SMONative::fixedToFloat(int64_t val, int convert)
 float SMONative::predictCount(float features[])
 {
 	double decision = bias;
-	uint32_t* intFeat = fixedFeature(features, false);
-	int32_t* SV = new int32_t[nFeatures];
+	uint32_t intFeat[nFeatures];
+	fixedFeature(features, false, intFeat);
+	int32_t SV[nFeatures];
 	for (int i = 0; i < nSV; i++)
 	{
 		for (int j = i*nFeatures, k = 0; j < (i + 1)*nFeatures; j++, k++)
@@ -89,27 +90,26 @@ float SMONative::predictCount(float features[])
 double SMONative::predictClass(float features[])
 {
 	double decision = biasC;
-	uint32_t* intFeat = fixedFeature(features, true);
-	int32_t* SV = new int32_t[nFeatures];
+	uint32_t intFeat[nFeatures];
+	fixedFeature(features, true, intFeat);
+	int32_t SV[nFeatures];
 	for (int i = 0; i < nSVc; i++)
 	{
 		for (int j = i * nFeatures, k = 0; j < (i + 1) * nFeatures; j++, k++)
 		{
 			SV[k] = fixedClass[j];
 		}
+		
 		decision += (Wc[i] * rbfKernel(SV, intFeat));
 	}
 	/*if (decision>0)
 	{
-		decision = 1;
+	decision = 1;
 	}
 	else
 	{
-		decision = 0;
+	decision = 0;
 	}
 	return (int32_t)decision;*/
 	return decision;
 }
-
-	
-		

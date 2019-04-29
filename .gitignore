@@ -11,4 +11,6 @@
 **/bin/Logic
 **/obj/Logic
 *.suo
+*.obj
+*.o
 *.cache
