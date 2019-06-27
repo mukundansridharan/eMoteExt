@@ -8,8 +8,8 @@ namespace SMOTest
     {
         public static void Main()
         {
-            float[] f_classifier = new float[13] { 58f, 2f, 1.833333f, 1.5f, 7f, 48f, 47f, 0.083333f, 1599f, 0.083333f, -1f, 0f, -1f };
-            float[] f_counter = new float[13] { 107f, 9.666667f, 22621f, 29f, 25.089744f, 6701f, 387f, 47f, 0.083333f, 93f, 0.083333f, -1f, -1f };
+            float[] f_classifier = new float[13] { 72f, 1.055556f, 0.916667f, 0.75f, 16f, 759f, 127f, 0.111111f, 39351f, 0.027778f, 103f, 0.333333f, 100f };
+            float[] f_counter = new float[13] { 126f, 4.555556f, 136692f, 114f, 801.361862f, 73793f, 32230f, 127f, 0.166667f, 12467f, 0.055556f, 101f, 100f };
 
             SMO smotest = new SMO();
 
