@@ -1,0 +1,405 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Samraksh_eMote_WLN</name>
+    </assembly>
+    <members>
+        <member name="T:Samraksh.eMote.WLN.AdcCallBack">
+            <summary>
+            Delegate for ADC continuous mode mode callback method
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.WLN.AnalogInput">
+            <summary>
+            Samraksh AnalogInput
+            </summary>
+            <remarks>Similar to Microsoft AnalogInput but with additional features</remarks>
+        </member>
+        <member name="F:Samraksh.eMote.WLN.AnalogInput._adcInternal">
+            <summary>
+            ADC internal class 
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.WLN.AnalogInput._myCallback">
+            <summary>
+            Callback method
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.InitializeADC">
+            <summary>
+            Initialize ADC
+            </summary>
+            
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.UninitializeADC">
+            <summary>
+            Uninitialize ADC
+            </summary>
+            
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.InitChannel(Microsoft.SPOT.Hardware.Cpu.AnalogChannel)">
+            <summary>
+            Initialize ADC for specified channel
+            </summary>
+            <param name="channel">Channel</param>
+            <returns>Result of operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.DualChannelRead(System.UInt16[])">
+            <summary>
+            Read two ADC channels synchronously
+            </summary>
+            <param name="data">Two-ushort array for return values</param>
+            <returns>True iff read succeeds</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.Read(Microsoft.SPOT.Hardware.Cpu.AnalogChannel)">
+            <summary>
+            Read a single ADC channel synchronously
+            </summary>
+            <param name="channel">Channel</param>
+            <returns>Value read</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.ConfigureBatchModeWithThresholding(System.UInt16[],Microsoft.SPOT.Hardware.Cpu.AnalogChannel,System.UInt32,System.UInt32,System.UInt32,Samraksh.eMote.WLN.AdcCallBack)">
+            <summary>
+            Configure ADC batch mode with threshold
+            </summary>
+            <param name="sampleBuff">Buffer for samples</param>
+            <param name="channel">Channel to use</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <param name="threshold">Threshold to apply</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <returns>True iff operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.ConfigureContinuousModeWithThresholding(System.UInt16[],Microsoft.SPOT.Hardware.Cpu.AnalogChannel,System.UInt32,System.UInt32,System.UInt32,Samraksh.eMote.WLN.AdcCallBack)">
+            <summary>
+            Configure ADC continouous mode with threshold
+            </summary>
+            <param name="sampleBuff">Buffer for samples</param>
+            <param name="channel">Channel to use</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <param name="threshold">Threshold to apply</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <returns>True iff operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.ConfigureBatchModeDualChannel(System.UInt16[],System.UInt16[],System.UInt32,System.UInt32,Samraksh.eMote.WLN.AdcCallBack)">
+            <summary>
+            Configure ADC to read channels 1 and 2 in batch mode
+            </summary>
+            <param name="sampleBuff1">Sample buffer 1</param>
+            <param name="sampleBuff2">Sample buffer 2</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <returns>True if operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.ConfigureContinuousModeDualChannel(System.UInt16[],System.UInt16[],System.UInt32,System.UInt32,Samraksh.eMote.WLN.AdcCallBack)">
+            <summary>
+            Configure ADC to read channels 1 and 2 in continuous mode
+            </summary>
+            <param name="sampleBuff1">Sample buffer 1</param>
+            <param name="sampleBuff2">Sample buffer 2</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <returns>True iff operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.ConfigureBatchMode(System.UInt16[],Microsoft.SPOT.Hardware.Cpu.AnalogChannel,System.UInt32,System.UInt32,Samraksh.eMote.WLN.AdcCallBack)">
+            <summary>
+            Configure ADC batch mode
+            </summary>
+            <param name="sampleBuff">Sample buffer</param>
+            <param name="channel">Channel to read</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <returns>True iff operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.ConfigureContinuousMode(System.UInt16[],Microsoft.SPOT.Hardware.Cpu.AnalogChannel,System.UInt32,System.UInt32,Samraksh.eMote.WLN.AdcCallBack)">
+            <summary>
+            Configure ADC continuous mode
+            </summary>
+            <param name="sampleBuff">Sample buffer</param>
+            <param name="channel">Channel to read</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <returns>True iff operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.StopSampling">
+            <summary>
+            Stop ADC sampling for continuous or batch mode
+            </summary>
+            <returns>Operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.InternalCallback(System.UInt32,System.UInt32,System.DateTime)">
+            <summary>
+            Native ADC driver callback
+            </summary>
+            <param name="data1">Parameter passed from native</param>
+            <param name="data2">Parameter passed from native</param>
+            <param name="time">Time of callback</param>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.AnalogInput.SetPeriodicADCSamplingInterval(System.Double,System.Double)">
+            <summary>
+            Sets the periodic times the ADC will sample and then sleep. 
+            SetPeriodicADCSamplingInterval(1.5, 0.5); will sample for 1.5 seconds, sleep for 0.5 seconds and then repeat.
+            </summary>
+            <param name="secondsADCSamples">specify lenght of time the ADC samples in seconds</param>
+            <param name="secondsADCsleeps">specify lenght of time the ADC sleeps in seconds</param>
+            <returns>Returns the result of SetPeriodicADCSamplingInterval</returns>
+        </member>
+        <member name="T:Samraksh.eMote.WLN.AdcSampleTime">
+            <summary>
+            Time taken to sample in the adc driver
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.WLN.ADCInternal">
+            <summary>
+            ADCInternal interface to the native driver
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.ADCInternal.#ctor(System.String,System.UInt64,System.Int32)">
+            <summary>
+            Specify the driver name for matching with the native eventdispatcher
+            </summary>
+            <param name="strDrvName"></param>
+            <param name="drvData"></param>
+            <param name="callbackCount"></param>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.ADCInternal.Init(System.Int32)">
+            <summary>
+            Initialize the ADC native driver
+            </summary>
+            <param name="channel">Specify the channel to be sampled</param>
+            <returns>Returns the result of the init function</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.ADCInternal.Uninit">
+            <summary>
+            Uninitialize the ADC native driver
+            </summary>
+            <returns>Returns the result of the uninit function</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.ADCInternal.Read(System.Int32)">
+            <summary>
+            Read the channel
+            </summary>
+            <param name="channel">Channel to read</param>
+            <returns>Return value read</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.ADCInternal.ConfigureBatchMode(System.UInt16[],System.Int32,System.UInt32,System.UInt32)">
+            <summary>
+            Configure batch mode
+            </summary>
+            <param name="sampleBuff">Pass the buffer to be filled</param>
+            <param name="channel">Define the channel to be read</param>
+            <param name="NumSamples">Defines the number of samples to be read before callback</param>
+            <param name="SamplingTime">Defines the rate at which the adc should read channels</param>
+            <returns>Return the result of the operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.ADCInternal.ConfigureContinuousMode(System.UInt16[],System.Int32,System.UInt32,System.UInt32)">
+            <summary>
+            Configure the adc in continuous mode 
+            </summary>
+            <param name="SampleBuff">pass the buffer to be filled</param>
+            <param name="channel">pass the channel to be sampled</param>
+            <param name="NumSamples">specify the number of samples to be collected before callback</param>
+            <param name="SamplingTime">specify the rate of sampling</param>
+            <returns>Returns the result of this operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.ADCInternal.ConfigureContinuousModeWithThresholding(System.UInt16[],System.Int32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Configure continuous mode adc sampling with a threshold timestamp 
+            </summary>
+            <param name="SampleBuff"></param>
+            <param name="channel"></param>
+            <param name="NumSamples"></param>
+            <param name="SamplingTime"></param>
+            <param name="threshold"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.ADCInternal.DualChannelRead(System.UInt16[])">
+            <summary>
+            Read both the channel simulateously Channel 1 followed by Channel 2
+            </summary>
+            <param name="sample">specify the buffer to be filled</param>
+            <returns>Return the result of this operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.ADCInternal.StopSampling">
+            <summary>
+            Stop batch mode and continous mode sampling of the adc 
+            </summary>
+            <returns>Returns the result of this operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.ADCInternal.SetPeriodicADCSamplingInterval(System.Double,System.Double)">
+            <summary>
+            Sets the periodic times the ADC will sample and then sleep. 
+            SetPeriodicADCSamplingInterval(1.5, 0.5); will sample for 1.5 seconds, sleep for 0.5 seconds and then repeat.
+            </summary>
+            <param name="secondsADCSamples">specify lenght of time the ADC samples in seconds</param>
+            <param name="secondsADCsleeps">specify lenght of time the ADC sleeps in seconds</param>
+            <returns>Returns the result of SetPeriodicADCSamplingInterval</returns>
+        </member>
+        <member name="T:Samraksh.eMote.WLN.DeviceStatus">
+            <summary>
+            Status return codes for drivers
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.WLN.DeviceStatus.Success">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.WLN.DeviceStatus.Fail">
+            <summary>
+            Fail
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.WLN.DeviceStatus.Ready">
+            <summary>
+            Ready
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.WLN.DeviceStatus.Busy">
+            <summary>
+            Busy 
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.WLN.FilePosition">
+            <summary>
+            File positions
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.WLN.FilePosition.Begin">
+            <summary>Beginning position</summary>
+        </member>
+        <member name="F:Samraksh.eMote.WLN.FilePosition.End">
+            <summary>Ending position</summary>
+        </member>
+        <member name="T:Samraksh.eMote.WLN.NOR">
+            <summary>
+            NOR (on-board) flash 
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.NOR.Initialize">
+            <summary>
+            Initialize NOR flash
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.NOR.Initialize(System.UInt32)">
+            <summary>
+            Initialize NOR flash to a specified size
+            </summary>
+            <param name="maxSizeConfig">Maximum size</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.NOR.StartNewRecord">
+            <summary>
+            Start a new record in NOR
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.NOR.EndRecord">
+            <summary>
+            Write end of record to NOR
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.NOR.IsFull">
+            <summary>
+            Check if NOR is full
+            </summary>
+            <returns>True if full</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.NOR.IsEmpty">
+            <summary>
+            Check if NOR is empty
+            </summary>
+            <returns>True if empty</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.NOR.Seek(Samraksh.eMote.WLN.FilePosition)">
+            <summary>
+            Seek to specified position in NOR
+            </summary>
+            <param name="pos">Position to seek</param>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.NOR.eof">
+            <summary>
+            Write end of file to NOR
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.NOR.Write(System.UInt16[],System.UInt16)">
+            <summary>
+            Write data to NOR
+            </summary>
+            <param name="data">Array of data to write</param>
+            <param name="length">Amount of data to write</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.NOR.Write(System.UInt16[],System.UInt16,System.UInt16)">
+            <summary>
+            Write data to NOR
+            </summary>
+            <param name="data">Array of data to write</param>
+            <param name="length">Amount of data to write</param>
+            <param name="offset">Offset into array</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.NOR.Read(System.UInt16[],System.UInt16)">
+            <summary>
+            Read data from NOR
+            </summary>
+            <param name="data">Array to receive data</param>
+            <param name="length">Amount of data to read</param>
+            <returns>Status of operation</returns>
+        </member>
+        <member name="T:Samraksh.eMote.WLN.ADCChannel">
+            <summary>
+            ADC channel mapping
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.WLN.SD">
+            <summary>
+            Micro SD device
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.SD.#ctor(Samraksh.eMote.WLN.SD.SDCallBackType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="sdCallback">Callback method</param>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.SD.Initialize">
+            <summary>
+            Initialize the SD
+            </summary>
+            <returns>True iff success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.SD.Read(System.Byte[],System.UInt16,System.UInt16)">
+            <summary>
+            Read from SD
+            </summary>
+            <param name="dataArray">Array to receive data</param>
+            <param name="offset">Offset into array</param>
+            <param name="length">Amount to read</param>
+            <returns>True iff success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.WLN.SD.Write(System.Byte[],System.UInt16,System.UInt16)">
+            <summary>
+            Write to SD
+            </summary>
+            <param name="dataArray">Array to write</param>
+            <param name="offset">Offset into array</param>
+            <param name="length">Amount to write</param>
+            <returns>True iff success</returns>
+        </member>
+        <member name="T:Samraksh.eMote.WLN.SD.SDCallBackType">
+            <summary>
+            Callback delegate
+            </summary>
+            <param name="status">Operation status</param>
+        </member>
+    </members>
+</doc>

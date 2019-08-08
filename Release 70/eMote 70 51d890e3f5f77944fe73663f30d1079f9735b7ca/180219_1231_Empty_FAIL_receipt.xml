@@ -1,0 +1,149 @@
+<TestResults>
+	<TestComplete>
+	False
+	</TestComplete>
+	<TestResult>
+	COM 0 failed to open
+	</TestResult>
+	<TestPass>
+	False
+	</TestPass>
+	<TestDateTime>
+	2018-02-19 12:24:49
+	</TestDateTime>
+	<TestDuration>
+	00:06:06.5575091
+	</TestDuration>
+	<TestAccuracy>
+	0
+	</TestAccuracy>
+	<TestReturnParameter1>
+	
+	</TestReturnParameter1>
+	<TestReturnParameter2>
+	
+	</TestReturnParameter2>
+	<TestReturnParameter3>
+	
+	</TestReturnParameter3>
+	<TestReturnParameter4>
+	
+	</TestReturnParameter4>
+	<TestReturnParameter5>
+	
+	</TestReturnParameter5>
+	<TestExecutionMachine>
+	CHRISDESK
+	</TestExecutionMachine>
+	<TestDescription>
+	<Test Name='Empty' Type = 'C# Adapt .NOW'>
+	<Description>
+	C# Empty Project
+	</Description>
+	<TestPath>
+	Empty\Empty
+	</TestPath>
+	<TestProjName>
+	Empty.csproj
+	</TestProjName>
+	<TesterName>
+	Chris
+	</TesterName>
+	<TestLocation>
+	CHRISDESK
+	</TestLocation>
+	<TestMFVersionNum>
+	4.3
+	</TestMFVersionNum>
+	<TestGitOption>
+	
+	</TestGitOption>
+	<TestGitRev>
+	e75e342
+	</TestGitRev>
+	<TestGitBranch>
+	master
+	</TestGitBranch>
+	<TestUsePrecompiledBinary>
+	
+	</TestUsePrecompiledBinary>
+	<TestHardware>
+	Emote.Now
+	</TestHardware>
+	<TestSolution>
+	EmoteDotNow
+	</TestSolution>
+	<TestMemoryType>
+	FLASH
+	</TestMemoryType>
+	<TestSolutionType>
+	TinyCLR
+	</TestSolutionType>
+	<TestGCCVersion>
+	GCC5.4
+	</TestGCCVersion>
+	<TestSupporting>
+	
+	</TestSupporting>
+	<TestJTAGHarness>
+	Olimex
+	</TestJTAGHarness>
+	<TestPowerAutomateSelected>
+	False
+	</TestPowerAutomateSelected>
+	<TestBuild>
+	Release
+	</TestBuild>
+	<TestTimeout>
+	10000
+	</TestTimeout>
+	<TestUseLogic>
+	none
+	</TestUseLogic>
+	<TestSampleTimeMs>
+	4000
+	</TestSampleTimeMs>
+	<TestSampleFrequency>
+	4000000
+	</TestSampleFrequency>
+	<testUseScript>
+	False
+	</testUseScript>
+	<testScriptName>
+	
+	</testScriptName>
+	<testScriptTimeoutMs>
+	9000
+	</testScriptTimeoutMs>
+	<TestAnalysis>
+	none
+	</TestAnalysis>
+	<TestAnalysisScriptName>
+	none.exe
+	</TestAnalysisScriptName>
+	<TestUseResultsFile>
+	False
+	</TestUseResultsFile>
+	<TestResultsFileName>
+	results.txt
+	</TestResultsFileName>
+	<TestUseCOM>
+	True
+	</TestUseCOM>
+	<TestForceCOM>
+	
+	</TestForceCOM>
+	<TestCOMParameters>
+	115200,N,8,1
+	</TestCOMParameters>
+	<TestDelay>
+	0
+	</TestDelay>
+	<testDevicesToStart>
+	1
+	</testDevicesToStart>
+</Test>
+
+	</TestDescription>
+</TestResults>
+

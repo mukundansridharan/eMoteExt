@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Samraksh_eMote_Adapt</name>
+    </assembly>
+    <members>
+        <member name="T:Samraksh.eMote.Adapt.AnalogInput">
+            <summary>
+            AnalogInput class similar to Microsoft AnalogInput but with additional features
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.AnalogInput.Initialize">
+            <summary>
+            Initializes the accelerometer hardware
+            </summary>
+            <returns>The result of accelerometer initialization: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.AnalogInput.Read(System.Int32)">
+            <summary>
+            Read one sample from the channel
+            </summary>
+            <param name="channel">Specify the channel to be read</param>
+            <returns>Returns the read value</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.AnalogInput.ReadBatch(System.UInt16[],System.Int32,System.UInt32,System.UInt32)">
+            <summary>
+            Read batch mode
+            </summary>
+            <param name="sampleBuff">The buffer to be filled</param>
+            <param name="channel">Define the channel to be read</param>
+            <param name="NumSamples">Defines the number of samples to be read</param>
+            <param name="SamplingTime">Defines the rate at which the adc should read channels</param>
+            <returns>Returns the result of the operation: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.AnalogInput.GetMaxSampleRate">
+            <summary>
+            Get the sample rate maximum of the ADC
+            </summary>
+            <returns>Returns the maximum sample rate of the ADC.</returns>
+        </member>
+        <member name="T:Samraksh.eMote.Adapt.AdcSampleTime">
+            <summary>
+            Time taken to sample in the adc driver
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.Adapt.DeviceStatus.Success">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.Adapt.DeviceStatus.Fail">
+            <summary>
+            Fail
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.Adapt.DeviceStatus.Ready">
+            <summary>
+            Ready
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.Adapt.DeviceStatus.Busy">
+            <summary>
+            Busy 
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.Adapt.Accelerometer">
+            <summary>
+            Adapt Accelerometer Interface class
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.Initialize">
+            <summary>
+            Initializes the accelerometer hardware
+            </summary>
+            <returns>The result of accelerometer initialization: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.Reset">
+            <summary>
+            Resets the accelerometer hardware
+            </summary>
+            <returns>The result of accelerometer reset: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.SelfTest">
+            <summary>
+            Runs the accelerometer self-test
+            </summary>
+            <returns>The result of accelerometer self-test: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.GetX">
+            <summary>
+            Gets the accelerometer X value
+            </summary>
+            <returns>The accelerometer X value (Int16)</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.GetY">
+            <summary>
+            Gets the accelerometer Y value
+            </summary>
+            <returns>The accelerometer Y value (Int16)</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.GetZ">
+            <summary>
+            Gets the accelerometer Z value
+            </summary>
+            <returns>The accelerometer Z value (Int16)</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.GetTemperature">
+            <summary>
+            Gets the accelerometer temperature
+            </summary>
+            <returns>The accelerometer temperature (Int16)</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.ReadRegister(System.Byte)">
+            <summary>
+            Reads a register
+            </summary>
+            <param name="reg">The register to be read.</param>
+            <returns>The  register return value (Byte)</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.WriteRegister(System.Byte,System.Byte)">
+            <summary>
+            Writes a register
+            </summary>
+            <param name="reg">The register to be written.</param>
+            <param name="data">The register value to be written.</param>
+            <returns>The result of accelerometer register write: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.AdvancedConfiguration(System.UInt32)">
+            <summary>
+            Accelerometer advanced configuration
+            </summary>
+            <param name="config">The configuration to be used.</param>
+            <returns>The result of accelerometer advanced configuration: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.SetPowerMode(System.UInt32)">
+            <summary>
+            Accelerometer set power
+            </summary>
+            <param name="power">The power to be used.</param>
+            <returns>The result of accelerometer set power: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.SetBandwidth(System.UInt32)">
+            <summary>
+            Accelerometer set bandwidth
+            </summary>
+            <param name="bandwidth">The bandwidth to be used.</param>
+            <returns>The result of accelerometer set bandwidth: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.SetRange(System.Byte)">
+            <summary>
+            Accelerometer set range
+            </summary>
+            <param name="range">The range to be used.</param>
+            <returns>The result of accelerometer set range: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Accelerometer.GetAllData(System.Int16[])">
+            <summary>
+            Get all three axis
+            </summary>
+            <param name="data">Array of size 3 passed to the driver to be filled.</param>
+            <returns>The result of accelerometer get all: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="T:Samraksh.eMote.Adapt.FPGA">
+            <summary>
+            Adapt FPGA Interface class
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.FPGA.Initialize">
+            <summary>
+            Initializes the FPGA hardware
+            </summary>
+            <returns>The result of FPGA initialization: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.Initialize">
+            <summary>
+            Initializes the gyroscope hardware
+            </summary>
+            <returns>The result of gyroscope initialization: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.Reset">
+            <summary>
+            Resets the gyroscope hardware
+            </summary>
+            <returns>The result of gyroscope reset: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.SelfTest">
+            <summary>
+            Runs the gyroscope self-test
+            </summary>
+            <returns>The result of gyroscope self-test: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.GetX">
+            <summary>
+            Gets the gyroscope X value
+            </summary>
+            <returns>The gyroscope X value (Int16)</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.GetY">
+            <summary>
+            Gets the gyroscope Y value
+            </summary>
+            <returns>The gyroscope Y value (Int16)</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.GetZ">
+            <summary>
+            Gets the gyroscope Z value
+            </summary>
+            <returns>The gyroscope Z value (Int16)</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.GetTemperature">
+            <summary>
+            Gets the gyroscope temperature
+            </summary>
+            <returns>The gyroscope temperature (Int16)</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.ReadRegister(System.Byte)">
+            <summary>
+            Reads a register
+            </summary>
+            <param name="reg">The register to be read.</param>
+            <returns>The  register return value (Byte)</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.WriteRegister(System.Byte,System.Byte)">
+            <summary>
+            Writes a register
+            </summary>
+            <param name="reg">The register to be written.</param>
+            <param name="data">The register value to be written.</param>
+            <returns>The result of gyroscope register write: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.AdvancedConfiguration(System.UInt32)">
+            <summary>
+            Gyroscope advanced configuration
+            </summary>
+            <param name="config">The configuration to be used.</param>
+            <returns>The result of gyroscope advanced configuration: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.SetPowerMode(System.UInt32)">
+            <summary>
+            Gyroscope set power
+            </summary>
+            <param name="power">The power to be used.</param>
+            <returns>The result of gyroscope set power: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.SetOffsets(System.Int16,System.Int16,System.Int16)">
+            <summary>
+            Gyroscope set offsets
+            </summary>
+            <param name="xOffset">The offset for the x-axis.</param>
+            <param name="yOffset">The offset for the y-axis.</param>
+            <param name="zOffset">The offset for the z-axis.</param>
+            <returns>The result of gyroscope set offsets: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.SampleConfiguration(System.UInt32)">
+            <summary>
+            Gyroscope sample configuration
+            </summary>
+            <param name="config">The configuration to be used.</param>
+            <returns>The result of gyroscope sample configuration: 0-Success, 1-Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Adapt.Gyroscope.GetAllData(System.Int16[])">
+            <summary>
+            Get all three axis
+            </summary>
+            <param name="data">Array of size 3 passed to the driver to be filled.</param>
+            <returns>The result of gyroscope get all: 0-Success, 1-Fail</returns>
+        </member>
+    </members>
+</doc>

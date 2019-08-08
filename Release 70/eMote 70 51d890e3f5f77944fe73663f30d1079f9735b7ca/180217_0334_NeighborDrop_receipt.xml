@@ -1,0 +1,149 @@
+<TestResults>
+	<TestComplete>
+	True
+	</TestComplete>
+	<TestResult>
+	Test completed
+	</TestResult>
+	<TestPass>
+	True
+	</TestPass>
+	<TestDateTime>
+	2018-02-17 03:21:34
+	</TestDateTime>
+	<TestDuration>
+	00:12:42.2716988
+	</TestDuration>
+	<TestAccuracy>
+	6
+	</TestAccuracy>
+	<TestReturnParameter1>
+	 
+	</TestReturnParameter1>
+	<TestReturnParameter2>
+	 
+	</TestReturnParameter2>
+	<TestReturnParameter3>
+	 37
+	</TestReturnParameter3>
+	<TestReturnParameter4>
+	 null
+	</TestReturnParameter4>
+	<TestReturnParameter5>
+	 null
+	</TestReturnParameter5>
+	<TestExecutionMachine>
+	CHRISDESK
+	</TestExecutionMachine>
+	<TestDescription>
+	<Test Name='OMAC' Type = 'C# .NOW'>
+	<Description>
+	OMAC Neighbor Drop
+	</Description>
+	<TestPath>
+	OMAC\Src\C#\NeighborDrop
+	</TestPath>
+	<TestProjName>
+	NeighborDrop.csproj
+	</TestProjName>
+	<TesterName>
+	Chris
+	</TesterName>
+	<TestLocation>
+	CHRISDESK
+	</TestLocation>
+	<TestMFVersionNum>
+	4.3
+	</TestMFVersionNum>
+	<TestGitOption>
+	
+	</TestGitOption>
+	<TestGitRev>
+	e75e342
+	</TestGitRev>
+	<TestGitBranch>
+	master
+	</TestGitBranch>
+	<TestUsePrecompiledBinary>
+	
+	</TestUsePrecompiledBinary>
+	<TestHardware>
+	Emote.Now
+	</TestHardware>
+	<TestSolution>
+	EmoteDotNow
+	</TestSolution>
+	<TestMemoryType>
+	FLASH
+	</TestMemoryType>
+	<TestSolutionType>
+	TinyCLR
+	</TestSolutionType>
+	<TestGCCVersion>
+	GCC5.4
+	</TestGCCVersion>
+	<TestSupporting>
+	load support projects: OMAC\Src\C#\NeighborDrop\CheckAutoAckSupport\tests.xml OMAC\Src\C#\NeighborDrop\CheckAutoAckSupport2\tests.xml
+	</TestSupporting>
+	<TestJTAGHarness>
+	Olimex
+	</TestJTAGHarness>
+	<TestPowerAutomateSelected>
+	False
+	</TestPowerAutomateSelected>
+	<TestBuild>
+	Release
+	</TestBuild>
+	<TestTimeout>
+	480000
+	</TestTimeout>
+	<TestUseLogic>
+	none
+	</TestUseLogic>
+	<TestSampleTimeMs>
+	15000
+	</TestSampleTimeMs>
+	<TestSampleFrequency>
+	4000000
+	</TestSampleFrequency>
+	<testUseScript>
+	False
+	</testUseScript>
+	<testScriptName>
+	OMACFanIn.tst
+	</testScriptName>
+	<testScriptTimeoutMs>
+	10000
+	</testScriptTimeoutMs>
+	<TestAnalysis>
+	none
+	</TestAnalysis>
+	<TestAnalysisScriptName>
+	none.exe
+	</TestAnalysisScriptName>
+	<TestUseResultsFile>
+	False
+	</TestUseResultsFile>
+	<TestResultsFileName>
+	results.txt
+	</TestResultsFileName>
+	<TestUseCOM>
+	True
+	</TestUseCOM>
+	<TestForceCOM>
+	
+	</TestForceCOM>
+	<TestCOMParameters>
+	115200,N,8,1
+	</TestCOMParameters>
+	<TestDelay>
+	0
+	</TestDelay>
+	<testDevicesToStart>
+	3
+	</testDevicesToStart>
+</Test>
+
+	</TestDescription>
+</TestResults>
+

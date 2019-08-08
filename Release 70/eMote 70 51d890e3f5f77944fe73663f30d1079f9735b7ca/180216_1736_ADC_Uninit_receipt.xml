@@ -1,0 +1,149 @@
+<TestResults>
+	<TestComplete>
+	True
+	</TestComplete>
+	<TestResult>
+	Test completed
+	</TestResult>
+	<TestPass>
+	True
+	</TestPass>
+	<TestDateTime>
+	2018-02-16 17:30:17
+	</TestDateTime>
+	<TestDuration>
+	00:06:27.2495264
+	</TestDuration>
+	<TestAccuracy>
+	0
+	</TestAccuracy>
+	<TestReturnParameter1>
+	 8000126
+	</TestReturnParameter1>
+	<TestReturnParameter2>
+	 10057442
+	</TestReturnParameter2>
+	<TestReturnParameter3>
+	
+	</TestReturnParameter3>
+	<TestReturnParameter4>
+	
+	</TestReturnParameter4>
+	<TestReturnParameter5>
+	
+	</TestReturnParameter5>
+	<TestExecutionMachine>
+	CHRISDESK
+	</TestExecutionMachine>
+	<TestDescription>
+	<Test Name='ADC' Type = 'C# .NOW'>
+	<Description>
+	ADC Uninit test
+	</Description>
+	<TestPath>
+	ADC\Src\C#\ADC_Uninit
+	</TestPath>
+	<TestProjName>
+	ADC_Uninit.csproj
+	</TestProjName>
+	<TesterName>
+	Chris
+	</TesterName>
+	<TestLocation>
+	CHRISDESK
+	</TestLocation>
+	<TestMFVersionNum>
+	4.3
+	</TestMFVersionNum>
+	<TestGitOption>
+	
+	</TestGitOption>
+	<TestGitRev>
+	e75e342
+	</TestGitRev>
+	<TestGitBranch>
+	master
+	</TestGitBranch>
+	<TestUsePrecompiledBinary>
+	
+	</TestUsePrecompiledBinary>
+	<TestHardware>
+	Emote.Now
+	</TestHardware>
+	<TestSolution>
+	EmoteDotNow
+	</TestSolution>
+	<TestMemoryType>
+	FLASH
+	</TestMemoryType>
+	<TestSolutionType>
+	TinyCLR
+	</TestSolutionType>
+	<TestGCCVersion>
+	GCC5.4
+	</TestGCCVersion>
+	<TestSupporting>
+	
+	</TestSupporting>
+	<TestJTAGHarness>
+	Olimex
+	</TestJTAGHarness>
+	<TestPowerAutomateSelected>
+	False
+	</TestPowerAutomateSelected>
+	<TestBuild>
+	Release
+	</TestBuild>
+	<TestTimeout>
+	20000
+	</TestTimeout>
+	<TestUseLogic>
+	none
+	</TestUseLogic>
+	<TestSampleTimeMs>
+	15000
+	</TestSampleTimeMs>
+	<TestSampleFrequency>
+	4000000
+	</TestSampleFrequency>
+	<testUseScript>
+	True
+	</testUseScript>
+	<testScriptName>
+	ADC_Uninit.tst
+	</testScriptName>
+	<testScriptTimeoutMs>
+	10000
+	</testScriptTimeoutMs>
+	<TestAnalysis>
+	exe
+	</TestAnalysis>
+	<TestAnalysisScriptName>
+	ADC_Uninit.exe
+	</TestAnalysisScriptName>
+	<TestUseResultsFile>
+	True
+	</TestUseResultsFile>
+	<TestResultsFileName>
+	testTemp\\results.txt
+	</TestResultsFileName>
+	<TestUseCOM>
+	False
+	</TestUseCOM>
+	<TestForceCOM>
+	
+	</TestForceCOM>
+	<TestCOMParameters>
+	115200,N,8,1
+	</TestCOMParameters>
+	<TestDelay>
+	0
+	</TestDelay>
+	<testDevicesToStart>
+	1
+	</testDevicesToStart>
+</Test>
+
+	</TestDescription>
+</TestResults>
+

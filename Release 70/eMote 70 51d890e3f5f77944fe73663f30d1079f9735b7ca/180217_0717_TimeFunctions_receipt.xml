@@ -1,0 +1,149 @@
+<TestResults>
+	<TestComplete>
+	False
+	</TestComplete>
+	<TestResult>
+	Test completed
+	</TestResult>
+	<TestPass>
+	True
+	</TestPass>
+	<TestDateTime>
+	2018-02-17 07:13:38
+	</TestDateTime>
+	<TestDuration>
+	00:04:01.7694534
+	</TestDuration>
+	<TestAccuracy>
+	0
+	</TestAccuracy>
+	<TestReturnParameter1>
+	
+	</TestReturnParameter1>
+	<TestReturnParameter2>
+	
+	</TestReturnParameter2>
+	<TestReturnParameter3>
+	
+	</TestReturnParameter3>
+	<TestReturnParameter4>
+	
+	</TestReturnParameter4>
+	<TestReturnParameter5>
+	
+	</TestReturnParameter5>
+	<TestExecutionMachine>
+	CHRISDESK
+	</TestExecutionMachine>
+	<TestDescription>
+	<Test Name='Timer' Type = 'Native Adapt .NOW'>
+	<Description>
+	Time Functions Test
+	</Description>
+	<TestPath>
+	Timer\Src\Native\Level_0
+	</TestPath>
+	<TestProjName>
+	TimeFunctions.proj
+	</TestProjName>
+	<TesterName>
+	Chris
+	</TesterName>
+	<TestLocation>
+	CHRISDESK
+	</TestLocation>
+	<TestMFVersionNum>
+	4.3
+	</TestMFVersionNum>
+	<TestGitOption>
+	
+	</TestGitOption>
+	<TestGitRev>
+	e75e342
+	</TestGitRev>
+	<TestGitBranch>
+	master
+	</TestGitBranch>
+	<TestUsePrecompiledBinary>
+	
+	</TestUsePrecompiledBinary>
+	<TestHardware>
+	Emote.Now
+	</TestHardware>
+	<TestSolution>
+	EmoteDotNow
+	</TestSolution>
+	<TestMemoryType>
+	FLASH
+	</TestMemoryType>
+	<TestSolutionType>
+	TinyCLR
+	</TestSolutionType>
+	<TestGCCVersion>
+	GCC5.4
+	</TestGCCVersion>
+	<TestSupporting>
+	
+	</TestSupporting>
+	<TestJTAGHarness>
+	Olimex
+	</TestJTAGHarness>
+	<TestPowerAutomateSelected>
+	False
+	</TestPowerAutomateSelected>
+	<TestBuild>
+	Release
+	</TestBuild>
+	<TestTimeout>
+	5000
+	</TestTimeout>
+	<TestUseLogic>
+	none
+	</TestUseLogic>
+	<TestSampleTimeMs>
+	17000
+	</TestSampleTimeMs>
+	<TestSampleFrequency>
+	4000000
+	</TestSampleFrequency>
+	<testUseScript>
+	False
+	</testUseScript>
+	<testScriptName>
+	none.tst
+	</testScriptName>
+	<testScriptTimeoutMs>
+	9000
+	</testScriptTimeoutMs>
+	<TestAnalysis>
+	none
+	</TestAnalysis>
+	<TestAnalysisScriptName>
+	analyze_h.m
+	</TestAnalysisScriptName>
+	<TestUseResultsFile>
+	False
+	</TestUseResultsFile>
+	<TestResultsFileName>
+	results.txt
+	</TestResultsFileName>
+	<TestUseCOM>
+	True
+	</TestUseCOM>
+	<TestForceCOM>
+	
+	</TestForceCOM>
+	<TestCOMParameters>
+	115200,N,8,1
+	</TestCOMParameters>
+	<TestDelay>
+	0
+	</TestDelay>
+	<testDevicesToStart>
+	1
+	</testDevicesToStart>
+</Test>
+
+	</TestDescription>
+</TestResults>
+

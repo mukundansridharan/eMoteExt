@@ -1,0 +1,149 @@
+<TestResults>
+	<TestComplete>
+	True
+	</TestComplete>
+	<TestResult>
+	Test completed
+	</TestResult>
+	<TestPass>
+	True
+	</TestPass>
+	<TestDateTime>
+	2018-02-17 04:45:35
+	</TestDateTime>
+	<TestDuration>
+	00:07:08.4234176
+	</TestDuration>
+	<TestAccuracy>
+	1
+	</TestAccuracy>
+	<TestReturnParameter1>
+	 25.0208 0.0399915 0.03995425
+	</TestReturnParameter1>
+	<TestReturnParameter2>
+	 
+	</TestReturnParameter2>
+	<TestReturnParameter3>
+	 
+	</TestReturnParameter3>
+	<TestReturnParameter4>
+	 
+	</TestReturnParameter4>
+	<TestReturnParameter5>
+	 null
+	</TestReturnParameter5>
+	<TestExecutionMachine>
+	CHRISDESK
+	</TestExecutionMachine>
+	<TestDescription>
+	<Test Name='RealTimeTimer' Type = 'C# Adapt .NOW'>
+	<Description>
+	Test accuracy and precision of real time timer
+	</Description>
+	<TestPath>
+	RealTimeTimer\Src\C#\Level_0A\Level_0A
+	</TestPath>
+	<TestProjName>
+	Level_0A.csproj
+	</TestProjName>
+	<TesterName>
+	Chris
+	</TesterName>
+	<TestLocation>
+	CHRISDESK
+	</TestLocation>
+	<TestMFVersionNum>
+	4.3
+	</TestMFVersionNum>
+	<TestGitOption>
+	
+	</TestGitOption>
+	<TestGitRev>
+	e75e342
+	</TestGitRev>
+	<TestGitBranch>
+	master
+	</TestGitBranch>
+	<TestUsePrecompiledBinary>
+	
+	</TestUsePrecompiledBinary>
+	<TestHardware>
+	Emote.Now
+	</TestHardware>
+	<TestSolution>
+	EmoteDotNow
+	</TestSolution>
+	<TestMemoryType>
+	FLASH
+	</TestMemoryType>
+	<TestSolutionType>
+	TinyCLR
+	</TestSolutionType>
+	<TestGCCVersion>
+	GCC5.4
+	</TestGCCVersion>
+	<TestSupporting>
+	
+	</TestSupporting>
+	<TestJTAGHarness>
+	Olimex
+	</TestJTAGHarness>
+	<TestPowerAutomateSelected>
+	False
+	</TestPowerAutomateSelected>
+	<TestBuild>
+	Release
+	</TestBuild>
+	<TestTimeout>
+	65000
+	</TestTimeout>
+	<TestUseLogic>
+	normal
+	</TestUseLogic>
+	<TestSampleTimeMs>
+	60000
+	</TestSampleTimeMs>
+	<TestSampleFrequency>
+	4000000
+	</TestSampleFrequency>
+	<testUseScript>
+	False
+	</testUseScript>
+	<testScriptName>
+	
+	</testScriptName>
+	<testScriptTimeoutMs>
+	9000
+	</testScriptTimeoutMs>
+	<TestAnalysis>
+	exe
+	</TestAnalysis>
+	<TestAnalysisScriptName>
+	LogicAnalysis.exe
+	</TestAnalysisScriptName>
+	<TestUseResultsFile>
+	True
+	</TestUseResultsFile>
+	<TestResultsFileName>
+	testTemp\\results.txt
+	</TestResultsFileName>
+	<TestUseCOM>
+	False
+	</TestUseCOM>
+	<TestForceCOM>
+	
+	</TestForceCOM>
+	<TestCOMParameters>
+	115200,N,8,1
+	</TestCOMParameters>
+	<TestDelay>
+	0
+	</TestDelay>
+	<testDevicesToStart>
+	1
+	</testDevicesToStart>
+</Test>
+
+	</TestDescription>
+</TestResults>
+

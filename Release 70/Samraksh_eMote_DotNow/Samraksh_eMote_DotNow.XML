@@ -1,0 +1,696 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Samraksh_eMote_DotNow</name>
+    </assembly>
+    <members>
+        <member name="T:Samraksh.eMote.DotNow.AdcCallBack">
+            <summary>
+            Delegate for ADC continuous mode mode callback method
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.AnalogInput">
+            <summary>
+            Samraksh AnalogInput
+            </summary>
+            <remarks>Similar to Microsoft AnalogInput but with additional features</remarks>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.AnalogInput._adcInternal">
+            <summary>
+            ADC internal class 
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.AnalogInput._myCallback">
+            <summary>
+            Callback method
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.InitializeADC">
+            <summary>
+            Initialize ADC
+            </summary>
+            
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.UninitializeADC">
+            <summary>
+            Uninitialize ADC
+            </summary>
+            
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.InitChannel(Microsoft.SPOT.Hardware.Cpu.AnalogChannel)">
+            <summary>
+            Initialize ADC for specified channel
+            </summary>
+            <param name="channel">Channel</param>
+            <returns>Result of operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.DualChannelRead(System.UInt16[])">
+            <summary>
+            Read two ADC channels synchronously
+            </summary>
+            <param name="data">Two-ushort array for return values</param>
+            <returns>True iff read succeeds</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.Read(Microsoft.SPOT.Hardware.Cpu.AnalogChannel)">
+            <summary>
+            Read a single ADC channel synchronously
+            </summary>
+            <param name="channel">Channel</param>
+            <returns>Value read</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.ConfigureBatchModeWithThresholding(System.UInt16[],Microsoft.SPOT.Hardware.Cpu.AnalogChannel,System.UInt32,System.UInt32,System.UInt32,Samraksh.eMote.DotNow.AdcCallBack)">
+            <summary>
+            Configure ADC batch mode with threshold
+            </summary>
+            <param name="sampleBuff">Buffer for samples</param>
+            <param name="channel">Channel to use</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <param name="threshold">Threshold to apply</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <returns>True iff operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.ConfigureContinuousModeWithThresholding(System.UInt16[],Microsoft.SPOT.Hardware.Cpu.AnalogChannel,System.UInt32,System.UInt32,System.UInt32,Samraksh.eMote.DotNow.AdcCallBack)">
+            <summary>
+            Configure ADC continouous mode with threshold
+            </summary>
+            <param name="sampleBuff">Buffer for samples</param>
+            <param name="channel">Channel to use</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <param name="threshold">Threshold to apply</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <returns>True iff operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.ConfigureBatchModeDualChannel(System.UInt16[],System.UInt16[],System.UInt32,System.UInt32,Samraksh.eMote.DotNow.AdcCallBack)">
+            <summary>
+            Configure ADC to read channels 1 and 2 in batch mode
+            </summary>
+            <param name="sampleBuff1">Sample buffer 1</param>
+            <param name="sampleBuff2">Sample buffer 2</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <returns>True if operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.ConfigureContinuousModeDualChannel(System.UInt16[],System.UInt16[],System.UInt32,System.UInt32,Samraksh.eMote.DotNow.AdcCallBack)">
+            <summary>
+            Configure ADC to read channels 1 and 2 in continuous mode
+            </summary>
+            <param name="sampleBuff1">Sample buffer 1</param>
+            <param name="sampleBuff2">Sample buffer 2</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <returns>True iff operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.ConfigureBatchMode(System.UInt16[],Microsoft.SPOT.Hardware.Cpu.AnalogChannel,System.UInt32,System.UInt32,Samraksh.eMote.DotNow.AdcCallBack)">
+            <summary>
+            Configure ADC batch mode
+            </summary>
+            <param name="sampleBuff">Sample buffer</param>
+            <param name="channel">Channel to read</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <returns>True iff operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.ConfigureContinuousMode(System.UInt16[],Microsoft.SPOT.Hardware.Cpu.AnalogChannel,System.UInt32,System.UInt32,Samraksh.eMote.DotNow.AdcCallBack)">
+            <summary>
+            Configure ADC continuous mode
+            </summary>
+            <param name="sampleBuff">Sample buffer</param>
+            <param name="channel">Channel to read</param>
+            <param name="numSamples">Number of samples to read before callback</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <param name="samplingTime">Sampling time interval in microseconds</param>
+            <returns>True iff operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.StopSampling">
+            <summary>
+            Stop ADC sampling for continuous or batch mode
+            </summary>
+            <returns>Operation success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.InternalCallback(System.UInt32,System.UInt32,System.DateTime)">
+            <summary>
+            Native ADC driver callback
+            </summary>
+            <param name="data1">Parameter passed from native</param>
+            <param name="data2">Parameter passed from native</param>
+            <param name="time">Time of callback</param>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.AnalogInput.SetPeriodicADCSamplingInterval(System.Double,System.Double)">
+            <summary>
+            Sets the periodic times the ADC will sample and then sleep. 
+            SetPeriodicADCSamplingInterval(1.5, 0.5); will sample for 1.5 seconds, sleep for 0.5 seconds and then repeat.
+            </summary>
+            <param name="secondsADCSamples">specify lenght of time the ADC samples in seconds</param>
+            <param name="secondsADCsleeps">specify lenght of time the ADC sleeps in seconds</param>
+            <returns>Returns the result of SetPeriodicADCSamplingInterval</returns>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.AdcSampleTime">
+            <summary>
+            Time taken to sample in the adc driver
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.ADCInternal">
+            <summary>
+            ADCInternal interface to the native driver
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.ADCInternal.#ctor(System.String,System.UInt64,System.Int32)">
+            <summary>
+            Specify the driver name for matching with the native eventdispatcher
+            </summary>
+            <param name="strDrvName"></param>
+            <param name="drvData"></param>
+            <param name="callbackCount"></param>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.ADCInternal.Init(System.Int32)">
+            <summary>
+            Initialize the ADC native driver
+            </summary>
+            <param name="channel">Specify the channel to be sampled</param>
+            <returns>Returns the result of the init function</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.ADCInternal.Uninit">
+            <summary>
+            Uninitialize the ADC native driver
+            </summary>
+            <returns>Returns the result of the uninit function</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.ADCInternal.Read(System.Int32)">
+            <summary>
+            Read the channel
+            </summary>
+            <param name="channel">Channel to read</param>
+            <returns>Return value read</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.ADCInternal.ConfigureBatchMode(System.UInt16[],System.Int32,System.UInt32,System.UInt32)">
+            <summary>
+            Configure batch mode
+            </summary>
+            <param name="sampleBuff">Pass the buffer to be filled</param>
+            <param name="channel">Define the channel to be read</param>
+            <param name="NumSamples">Defines the number of samples to be read before callback</param>
+            <param name="SamplingTime">Defines the rate at which the adc should read channels</param>
+            <returns>Return the result of the operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.ADCInternal.ConfigureContinuousMode(System.UInt16[],System.Int32,System.UInt32,System.UInt32)">
+            <summary>
+            Configure the adc in continuous mode 
+            </summary>
+            <param name="SampleBuff">pass the buffer to be filled</param>
+            <param name="channel">pass the channel to be sampled</param>
+            <param name="NumSamples">specify the number of samples to be collected before callback</param>
+            <param name="SamplingTime">specify the rate of sampling</param>
+            <returns>Returns the result of this operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.ADCInternal.ConfigureContinuousModeWithThresholding(System.UInt16[],System.Int32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Configure continuous mode adc sampling with a threshold timestamp 
+            </summary>
+            <param name="SampleBuff"></param>
+            <param name="channel"></param>
+            <param name="NumSamples"></param>
+            <param name="SamplingTime"></param>
+            <param name="threshold"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.ADCInternal.DualChannelRead(System.UInt16[])">
+            <summary>
+            Read both the channel simulateously Channel 1 followed by Channel 2
+            </summary>
+            <param name="sample">specify the buffer to be filled</param>
+            <returns>Return the result of this operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.ADCInternal.StopSampling">
+            <summary>
+            Stop batch mode and continous mode sampling of the adc 
+            </summary>
+            <returns>Returns the result of this operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.ADCInternal.SetPeriodicADCSamplingInterval(System.Double,System.Double)">
+            <summary>
+            Sets the periodic times the ADC will sample and then sleep. 
+            SetPeriodicADCSamplingInterval(1.5, 0.5); will sample for 1.5 seconds, sleep for 0.5 seconds and then repeat.
+            </summary>
+            <param name="secondsADCSamples">specify lenght of time the ADC samples in seconds</param>
+            <param name="secondsADCsleeps">specify lenght of time the ADC sleeps in seconds</param>
+            <returns>Returns the result of SetPeriodicADCSamplingInterval</returns>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.DeviceStatus">
+            <summary>
+            Status return codes for drivers
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.DeviceStatus.Success">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.DeviceStatus.Fail">
+            <summary>
+            Fail
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.DeviceStatus.Ready">
+            <summary>
+            Ready
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.DeviceStatus.Busy">
+            <summary>
+            Busy 
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.Blink">
+            <summary>
+            LCD blink rate
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.Blink.OFF">
+            <summary>Don't blink</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.Blink.SLOW">
+            <summary>Slow blink</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.Blink.MEDIUM">
+            <summary>Medium blink</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.Blink.FAST">
+            <summary>Fast blink</summary>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.LCD">
+            <summary>
+            LCD chars
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_NULL">
+            <summary>Blank</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_A">
+            <summary>A</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_B">
+            <summary>B</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_C">
+            <summary>C</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_D">
+            <summary>D</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_E">
+            <summary>E</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_F">
+            <summary>F</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_G">
+            <summary>G</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_H">
+            <summary>H</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_I">
+            <summary>I</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_J">
+            <summary>J</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_K">
+            <summary>K</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_L">
+            <summary>L</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_M">
+            <summary>M</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_N">
+            <summary>N</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_O">
+            <summary>O</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_P">
+            <summary>P</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_Q">
+            <summary>Q</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_R">
+            <summary>R</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_S">
+            <summary>S</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_T">
+            <summary>T</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_U">
+            <summary>U</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_V">
+            <summary>V</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_W">
+            <summary>W</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_X">
+            <summary>X</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_Y">
+            <summary>Y</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_Z">
+            <summary>Z</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_a">
+            <summary>a</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_b">
+            <summary>b</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_c">
+            <summary>c</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_d">
+            <summary>d</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_e">
+            <summary>e</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_f">
+            <summary>f</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_g">
+            <summary>g</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_h">
+            <summary>h</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_i">
+            <summary>i</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_j">
+            <summary>j</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_k">
+            <summary>k</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_l">
+            <summary>l</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_m">
+            <summary>m</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_n">
+            <summary>n</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_o">
+            <summary>o</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_p">
+            <summary>p</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_q">
+            <summary>q</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_r">
+            <summary>r</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_s">
+            <summary>s</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_t">
+            <summary>t</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_u">
+            <summary>u</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_v">
+            <summary>v</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_w">
+            <summary>w</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_x">
+            <summary>x</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_y">
+            <summary>y</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_z">
+            <summary>z</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_0">
+            <summary>0</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_1">
+            <summary>1</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_2">
+            <summary>2</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_3">
+            <summary>3</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_4">
+            <summary>4</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_5">
+            <summary>5</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_6">
+            <summary>6</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_7">
+            <summary>7</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_8">
+            <summary>8</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_9">
+            <summary>9</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_UNDERSCORE">
+            <summary>Underscore</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.LCD.CHAR_HYPEN">
+            <summary>Hyphen</summary>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.EmoteLCD">
+            <summary>
+            Emote LCD Interface class
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.EmoteLCD.Initialize">
+            <summary>
+            Initializes the lcd hardware
+            </summary>
+            <returns>The result of lcd initialization: Success, Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.EmoteLCD.Uninitialize">
+            <summary>
+            Uninitializes the lcd hardware
+            </summary>
+            <returns>The result of lcd uninitialize: Success, Fail</returns>        
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.EmoteLCD.Write(Samraksh.eMote.DotNow.LCD,Samraksh.eMote.DotNow.LCD,Samraksh.eMote.DotNow.LCD,Samraksh.eMote.DotNow.LCD)">
+            <summary>
+            Write to all columns of the lcd interface 
+            </summary>
+            <param name="data4">Columns 4</param>
+            <param name="data3">Columns 3</param>
+            <param name="data2">Columns 2</param>
+            <param name="data1">Columns 1</param>
+            <returns>The result of the write operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.EmoteLCD.SetDP(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Set the decimal point
+            </summary>
+            <param name="dp4">Columns 4</param>
+            <param name="dp3">Columns 3</param>
+            <param name="dp2">Columns 2</param>        
+            <param name="dp1">Columns 1</param>
+            <returns>The result ofthe write operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.EmoteLCD.WriteN(System.Int32,Samraksh.eMote.DotNow.LCD)">
+            <summary>
+            Writes to the specified column on the lcd 
+            </summary>
+            <param name="column">Column to write</param>
+            <param name="data">Character to write</param>
+            <returns>True iff success</returns>
+            <remarks>The columns are numbered as follows: </remarks>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.EmoteLCD.WriteRawBytes(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Write raw data to the LCD
+            </summary>
+            <param name="data4">Column 4 data</param>
+            <param name="data3">Column 3 data</param>
+            <param name="data2">Column 2 data</param>
+            <param name="data1">Column 1 data</param>
+            <returns>True iff success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.EmoteLCD.Blink(Samraksh.eMote.DotNow.Blink)">
+            <summary>
+            Set the lcd to blink
+            </summary>
+            <param name="blinkType">Defines the rate of the blink</param>
+            <returns>Returns the result of the blink operation</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.EmoteLCD.Clear">
+            <summary>
+            Clear the lcd 
+            </summary>
+            <returns>Returns the result of the clear operation</returns>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.FilePosition">
+            <summary>
+            File positions
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.FilePosition.Begin">
+            <summary>Beginning position</summary>
+        </member>
+        <member name="F:Samraksh.eMote.DotNow.FilePosition.End">
+            <summary>Ending position</summary>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.NOR">
+            <summary>
+            NOR (on-board) flash 
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.NOR.Initialize">
+            <summary>
+            Initialize NOR flash
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.NOR.Initialize(System.UInt32)">
+            <summary>
+            Initialize NOR flash to a specified size
+            </summary>
+            <param name="maxSizeConfig">Maximum size</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.NOR.StartNewRecord">
+            <summary>
+            Start a new record in NOR
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.NOR.EndRecord">
+            <summary>
+            Write end of record to NOR
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.NOR.IsFull">
+            <summary>
+            Check if NOR is full
+            </summary>
+            <returns>True if full</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.NOR.IsEmpty">
+            <summary>
+            Check if NOR is empty
+            </summary>
+            <returns>True if empty</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.NOR.Seek(Samraksh.eMote.DotNow.FilePosition)">
+            <summary>
+            Seek to specified position in NOR
+            </summary>
+            <param name="pos">Position to seek</param>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.NOR.eof">
+            <summary>
+            Write end of file to NOR
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.NOR.Write(System.UInt16[],System.UInt16)">
+            <summary>
+            Write data to NOR
+            </summary>
+            <param name="data">Array of data to write</param>
+            <param name="length">Amount of data to write</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.NOR.Write(System.UInt16[],System.UInt16,System.UInt16)">
+            <summary>
+            Write data to NOR
+            </summary>
+            <param name="data">Array of data to write</param>
+            <param name="length">Amount of data to write</param>
+            <param name="offset">Offset into array</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.NOR.Read(System.UInt16[],System.UInt16)">
+            <summary>
+            Read data from NOR
+            </summary>
+            <param name="data">Array to receive data</param>
+            <param name="length">Amount of data to read</param>
+            <returns>Status of operation</returns>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.Pins">
+            <summary>
+            CPU pin mapping
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.ADCChannel">
+            <summary>
+            ADC channel mapping
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.SD">
+            <summary>
+            Micro SD device
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.SD.#ctor(Samraksh.eMote.DotNow.SD.SDCallBackType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="sdCallback">Callback method</param>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.SD.Initialize">
+            <summary>
+            Initialize the SD
+            </summary>
+            <returns>True iff success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.SD.Read(System.Byte[],System.UInt16,System.UInt16)">
+            <summary>
+            Read from SD
+            </summary>
+            <param name="dataArray">Array to receive data</param>
+            <param name="offset">Offset into array</param>
+            <param name="length">Amount to read</param>
+            <returns>True iff success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DotNow.SD.Write(System.Byte[],System.UInt16,System.UInt16)">
+            <summary>
+            Write to SD
+            </summary>
+            <param name="dataArray">Array to write</param>
+            <param name="offset">Offset into array</param>
+            <param name="length">Amount to write</param>
+            <returns>True iff success</returns>
+        </member>
+        <member name="T:Samraksh.eMote.DotNow.SD.SDCallBackType">
+            <summary>
+            Callback delegate
+            </summary>
+            <param name="status">Operation status</param>
+        </member>
+    </members>
+</doc>

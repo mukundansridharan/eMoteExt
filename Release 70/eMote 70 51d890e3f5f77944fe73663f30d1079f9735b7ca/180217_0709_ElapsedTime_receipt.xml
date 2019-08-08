@@ -1,0 +1,149 @@
+<TestResults>
+	<TestComplete>
+	True
+	</TestComplete>
+	<TestResult>
+	Test completed
+	</TestResult>
+	<TestPass>
+	True
+	</TestPass>
+	<TestDateTime>
+	2018-02-17 07:03:35
+	</TestDateTime>
+	<TestDuration>
+	00:05:57.9326185
+	</TestDuration>
+	<TestAccuracy>
+	0
+	</TestAccuracy>
+	<TestReturnParameter1>
+	SUCCESS: elapsedTime is always greater than sleep time
+	</TestReturnParameter1>
+	<TestReturnParameter2>
+	
+	</TestReturnParameter2>
+	<TestReturnParameter3>
+	null
+	</TestReturnParameter3>
+	<TestReturnParameter4>
+	null
+	</TestReturnParameter4>
+	<TestReturnParameter5>
+	null
+	</TestReturnParameter5>
+	<TestExecutionMachine>
+	CHRISDESK
+	</TestExecutionMachine>
+	<TestDescription>
+	<Test Name='Timer' Type = 'Native .NOW'>
+	<Description>
+	Test on elapsed time during sleep. 
+	</Description>
+	<TestPath>
+	Timer\Src\Native\ElapsedTime
+	</TestPath>
+	<TestProjName>
+	ElapsedTime.proj
+	</TestProjName>
+	<TesterName>
+	Chris
+	</TesterName>
+	<TestLocation>
+	CHRISDESK
+	</TestLocation>
+	<TestMFVersionNum>
+	4.3
+	</TestMFVersionNum>
+	<TestGitOption>
+	
+	</TestGitOption>
+	<TestGitRev>
+	e75e342
+	</TestGitRev>
+	<TestGitBranch>
+	master
+	</TestGitBranch>
+	<TestUsePrecompiledBinary>
+	
+	</TestUsePrecompiledBinary>
+	<TestHardware>
+	Emote.Now
+	</TestHardware>
+	<TestSolution>
+	EmoteDotNow
+	</TestSolution>
+	<TestMemoryType>
+	FLASH
+	</TestMemoryType>
+	<TestSolutionType>
+	TinyCLR
+	</TestSolutionType>
+	<TestGCCVersion>
+	GCC5.4
+	</TestGCCVersion>
+	<TestSupporting>
+	
+	</TestSupporting>
+	<TestJTAGHarness>
+	Olimex
+	</TestJTAGHarness>
+	<TestPowerAutomateSelected>
+	False
+	</TestPowerAutomateSelected>
+	<TestBuild>
+	Release
+	</TestBuild>
+	<TestTimeout>
+	150000
+	</TestTimeout>
+	<TestUseLogic>
+	none
+	</TestUseLogic>
+	<TestSampleTimeMs>
+	10000
+	</TestSampleTimeMs>
+	<TestSampleFrequency>
+	4000000
+	</TestSampleFrequency>
+	<testUseScript>
+	False
+	</testUseScript>
+	<testScriptName>
+	none.tst
+	</testScriptName>
+	<testScriptTimeoutMs>
+	9000
+	</testScriptTimeoutMs>
+	<TestAnalysis>
+	none
+	</TestAnalysis>
+	<TestAnalysisScriptName>
+	LogicAnalysis.exe
+	</TestAnalysisScriptName>
+	<TestUseResultsFile>
+	False
+	</TestUseResultsFile>
+	<TestResultsFileName>
+	testTemp\\results.txt
+	</TestResultsFileName>
+	<TestUseCOM>
+	True
+	</TestUseCOM>
+	<TestForceCOM>
+	
+	</TestForceCOM>
+	<TestCOMParameters>
+	115200,N,8,1
+	</TestCOMParameters>
+	<TestDelay>
+	0
+	</TestDelay>
+	<testDevicesToStart>
+	1
+	</testDevicesToStart>
+</Test>
+
+	</TestDescription>
+</TestResults>
+

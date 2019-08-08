@@ -1,0 +1,1072 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Samraksh_eMote</name>
+    </assembly>
+    <members>
+        <member name="T:Samraksh.eMote.RADAR_NOISE_CONTROL">
+            <summary>
+            Options for setting the IQ rejection parameter for the Radar Detection class  
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.RADAR_NOISE_CONTROL.FIXED_NOISE_REJECTION">
+            <summary>The noise rejection parameter is fixed at noiseRejection.</summary>
+        </member>
+        <member name="F:Samraksh.eMote.RADAR_NOISE_CONTROL.SCALING_NOISE_REJECTION_ADD">
+            <summary>The noise rejection parameter will be the sum of the background noise plus the parameter noiseRejection.</summary>
+        </member>
+        <member name="F:Samraksh.eMote.RADAR_NOISE_CONTROL.SCALING_NOISE_REJECTION_MULTIPLY">
+            <summary>The noise rejection parameter will be the product of the background noise times the parameter noiseRejection.</summary>
+        </member>
+        <member name="F:Samraksh.eMote.RADAR_NOISE_CONTROL.SCALING_NOISE_REJECTION_TARGET">
+            <summary>The noise rejection parameter will adjusted until we reach the specified background noise of the noiseRejection parameter.</summary>
+        </member>
+        <member name="F:Samraksh.eMote.RADAR_NOISE_CONTROL.SCALING_NOISE_REJECTION_RAW_RADAR">
+            <summary>The noise rejection parameter will adjusted based on the median of the raw radar values.</summary>
+        </member>
+        <member name="F:Samraksh.eMote.RADAR_NOISE_CONTROL.SCALING_NOISE_REJECTION_RAW_RADAR_SCALING">
+            <summary>The noise rejection parameter will scale depending upon how high the median of the raw radar values are. Higher medians are suppressed more.</summary>
+        </member>
+        <member name="T:Samraksh.eMote.RADAR_NOISE_REQUEST">
+            <summary>
+            Options for requesting the IQ rejection parameter for the Radar Detection class  
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.RADAR_NOISE_REQUEST.IQ_REJECTION_ZERO">
+            <summary>The noise rejection value set to zero</summary>
+        </member>
+        <member name="F:Samraksh.eMote.RADAR_NOISE_REQUEST.IQ_REJECTION_MAX">
+            <summary>The noise rejection value set to max</summary>
+        </member>
+        <member name="F:Samraksh.eMote.RADAR_NOISE_REQUEST.IQ_REJECTION_CURRENTLY_USED">
+            <summary>The noise rejection value currently used by the system</summary>
+        </member>
+        <member name="F:Samraksh.eMote.RADAR_NOISE_REQUEST.RADAR_Q">
+            <summary>The current radar Q noise.</summary>
+        </member>
+        <member name="T:Samraksh.eMote.SAMPLE_WINDOW_PORTION">
+            <summary>
+            Options for how much of the sample window is used in determining a request for information.  
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.SAMPLE_WINDOW_PORTION.SAMPLE_WINDOW_FULL">
+            <summary>The entire ADC sample window is used.</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SAMPLE_WINDOW_PORTION.SAMPLE_WINDOW_FIRST_HALF">
+            <summary>The first half of the ADC sample window is used.</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SAMPLE_WINDOW_PORTION.SAMPLE_WINDOW_SECOND_HALF">
+            <summary>The second half of the ADC sample window is used.</summary>
+        </member>
+        <member name="T:Samraksh.eMote.Algorithm.RadarDetection">
+            <summary>
+            Radar Detection class  
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.Finalize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.Initialize">
+            <summary>
+            Initializes the RadarDetection software
+            </summary>
+            <returns>The result of radar detection initialization: Success, Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.Uninitialize">
+            <summary>
+            Uninitializes the RadarDetection software
+            </summary>
+            <returns>The result of radar detection initialization: Success, Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.DetectionCalculation(System.UInt16[],System.UInt16[],System.UInt16[],System.Int32)">
+            <summary>
+            Radar data is given to the unwrap algorithm which looks for displacements above the threshold.
+            </summary>
+            <returns>Returns true if a detection was found, false if no detection was found.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.DetectionCalculation(System.UInt16[],System.UInt16[],System.Int32)">
+            <summary>
+            Radar data is given to the unwrap algorithm which looks for displacements above the threshold.
+            </summary>
+            <returns>Returns true if a detection was found, false if no detection was found.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.SetDetectionParameters(Samraksh.eMote.RADAR_NOISE_CONTROL,System.Double,System.Double,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+            Sets detection parameters.
+            </summary>
+            <param name="radarNoiseCtrl">The type of algorithm used to control background noise.</param>
+            <param name="thresholdSet">The threshold used to determine if there is a detection. Lower thresholds increase sensitivity but might cause false alarms.</param>
+            <param name="noiseRejection">The parameter used in the algorithm controling background noise. 1 is default. Higher suppresses noise more but hurts sensitivity.</param>
+            <param name="M">The number of M windows used in the M out of N detection.</param>
+            <param name="N">The number of windows used in the M out of N detection.</param>
+            <param name="debugVal">A value that outputs raw radar data in different formats to the serial port.</param>
+            <param name="targetSizeFilter">A small target filter that suppresses windows where no radar data exceeds this value. The higher the value the greater the suppression. Generally only this or classifierTargetFilter is used.</param>
+            <param name="classifierTargetFilter">A small target filter that partially suppresses windows where no radar data exceeds this value. The higher the value the greater the suppression. Generally only this or targetSizeFilter is used.</param>
+            <returns>Returns true if parameters are set, false if there was a problem.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.GetBackgroundNoiseLevel(Samraksh.eMote.RADAR_NOISE_REQUEST)">
+            <summary>
+            Request the background noise level
+            </summary>
+            <returns>Return the current background noise level.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.ResetBackgroundNoiseTracking">
+            <summary>
+            Reset background noise tracking
+            </summary>
+            <returns>Returns true if reset occured, false if there was no reset.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.GetIQRejectionLevel">
+            <summary>
+            Request the IQ rejection currently used
+            </summary>
+            <returns>Return the current IQ rejection level.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.GetLastUnwrap(Samraksh.eMote.RADAR_NOISE_REQUEST)">
+            <summary>
+            Request the last unwrap value
+            </summary>
+            <returns>Returns the last unwrap value.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.GetWindowOverThreshold">
+            <summary>
+            Request whether the last window's displacement was over the threshold
+            </summary>
+            <returns>Returns true if last window's displacement was over the threshold and false if not.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.CurrentDetectionFinished">
+            <summary>
+            Request whether the current detection has finished
+            </summary>
+            <returns>Returns true if the current detection is finished and false if not.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.GetNetDisplacement(Samraksh.eMote.SAMPLE_WINDOW_PORTION)">
+            <summary>
+            Request the window's net displacement
+            </summary>
+            <returns>Returns the window's net displacement.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.GetAbsoluteDisplacement(Samraksh.eMote.SAMPLE_WINDOW_PORTION)">
+            <summary>
+            Request the window's absolute displacement.
+            </summary>
+            <returns>Returns the window's absolute displacement.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.GetDisplacementRange(Samraksh.eMote.SAMPLE_WINDOW_PORTION)">
+            <summary>
+            Request the window's displacement range.
+            </summary>
+            <returns>Returns the window's displacement range.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.RadarDetection.GetCountOverTarget">
+            <summary>
+            Request the window's count of samples over classifierTargetFilter parameter.
+            </summary>
+            <returns>Returns the window's count of samples over target.</returns>
+        </member>
+        <member name="T:Samraksh.eMote.Algorithm.DecisionFunction">
+            <summary>
+            Classifier class  
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.DecisionFunction.#ctor">
+            <summary>
+            Classifier class
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.DecisionFunction.Initialize(System.UInt16,System.UInt16,System.Single,System.Single,System.Single[],System.Single[],System.Single[])">
+            <summary>
+            Initialization for the decision function
+            </summary>
+            <returns>A pointer to the nomralized vectors is returned.</returns>
+            
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.DecisionFunction.Finalize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.DecisionFunction.NormalizeFeatureVector(System.Single[],System.Int32[])">
+            <summary>
+            The feature vector is normailized
+            </summary>
+            <returns>A pointer to the nomralized vectors is returned.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.DecisionFunction.Decide(System.Int32[])">
+            <summary>
+            A decision is made based on the support vecorts
+            </summary>
+            <returns>A decision is returned.</returns>
+        </member>
+        <member name="T:Samraksh.eMote.Algorithm.AcousticDetection">
+            <summary>
+            Acoustic Detection class  
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.AcousticDetection.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.AcousticDetection.Finalize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.AcousticDetection.DetectionCalculation(System.UInt16[],System.Int32,System.Double[],System.Boolean)">
+            <summary>
+            Acoustic data is given to the detection algorithm which looks for detections.
+            </summary>
+            <returns>Returns true if a detection was found, false if no detection was found.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.Algorithm.AcousticDetection.SetDetectionParameters(System.Int32,System.Int32)">
+            <summary>
+            Sets detection parameters.
+            </summary>
+            <returns>Returns true if sucessful, false if failed.</returns>
+        </member>
+        <member name="T:Samraksh.eMote.NonVolatileMemory.DataReference">
+            <summary>
+            A data reference is is a pointer to a record in DataStore.
+            Class methods to read and write from/to DataStore, to delete a data reference, and to get meta data about the reference.
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.NonVolatileMemory.DataReference.dataType">
+            <summary>
+            DataType of reference
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.VerifyDataReferenceParams(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="offset"></param>
+            <param name="numData"></param>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.VerifyDataReferenceParams(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="numData"></param>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.VerifyDataReferenceParams(System.UInt16[],System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="numData"></param>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.VerifyDataReferenceParams(System.UInt32[],System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="numData"></param>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.CheckWriteStatus(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="retVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.CheckReadStatus(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="retVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.#ctor(Samraksh.eMote.NonVolatileMemory.DataStore,System.Int32,Samraksh.eMote.NonVolatileMemory.ReferenceDataType)">
+            <summary>
+            Default data class constructor. Possible to create max of 256 active data objects.
+            </summary>
+            <param name="dStore">DataStore object</param>
+            <param name="refSize">Size of the data object to be stored in DataStore. 
+            Max size is (2^32 - 1) if type is bytes; (2^31 - 1) if type is uint16; (2^30 - 1) if type is uint32</param>
+            <param name="referenceDataType">Type of data to be stored in DataStore</param>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+            <exception caption="Argument Exception" cref="T:System.ArgumentException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.#ctor(Samraksh.eMote.NonVolatileMemory.DataStore,System.Int32)">
+            <summary>
+            Returns a data object corresponding to the input parameter data ID.
+            Possible to create max of 256 active data objects.
+            </summary>
+            <param name="dStore">DataStore object</param>
+            <param name="dataId">ID of data for which user wants a reference/handle</param>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+            <exception caption="Argument Exception" cref="T:System.ArgumentException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>Write a byte array into DataStore, specifying the amount to write and the offset from the start of the record.</summary>
+            <param name="data">Array to write</param>
+            <param name="offset">Offset from start of DataStore allocation to write to, and not an offset from start of data array. Even value recommended for byte data type.</param>
+            <param name="numData">Count of data to be written to DataStore</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Write(System.UInt16[],System.Int32,System.Int32)">
+            <summary>Write a ushsort (UInt16) array into DataStore, specifying the amount to write and the offset from the start of the record.</summary>
+            <param name="data">Array to write</param>
+            <param name="offset">Offset from start of DataStore allocation to write to, and not an offset from start of data array.</param>
+            <param name="numData">Count of data to be written to DataStore</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Write(System.UInt32[],System.Int32,System.Int32)">
+            <summary>Write a uint (UInt32) array into DataStore, specifying the amount to write and the offset from the start of the record.</summary>
+            <param name="data">Array to write</param>
+            <param name="offset">Offset from start of DataStore allocation to write to, and not an offset from start of data array.</param>
+            <param name="numData">Count of data to be written to DataStore</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Write(System.Byte[],System.Int32)">
+            <summary>Write a byte array into DataStore, specifying the amount to write.</summary>
+            <param name="data">Array to write</param>
+            <param name="numData">Count of data to be written to DataStore</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Write(System.UInt16[],System.Int32)">
+            <summary>Write a ushsort (UInt16) array into DataStore, specifying the amount to write.</summary>
+            <param name="data">Array to write</param>
+            <param name="numData">Count of data to be written to DataStore</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Write(System.UInt32[],System.Int32)">
+            <summary>Write a uint (UInt32) array into DataStore, specifying the amount to write.</summary>
+            <param name="data">Array to write</param>
+            <param name="numData">Count of data to be written to DataStore</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Write(System.Byte[])">
+            <summary>Write a byte array into DataStore.</summary>
+            <param name="data">Array to write</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Write(System.UInt16[])">
+            <summary>Write a ushsort (UInt16) array into DataStore.</summary>
+            <param name="data">Array to write</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Write(System.UInt32[])">
+            <summary>Write a uint (UInt32) array into DataStore.</summary>
+            <param name="data">Array to write</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>Read a byte array from DataStore, specifying the amount to read and the offset from start of allocation.</summary>
+            <param name="data">Array to receive data read</param>
+            <param name="offset">Offset from start of DataStore allocation to read from, and not an offset from start of data array.</param>
+            <param name="numData">Count of data to be read</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Read(System.UInt16[],System.Int32,System.Int32)">
+            <summary>Read a ushort (UInt16) array from DataStore, specifying the amount to read and the offset from start of allocation.</summary>
+            <param name="data">Array to receive data read</param>
+            <param name="offset">Offset from start of DataStore allocation to read from, and not an offset from start of data array.</param>
+            <param name="numData">Count of data to be read</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Read(System.UInt32[],System.Int32,System.Int32)">
+            <summary>Read a uint (UInt16) array from DataStore, specifying the amount to read and the offset from start of allocation.</summary>
+            <param name="data">Array to receive data read</param>
+            <param name="offset">Offset from start of DataStore allocation to read from, and not an offset from start of data array.</param>
+            <param name="numData">Count of data to be read</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Read(System.Byte[],System.Int32)">
+            <summary>Read a byte array from DataStore, specifying the amount to read.</summary>
+            <param name="data">Array to receive data read</param>
+            <param name="numData">Count of data to be read</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Read(System.UInt16[],System.Int32)">
+            <summary>Read a ushort (UInt16) array from DataStore, specifying the amount to read.</summary>
+            <param name="data">Array to receive data read</param>
+            <param name="numData">Count of data to be read</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Read(System.UInt32[],System.Int32)">
+            <summary>Read a uint (UInt16) from DataStore, specifying the amount to read.</summary>
+            <param name="data">Array to receive data read</param>
+            <param name="numData">Count of data to be read</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Read(System.Byte[])">
+            <summary>Read a byte array from DataStore.</summary>
+            <param name="data">Array to receive data read</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Read(System.UInt16[])">
+            <summary>Read a ushort (UInt16) array from DataStore.</summary>
+            <param name="data">Array to receive data read</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Read(System.UInt32[])">
+            <summary>Read a uint (UInt16) from DataStore, specifying the amount to read and the offset from start of allocation.</summary>
+            <param name="data">Array to receive data read</param>
+            <returns>Success / failure status</returns>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.Delete">
+            <summary>
+            Delete data from DataStore
+            </summary>
+            <returns>Success / failure status</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.GetDataReference(System.UInt32)">
+            <summary>
+            Get data reference for specified data ID from DataStore
+            </summary>
+            <param name="dataId">ID of the data to be looked up</param>
+            <returns>Address reference to the dataID</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.GetDataLocation(System.UInt32)">
+            <summary>
+            Get actual data location for specified data ID from DataStore
+            </summary>
+            <param name="dataId">ID of the data to be looked up</param>
+            <returns>Address of data</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.LookupDataType(System.UInt32)">
+            <summary>
+            Get the data type of dataID
+            </summary>
+            <param name="dataId">ID of the data to be looked up</param>
+            <returns>Data type</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.LookupDataSize(System.UInt32)">
+            <summary>
+            Get the allocation size for dataID
+            </summary>
+            <param name="dataId">ID of the data to be looked up</param>
+            <returns>Allocation size</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.DeleteData(System.UInt32)">
+            <summary>
+            Delete the data represented by the data id from DataStore.
+            </summary>
+            <param name="dataId">ID of the data to be deleted</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.CreateData(System.UInt32,System.Byte)">
+            <summary>
+            Creates data for the specified size in the block storage device. Allocates space, assigns a reference which is returned back to the user
+            </summary>
+            <param name="Size">Size of the data</param>
+            <param name="dataTypeByte">Data type - byte</param>
+            <returns>Reference to the created data</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.CreateData(System.UInt32,System.UInt16)">
+            <summary>
+            Creates data for the specified size in the block storage device. Allocates space, assigns a reference which is returned back to the user
+            </summary>
+            <param name="Size">Size of the data</param>
+            <param name="dataTypeUInt16">Data type - UInt16</param>
+            <returns>Reference to the created data</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.CreateData(System.UInt32,System.UInt32)">
+            <summary>
+            Creates data for the specified size in the block storage device. Allocates space, assigns a reference which is returned back to the user
+            </summary>
+            <param name="Size">Size of the data</param>
+            <param name="dataTypeUInt32">Data type - UInt32</param>
+            <returns>Reference to the created data</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.GetDataID">
+            <summary>
+            Returns the current data ID
+            </summary>
+            <returns>Current DataID</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.GetLastDatastoreStatus">
+            <summary>
+            Gets error status of DataStore
+            </summary>
+            <returns>DataStore error status</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataReference.DisposeNativeMemoryPointer(System.UInt32)">
+            <summary>
+            Native call that destroys data created on the flash
+            </summary>
+            <param name="dataId"></param>
+            Write data array to DataStore starting from specified offset
+        </member>
+        <member name="P:Samraksh.eMote.NonVolatileMemory.DataReference.getDataReferenceType">
+            <summary>
+            Return data reference type 
+            </summary>
+        </member>
+        <member name="P:Samraksh.eMote.NonVolatileMemory.DataReference.Type">
+            <summary>
+            Return data reference type 
+            </summary>
+        </member>
+        <member name="P:Samraksh.eMote.NonVolatileMemory.DataReference.getDataReferenceSize">
+            <summary>
+            Return data reference size 
+            </summary>
+        </member>
+        <member name="P:Samraksh.eMote.NonVolatileMemory.DataReference.Size">
+            <summary>
+            Return data reference size 
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.NonVolatileMemory.DataStore">
+            <summary>
+            DataStore class to store data. 
+            Can be any implemented block storage device.
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.NonVolatileMemory.DataStore.storageType">
+            <summary>
+            The block storage device type
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.NonVolatileMemory.DataStore.DSInstance">
+            <summary>
+            The only instance of DataStore.
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.NonVolatileMemory.DataStore.syncObject">
+            <summary>
+            For synchronization between multiple threads
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.NonVolatileMemory.DataStore.dataStoreInstances">
+            <summary>
+            HashTable for storing multiple instances of DataStore initialized to different block storage devices
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.#ctor">
+            <summary>
+            Private constructor so that only one instance of DataStore exists.
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.Instance(Samraksh.eMote.NonVolatileMemory.StorageType,System.Boolean)">
+            <summary>
+            Multiton pattern. This allows DataStore to be initialized with different block storage devices such as NOR, NAND etc.
+            http://en.wikipedia.org/wiki/Multiton_pattern
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.InitDataStore(Samraksh.eMote.NonVolatileMemory.StorageType,System.Boolean)">
+            <summary>
+            Initializes DataStore with specified storage type.
+            </summary>
+            <param name="storageType">Storage type</param>
+            <param name="eraseDataStore">Should datastore be erased?</param>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.ReadAllDataReferences(Samraksh.eMote.NonVolatileMemory.DataReference[],System.Int32)">
+            <summary>
+            Fills an array with data references from specified offset.
+            </summary>
+            <param name="dataRefArray">Data reference array</param>
+            <param name="dataIdOffset">Offset from first data reference in DataStore</param>
+            <returns>Success / failure status</returns>
+            <remarks>
+                Typically an offset variable. passed as the second argument, is initialized to zero 
+                and incremented by the size of the data reference array after each invocation of the method. 
+                This will iteratively return all data references. 
+                If, after invocation, the array is null then no more data references.
+            </remarks>
+            <exception caption="DataStore Exception" cref="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">Method invocation has an invalid argument</exception>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.DeleteAllData">
+            <summary>
+            Deletes all data references from DataStore. Does not actually erase the data, but marks them as inactive.
+            </summary>
+            <returns>Success / failure status</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.GC">
+            <summary>
+            Performs garbage collection on DataStore. This is done internally by DataStore when there is not enough space to add new data.
+            GC rearranges data internally so that all active data are grouped together. Then the inactive data are erased one block at a time.
+            </summary>
+            <returns>Success / failure status</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.EraseAllData">
+            <summary>
+            Deletes all data references from DataStore and erases them.
+            </summary>
+            <returns>Success / failure status</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.Write(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.Byte)">
+            <summary>
+            Write data array to DataStore starting from specified address
+            </summary>
+            <param name="address">Address to write to</param>
+            <param name="data">Data to be written to DataStore</param>
+            <param name="offset">Offset from start of DataStore allocationto write.</param>
+            <param name="numBytes">Count of bytes to be written</param>
+            <param name="dataType">Data type to be written</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.Write(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.UInt16)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="numBytes"></param>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.Write(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="numBytes"></param>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.WriteRaw(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.Byte)">
+            <summary>
+            Write data array to DataStore starting from specified address
+            </summary>
+            <param name="address">Address to write to</param>
+            <param name="data">Data to be written to DataStore</param>
+            <param name="offset">Offset from start of DataStore allocationto write.</param>
+            <param name="numBytes">Count of bytes to be written</param>
+            <param name="dataType">Data type to be written</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.WriteRaw(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.UInt16)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="numBytes"></param>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.WriteRaw(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="numBytes"></param>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.Read(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.Byte)">
+            <summary>
+            Read data array from DataStore starting from specified address.
+            </summary>
+            <param name="address">Address to read from</param>
+            <param name="data">Byte array to be filled up with data from DataStore</param>
+            <param name="offset">Offset from start of DataStore allocationto read.</param>
+            <param name="numBytes">Number of bytes to be read</param>
+            <param name="dataType">Data type of the data to be read</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.Read(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.UInt16)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="numBytes"></param>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.Read(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="numBytes"></param>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.ReadRaw(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.Byte)">
+            <summary>
+            Read data array from DataStore starting from specified address.
+            </summary>
+            <param name="address">Address to read from</param>
+            <param name="data">Byte array to be filled up with data from DataStore</param>
+            <param name="offset">Offset from start of DataStore allocationto read.</param>
+            <param name="numBytes">Number of bytes to be read</param>
+            <param name="dataType">Data type of the data to be read</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.ReadRaw(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.UInt16)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="numBytes"></param>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.ReadRaw(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="numBytes"></param>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.Finalize">
+            <summary>
+            Destroys the data in DataStore
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.CreateDataStore(System.Boolean)">
+            <summary>
+            Initializes DataStore. Performs a scan of the device and builds up the list of active data inside DataStore.
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.GetMaxAllocationSize">
+            <summary>
+            Method that returns maximum allocation size possible in DataStore
+            </summary>
+            <returns>Maximum allocation size possible in DataStore</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.GetTotalSpace">
+            <summary>
+            Get total available space 
+            </summary>
+            <returns>Amount of total space</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.GetUsedBytes">
+            <summary>
+            Get amount of used space 
+            </summary>
+            <returns>Amount of used space</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.GetFreeBytes">
+            <summary>
+            Get amount of free space
+            </summary>
+            <returns>Amount of free space</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.GetReadAllDataIds(System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Returns valid data currently stored in DataStore
+            </summary>
+            <param name="dataIdArray">Data ID array</param>
+            <param name="arrayLength">Size of array</param>
+            <param name="dataIdOffset">Offset</param>
+            <returns>Array with valid data as unsigned integer</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.GetCountOfDataIds">
+            <summary>
+            Get the count of valid data currently stored in DataStore
+            </summary>
+            <returns>Count of valid data as unsigned integer</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.DeleteAll">
+            <summary>
+            Delete all references to data in DataStore
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.EraseAllBlocks">
+            <summary>
+            Erases all data in DataStore
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.DataStoreGC">
+            <summary>
+            Garbage collects inactive data in DataStore
+            </summary>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.GetReadWriteStatus">
+            <summary>
+            Gets read/write status of DataStore
+            </summary>
+            <returns>True if status indicates success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.GetLastDatastoreStatus">
+            <summary>
+            Gets error status of DataStore
+            </summary>
+            <returns>DataStore error status</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.WriteRaw(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.Byte,System.Int32)">
+            <summary>
+            Write data present in buffer starting from address and amount equal to numBytes. 
+            </summary>
+            <param name="address">Address from which to start writing data</param>
+            <param name="data">Buffer holding data to be written</param>
+            <param name="offset">Offset from start of DataStore allocationto read.</param>
+            <param name="numBytes">Amount of data to be written</param>
+            <param name="dataType">Data type of the data to be written</param>
+            <param name="storageType">Block storage type</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="M:Samraksh.eMote.NonVolatileMemory.DataStore.ReadRaw(System.UInt32,System.Byte[],System.UInt32,System.UInt32,System.Byte,System.Int32)">
+            <summary>
+            Read from data into the buffer starting from address.
+            </summary>
+            <param name="address">Address of data to be read from</param>
+            <param name="buffer">Buffer into which the data will be read</param>
+            <param name="offset">Offset from start of DataStore allocationto read.</param>
+            <param name="numBytes">Number of bytes to be read</param>
+            <param name="dataType">Data type of the data to be read</param>
+            <param name="storageType">Block storage type</param>
+            <returns>Number of bytes read; -1 if operation fails</returns>
+        </member>
+        <member name="P:Samraksh.eMote.NonVolatileMemory.DataStore.MaxAllocationSize">
+            <summary>
+            Maximum allocation size possible in bytes
+            </summary>
+        </member>
+        <member name="P:Samraksh.eMote.NonVolatileMemory.DataStore.Size">
+            <summary>
+            Size of DataStore in bytes
+            </summary>
+        </member>
+        <member name="P:Samraksh.eMote.NonVolatileMemory.DataStore.UsedBytes">
+            <summary>
+            Number of bytes of space already occupied by data
+            </summary>
+        </member>
+        <member name="P:Samraksh.eMote.NonVolatileMemory.DataStore.FreeBytes">
+            <summary>
+            Number of bytes of space available to store data
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.NonVolatileMemory.StorageType">
+            <summary>
+            Block device type
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.NonVolatileMemory.DataStoreError">
+            <summary>
+            DataStore error values 
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.NonVolatileMemory.ReferenceDataType">
+            <summary>
+            Data types allowed in DataStore
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.NonVolatileMemory.DataStoreReturnStatus">
+            <summary>
+            DataStore return types
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.NonVolatileMemory.DataStoreInvalidArgumentException">
+            <summary>
+            Different exception classes based on return value from native methods
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.NonVolatileMemory.DataStoreInvalidReferenceException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.NonVolatileMemory.DataStoreNotInitializedException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.NonVolatileMemory.DataStoreOutOfMemoryException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.NonVolatileMemory.DataStoreException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.PLATFORM_TYPE">
+            <summary>
+            Types of hardware platforms  
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.PLATFORM_TYPE.UNKNOWN">
+            <summary>Unknown</summary>
+        </member>
+        <member name="F:Samraksh.eMote.PLATFORM_TYPE.DOTNOW">
+            <summary>.NOW</summary>
+        </member>
+        <member name="F:Samraksh.eMote.PLATFORM_TYPE.WLN">
+            <summary>WLN</summary>
+        </member>
+        <member name="M:Samraksh.eMote.Platform.GetPlatformTypeInternal">
+            <summary>
+            Initializes the platformType variable
+            </summary>
+            <returns>The platform type is returned.</returns>
+        </member>
+        <member name="T:Samraksh.eMote.RadarCallBack">
+            <summary>
+            Delegate for Radar callback method
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.RadarInterface._radarInternal">
+            <summary>
+            ADC internal class 
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.RadarInterface._myCallback">
+            <summary>
+            Callback method
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInterface.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInterface.Finalize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInterface.InternalCallback(System.UInt32,System.UInt32,System.DateTime)">
+            <summary>
+            Native Radar driver callback
+            </summary>
+            <param name="data1">Parameter passed from native</param>
+            <param name="data2">Parameter passed from native</param>
+            <param name="time">Time of callback</param>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInterface.TurnOn">
+            <summary>
+            Turns on the Radar
+            </summary>
+            <returns>The result of turning on the radar: Success, Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInterface.TurnOff">
+            <summary>
+            Turns off the Radar
+            </summary>
+            <returns>The result of turning off the radar: Success, Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInterface.Blind">
+            <summary>
+            Blinds the Radar
+            </summary>
+            <returns>The result of blinding the radar: Success, Fail</returns>
+        </member>
+        <member name="T:Samraksh.eMote.RadarInternal">
+            <summary>
+            ADCInternal interface to the native driver
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInternal.#ctor(System.String,System.UInt64,System.Int32)">
+            <summary>
+            Specify the driver name for matching with the native eventdispatcher
+            </summary>
+            <param name="strDrvName"></param>
+            <param name="drvData"></param>
+            <param name="callbackCount"></param>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInternal.Init(System.Int32)">
+            <summary>
+            Initialize the Radar native driver
+            </summary>
+            <param name="channel">Specify the channel to be sampled</param>
+            <returns>Returns the result of the init function</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInternal.Uninit">
+            <summary>
+            Uninitialize the Radar native driver
+            </summary>
+            <returns>Returns the result of the uninit function</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInternal.ConfigureFPGADetectionPrivate(System.UInt16[],System.UInt16[],System.UInt32)">
+            <summary>
+            Turns on the Radar
+            </summary>
+            <param name="sampleBuffI">Buffer for samples</param>
+            <param name="sampleBuff1">Buffer for samples</param>
+            <param name="numSamples">Number of samples</param>
+            <param name="callback">Method to call when numSamples collected</param>
+            <returns>True if operation success</returns>
+            <returns>The result of turning on the radar: Success, Fail</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInternal.GetWindowOverThreshold">
+            <summary>
+            Request whether the last window's displacement was over the threshold
+            </summary>
+            <returns>Returns true if last window's displacement was over the threshold and false if not.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInternal.CurrentDetectionFinished">
+            <summary>
+            Request whether the current detection has finished
+            </summary>
+            <returns>Returns true if the current detection is finished and false if not.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInternal.GetNetDisplacement(Samraksh.eMote.SAMPLE_WINDOW_PORTION)">
+            <summary>
+            Request the window's net displacement
+            </summary>
+            <returns>Returns the window's net displacement.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInternal.GetAbsoluteDisplacement(Samraksh.eMote.SAMPLE_WINDOW_PORTION)">
+            <summary>
+            Request the window's absolute displacement.
+            </summary>
+            <returns>Returns the window's absolute displacement.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInternal.GetDisplacementRange(Samraksh.eMote.SAMPLE_WINDOW_PORTION)">
+            <summary>
+            Request the window's displacement range.
+            </summary>
+            <returns>Returns the window's displacement range.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInternal.GetCountOverTarget">
+            <summary>
+            Request the window's count of samples over classifierTargetFilter parameter.
+            </summary>
+            <returns>Returns the window's count of samples over target.</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RadarInternal.SetProcessingInProgress(System.Boolean)">
+            <summary>
+            Inform firmware of status of data processing
+            </summary>
+            <returns>Nothing returned</returns>
+        </member>
+    </members>
+</doc>

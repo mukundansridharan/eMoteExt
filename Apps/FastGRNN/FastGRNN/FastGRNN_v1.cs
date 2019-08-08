@@ -161,6 +161,8 @@ namespace FastGRNN
 #endif
             }
 
+            time_steps = 1;
+
             //long start = DateTime.Now.Ticks;
             for (int i = 0; i < time_steps; i++)
             {

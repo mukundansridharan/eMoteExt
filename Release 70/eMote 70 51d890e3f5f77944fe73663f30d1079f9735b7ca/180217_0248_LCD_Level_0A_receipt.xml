@@ -1,0 +1,149 @@
+<TestResults>
+	<TestComplete>
+	True
+	</TestComplete>
+	<TestResult>
+	Test completed
+	</TestResult>
+	<TestPass>
+	True
+	</TestPass>
+	<TestDateTime>
+	2018-02-17 02:41:46
+	</TestDateTime>
+	<TestDuration>
+	00:06:23.9697455
+	</TestDuration>
+	<TestAccuracy>
+	0
+	</TestAccuracy>
+	<TestReturnParameter1>
+	 [70 80 F0 ]
+	</TestReturnParameter1>
+	<TestReturnParameter2>
+	 [70 80 48 EE EF 8D ED ]
+	</TestReturnParameter2>
+	<TestReturnParameter3>
+	 [70 80 48 8F 8E CD 6E ]
+	</TestReturnParameter3>
+	<TestReturnParameter4>
+	 [70 80 48 60 65 6E 0D ]
+	</TestReturnParameter4>
+	<TestReturnParameter5>
+	 [70 80 48 C6 EC ED AE ]
+	</TestReturnParameter5>
+	<TestExecutionMachine>
+	CHRISDESK
+	</TestExecutionMachine>
+	<TestDescription>
+	<Test Name='LCD_Level_0A' Type = 'C# Adapt .NOW'>
+	<Description>
+	C# LCD
+	</Description>
+	<TestPath>
+	LCD\Src\C#\Level_0A\Level_0A
+	</TestPath>
+	<TestProjName>
+	LCD_Level_0A.csproj
+	</TestProjName>
+	<TesterName>
+	Chris
+	</TesterName>
+	<TestLocation>
+	CHRISDESK
+	</TestLocation>
+	<TestMFVersionNum>
+	4.3
+	</TestMFVersionNum>
+	<TestGitOption>
+	
+	</TestGitOption>
+	<TestGitRev>
+	e75e342
+	</TestGitRev>
+	<TestGitBranch>
+	master
+	</TestGitBranch>
+	<TestUsePrecompiledBinary>
+	
+	</TestUsePrecompiledBinary>
+	<TestHardware>
+	Emote.Now
+	</TestHardware>
+	<TestSolution>
+	EmoteDotNow
+	</TestSolution>
+	<TestMemoryType>
+	FLASH
+	</TestMemoryType>
+	<TestSolutionType>
+	TinyCLR
+	</TestSolutionType>
+	<TestGCCVersion>
+	GCC5.4
+	</TestGCCVersion>
+	<TestSupporting>
+	
+	</TestSupporting>
+	<TestJTAGHarness>
+	Olimex
+	</TestJTAGHarness>
+	<TestPowerAutomateSelected>
+	False
+	</TestPowerAutomateSelected>
+	<TestBuild>
+	Release
+	</TestBuild>
+	<TestTimeout>
+	60000
+	</TestTimeout>
+	<TestUseLogic>
+	I2C
+	</TestUseLogic>
+	<TestSampleTimeMs>
+	15000
+	</TestSampleTimeMs>
+	<TestSampleFrequency>
+	4000000
+	</TestSampleFrequency>
+	<testUseScript>
+	False
+	</testUseScript>
+	<testScriptName>
+	
+	</testScriptName>
+	<testScriptTimeoutMs>
+	9000
+	</testScriptTimeoutMs>
+	<TestAnalysis>
+	exe
+	</TestAnalysis>
+	<TestAnalysisScriptName>
+	LCDAnalysis.exe
+	</TestAnalysisScriptName>
+	<TestUseResultsFile>
+	True
+	</TestUseResultsFile>
+	<TestResultsFileName>
+	testTemp\\results.txt
+	</TestResultsFileName>
+	<TestUseCOM>
+	False
+	</TestUseCOM>
+	<TestForceCOM>
+	
+	</TestForceCOM>
+	<TestCOMParameters>
+	115200,N,8,1
+	</TestCOMParameters>
+	<TestDelay>
+	0
+	</TestDelay>
+	<testDevicesToStart>
+	1
+	</testDevicesToStart>
+</Test>
+
+	</TestDescription>
+</TestResults>
+

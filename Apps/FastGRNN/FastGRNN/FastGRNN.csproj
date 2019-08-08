@@ -43,14 +43,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MathFuncs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Extensions\MathFuncs\bin\Debug\MathFuncs.dll</HintPath>
+    <Reference Include="MathFuncs">
+      <HintPath>..\..\..\Extensions\MathFuncs\bin\Logic\MathFuncs.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SPOT.Hardware" />
     <Reference Include="Microsoft.SPOT.Native" />
     <Reference Include="Samraksh_eMote_DotNow">
-      <HintPath>..\..\..\..\eMote .NOW 4.3.68 (csma fix)\Samraksh_eMote_DotNow\Samraksh_eMote_DotNow.dll</HintPath>
+      <HintPath>..\..\..\Extensions\MathFuncs\bin\Logic\Samraksh_eMote_DotNow.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

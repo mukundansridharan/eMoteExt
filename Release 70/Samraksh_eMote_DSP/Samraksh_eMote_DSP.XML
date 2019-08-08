@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Samraksh_eMote_DSP</name>
+    </assembly>
+    <members>
+        <member name="T:Samraksh.eMote.DSP.Statistics">
+            <summary>
+            Simple statistics on data
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Sum(System.Byte[])">
+            <summary>
+            Sums an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Sum of array</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Sum(System.UInt16[])">
+            <summary>
+            Sums an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Sum of array</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Sum(System.UInt32[])">
+            <summary>
+            Sums an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Sum of array</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Sum(System.UInt64[])">
+            <summary>
+            Sums an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Sum of array</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Median(System.Byte[])">
+            <summary>
+            Calculate the median of an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Median value</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Median(System.UInt16[])">
+            <summary>
+            Calculate the median of an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Median value</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Median(System.UInt32[])">
+            <summary>
+            Calculate the median of an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Median value</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Median(System.UInt64[])">
+            <summary>
+            Calculate the median of an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Median value</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Mode(System.Byte[])">
+            <summary>
+            Calculate the mode of an rray
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Mode value</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Mode(System.UInt16[])">
+            <summary>
+            Calculate the mode of an rray
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Mode value</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Mode(System.UInt32[])">
+            <summary>
+            Calculate the mode of an rray
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Mode value</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Mode(System.UInt64[])">
+            <summary>
+            Calculate the mode of an rray
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Mode value</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Variance(System.Byte[])">
+            <summary>
+            Calculate the variance of an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Variance</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Variance(System.UInt16[])">
+            <summary>
+            Calculate the variance of an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Variance</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Variance(System.UInt32[])">
+            <summary>
+            Calculate the variance of an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Variance</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Statistics.Variance(System.UInt64[])">
+            <summary>
+            Calculate the variance of an array
+            </summary>
+            <param name="array">Input array</param>
+            <returns>Variance</returns>
+        </member>
+        <member name="T:Samraksh.eMote.DSP.Transforms">
+            <summary>
+            Transforms on data
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Transforms.FFT(System.Byte[],System.Byte[],System.UInt16)">
+            <summary>
+            Calculate the Fast Fourier Transform 
+            </summary>
+            <param name="input">Input array</param>
+            <param name="output">Output array</param>
+            <param name="transformSize">Size of the transform</param>
+            <returns>Transform array of size transformSize</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Transforms.FFT(System.UInt16[],System.UInt16[],System.UInt16)">
+            <summary>
+            Calculate the Fast Fourier Transform 
+            </summary>
+            <param name="input">Input array</param>
+            <param name="output">Output array</param>
+            <param name="transformSize">Size of the transform</param>
+            <returns>Transform array of size transformSize</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Transforms.FFT(System.UInt32[],System.UInt32[],System.UInt16)">
+            <summary>
+            Calculate the Fast Fourier Transform 
+            </summary>
+            <param name="input">Input array</param>
+            <param name="output">Output array</param>
+            <param name="transformSize">Size of the transform</param>
+            <returns>Transform array of size transformSize</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Transforms.FFT(System.Int16[],System.Int16[],System.UInt16)">
+            <summary>
+            Calculate the Fast Fourier Transform 
+            </summary>
+            <param name="input">Input array</param>
+            <param name="output">Output array</param>
+            <param name="transformSize">Size of the transform</param>
+            <returns>Transform array of size transformSize</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Transforms.IFFT(System.Byte[],System.Byte[],System.UInt16)">
+            <summary>
+            Calculate the inverse Fast Fourier Transfrom 
+            </summary>
+            <param name="input">Input array</param>
+            <param name="output">Output array</param>
+            <param name="transformSize">Size of the transform</param>
+            <returns>Transform array of size transformSize</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Transforms.IFFT(System.UInt16[],System.UInt16[],System.UInt16)">
+            <summary>
+            Calculate the inverse Fast Fourier Transfrom 
+            </summary>
+            <param name="input">Input array</param>
+            <param name="output">Output array</param>
+            <param name="transformSize">Size of the transform</param>
+            <returns>Transform array of size transformSize</returns>
+        </member>
+        <member name="M:Samraksh.eMote.DSP.Transforms.IFFT(System.UInt32[],System.UInt32[],System.UInt16)">
+            <summary>
+            Calculate the inverse Fast Fourier Transfrom 
+            </summary>
+            <param name="input">Input array</param>
+            <param name="output">Output array</param>
+            <param name="transformSize">Size of the transform</param>
+            <returns>Transform array of size transformSize</returns>
+        </member>
+    </members>
+</doc>

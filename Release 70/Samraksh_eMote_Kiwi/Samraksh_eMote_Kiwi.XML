@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Samraksh_eMote_Kiwi</name>
+    </assembly>
+    <members>
+        <member name="T:Samraksh.eMote.SensorBoard.Accelerometer">
+            <summary>
+            Kiwi Accelerometer
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.SensorBoard.Accelerometer.#ctor(System.Int32,Samraksh.eMote.SensorBoard.Accelerometer.AxlCallbackType)">
+            <summary>
+            Initialize the i2c and the Kiwi Accelerometer sensor
+            </summary>
+            <param name="RefreshRate">Sample rate</param>
+            <param name="callbackfunction">Callback method. Can be null.</param>
+            <remarks>If the callback method is null, the user is not notified of sensor events. User should poll instead.</remarks>
+        </member>
+        <member name="P:Samraksh.eMote.SensorBoard.Accelerometer.RefreshRate">
+            <summary>
+            Set the value of refresh rate for the Kiwi Accelerometer
+            </summary>
+        </member>
+        <member name="P:Samraksh.eMote.SensorBoard.Accelerometer.CurrentData">
+            <summary>
+            Get the current sampling value of the accelerometer
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.SensorBoard.Accelerometer.AxlCallbackType">
+            <summary>
+            Kiwi Accelerometer callback signature
+            </summary>
+            <param name="eventType">Event type</param>
+            <param name="time">Time of the event</param>
+        </member>
+        <member name="T:Samraksh.eMote.SensorBoard.Accelerometer.EventType">
+            <summary>
+            Types of Kiwi Accelerometer events
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.EventType.DataUpdate">
+            <summary>Updating data</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.EventType.FreeFall">
+            <summary>Freefall detected </summary>
+        </member>
+        <member name="T:Samraksh.eMote.SensorBoard.Accelerometer.Data">
+            <summary>Kiwi Accelerometer data structure</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.Data.RawX">
+            <summary>Raw x axis acceleration data</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.Data.RawY">
+            <summary>Raw y axis acceleration data</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.Data.RawZ">
+            <summary>Raw z axis acceleration data</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.Data.X">
+            <summary>Processed x axis acceleration data</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.Data.Y">
+            <summary>Processed y axis accelerometer data</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.Data.Z">
+            <summary>Processed z azis accelerometer data</summary>
+        </member>
+        <member name="T:Samraksh.eMote.SensorBoard.Accelerometer.GRange">
+            <summary>
+            Range of accelerometer
+            </summary>
+            <remarks>
+            "Range" refers to the range of values returned. 
+            <para>The user can choose the units in which the resulting data should be interpreted. </para>
+            <para>Lower G gives better precision but limited range of values.</para>
+            <para>Higher G gives less precision but larger range of values.</para>
+            <para>Hence a value of 13 for FourG would be 26 for TwoG.</para>
+            </remarks>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.GRange.TwoG">
+            <summary>2 G range</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.GRange.FourG">
+            <summary>4 G range</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.GRange.EightG">
+            <summary>8 G range</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.GRange.SixteenG">
+            <summary>16 G range</summary>
+        </member>
+        <member name="T:Samraksh.eMote.SensorBoard.Accelerometer.OutputResolution">
+            <summary>
+            Output resolution for Kiwi Accelerometer
+            </summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.OutputResolution.FixedResolution">
+            <summary>Fixed resolution</summary>
+        </member>
+        <member name="F:Samraksh.eMote.SensorBoard.Accelerometer.OutputResolution.FullResolution">
+            <summary>Full resolution</summary>
+        </member>
+        <member name="T:Samraksh.eMote.SensorBoard.Accelerometer.RegisterMap">
+            <summary>
+            Registers on the Kiwi Accelerometer
+            </summary>
+        </member>
+        <member name="T:Samraksh.eMote.SensorBoard.TemperatureSensor">
+            <summary>
+            Kiwi Temperature Sensor
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.SensorBoard.TemperatureSensor.#ctor(Microsoft.SPOT.Hardware.Cpu.Pin,System.Int32)">
+            <summary>
+            Constructor for Kiwi Temperature Sensor
+            </summary>
+            <param name="pin"></param>
+            <param name="samplingRate"></param>
+            <exception cref="T:System.SystemException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="P:Samraksh.eMote.SensorBoard.TemperatureSensor.Temperature">
+            <summary>
+            Read current temperature
+            </summary>
+        </member>
+    </members>
+</doc>

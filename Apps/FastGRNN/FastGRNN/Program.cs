@@ -10,6 +10,7 @@ namespace FastGRNN
     {
         public static void Main()
         {
+            Debug.Print("5 sec sleep...Connect Logic Analyzer now!");
             /*Initial sleep*/
             Thread.Sleep(5000);
 

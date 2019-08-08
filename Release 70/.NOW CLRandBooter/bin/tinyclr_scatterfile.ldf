@@ -1,0 +1,104 @@
+MEMORY
+{
+    LR_FLASH : ORIGIN = 0x08020000, LENGTH = 0xA1000
+    STACK : ORIGIN = 0x20000000, LENGTH = 0x1000 + 1
+    HEAP : ORIGIN = 0x2000F5AC, LENGTH = 0x884C + 1
+    CUSTOMHEAP : ORIGIN = 0x20017E00, LENGTH = 0x1F8 + 1
+    LR_CONFIG : ORIGIN = 0x080FF000, LENGTH = 0x00001000
+    RELOC_RAM : ORIGIN = 0x20001000 + 8, LENGTH = 0xE5AC
+}
+ENTRY(EntryPoint)
+SECTIONS
+{
+    ER_FLASH  :
+    {
+        * (VectorsTrampolines)
+        * (i.EntryPoint)
+        * (SectionForBootstrapOperations)
+        * (.text*)
+        * (i.*)
+        * (t.*)
+        * (.rodata*)
+        * (rodata)
+        * (.constdata*)
+        * (.conststring*)
+        * (tinyclr_metadata)
+        PROVIDE(_sbrk = .);
+        PROVIDE(_write = .);
+        PROVIDE(_close = .);
+        PROVIDE(_fstat = .);
+        PROVIDE(_lseek = .);
+        PROVIDE(_read = .);
+        PROVIDE(_exit = .);
+        PROVIDE(_getpid = .);
+        PROVIDE(_kill = .);
+        PROVIDE(abort = .);
+        PROVIDE(__errno = .);
+        PROVIDE(_read = .);
+        PROVIDE(isatty = .);
+        PROVIDE(_isatty = .);
+        LONG(0xE12FFF1E); 
+    }>LR_FLASH
+    ER_STACK_BOTTOM 0x20000000 :
+    {
+        * (SectionForStackBottom)
+    }
+    ER_STACK_TOP 0x20001000 :
+    {
+        * (SectionForStackTop)
+    }
+    ER_RAM_RO  : ALIGN(0x10)
+    {
+        * (SectionForFlashOperations)
+    }>RELOC_RAM AT>LR_FLASH
+    ER_RAM_RW  : ALIGN(0x10)
+    {
+        * (rwdata)
+        * (.data*)
+        * (.zidata*)
+    }>RELOC_RAM AT>LR_FLASH
+    .bss  : ALIGN(0x10)
+    {
+        * (.bss*)
+        PROVIDE(__exidx_start = .); 
+        PROVIDE(__exidx_end = .); 
+    }>RELOC_RAM AT>LR_FLASH
+    /DISCARD/  :
+    {
+        * (.glue*)
+        * (.vfp11*)
+        * (.ARM.exidx*)
+        * (.ARM.extab*)
+    }
+    ER_HEAP_BEGIN  : ALIGN(0x10)
+    {
+        * (SectionForHeapBegin)
+    }>RELOC_RAM
+    ER_HEAP_END 0x20017DF8 :
+    {
+        * (SectionForHeapEnd)
+    }
+    ER_CUSTOMHEAP_BEGIN 0x20017E00 : ALIGN(0x10)
+    {
+        * (SectionForCustomHeapBegin)
+    }
+    ER_CUSTOMHEAP_END 0x20017FF8 :
+    {
+        * (SectionForCustomHeapEnd)
+    }
+    ER_CONFIG  :
+    {
+        * (SectionForConfig)
+    }>LR_CONFIG
+}
+Load$$ER_FLASH$$Base = ADDR(ER_FLASH);
+Image$$ER_FLASH$$Length = SIZEOF(ER_FLASH);
+Image$$ER_RAM_RO$$Base = ADDR(ER_STACK_TOP) + 8;
+Image$$ER_RAM_RO$$Length = ADDR(ER_RAM_RW) - ADDR(ER_RAM_RO);
+Load$$ER_RAM_RO$$Base = LOADADDR(ER_RAM_RO);
+Image$$ER_RAM_RW$$Base = ADDR(ER_RAM_RW);
+Image$$ER_RAM_RW$$Length = (ADDR(.bss) + SIZEOF(.bss)) - ADDR(ER_RAM_RW);
+Load$$ER_RAM_RW$$Base = LOADADDR(ER_RAM_RO) + (ADDR(ER_RAM_RW) - ADDR(ER_RAM_RO));
+Image$$ER_RAM_RW$$ZI$$Base = ADDR(.bss);
+Image$$ER_RAM_RW$$ZI$$Length = SIZEOF(.bss);
+__use_no_semihosting_swi = 0;

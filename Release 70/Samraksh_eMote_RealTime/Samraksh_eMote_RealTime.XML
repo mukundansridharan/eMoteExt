@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Samraksh_eMote_RealTime</name>
+    </assembly>
+    <members>
+        <member name="T:Samraksh.eMote.RealTime.Timer">
+            <summary>
+            Realtime Timer
+            </summary>
+        </member>
+        <member name="M:Samraksh.eMote.RealTime.Timer.#ctor(System.String,System.UInt64,System.Int32)">
+            <summary>Realtime Timer</summary>
+            <param name="strDrvName">Driver name; must be "RealTimeInteropTimer"</param>
+            <param name="period">Interval between callbacks (microseconds)</param>
+            <param name="callbackCount">How many callbacks to make (0 = infinite)</param>
+        </member>
+        <member name="M:Samraksh.eMote.RealTime.Timer.#ctor(System.UInt64,System.Int32)">
+            <summary>Realtime Timer</summary>
+            <param name="period">Interval between callbacks (microseconds)</param>
+            <param name="callbackCount">How many callbacks to make (0 = infinite)</param>
+        </member>
+        <member name="M:Samraksh.eMote.RealTime.Timer.#ctor(System.UInt64)">
+            <summary>Realtime Timer</summary>
+            <param name="period">Interval between callbacks (microseconds)</param>
+        </member>
+        <member name="M:Samraksh.eMote.RealTime.Timer.Dispose">
+            <summary>Dispose realtime timer</summary>
+        </member>
+        <member name="M:Samraksh.eMote.RealTime.Timer.Change(System.UInt32,System.UInt32)">
+            <summary>Change the timer due time and period</summary>
+            <param name="dueTime">Delay before first callback (microseconds)</param>
+            <param name="period">Interval between callbacks (microseconds)</param>
+            <returns>Success / failure</returns>
+        </member>
+        <member name="M:Samraksh.eMote.RealTime.Timer.GenerateInterrupt">
+            <summary>Generate an interrupt</summary>
+        </member>
+    </members>
+</doc>
