@@ -74,7 +74,7 @@ namespace FastGRNN
 #if LOGIC
             logit.Write(true);
 #endif
-            z = 1 / (1 + (-z).PointwiseExp());
+            //z = 1 / (1 + (-z).PointwiseExp());
 #if LOGIC
             logit.Write(false);
 #elif DEBUG

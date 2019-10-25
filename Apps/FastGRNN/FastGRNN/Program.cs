@@ -41,10 +41,11 @@ namespace FastGRNN
             ins1 = new fastgrnn_v1(weight_ih, weight_hh, bias_z, bias_h, zeta, nu);
 
             Vector input_norm = new Vector(Normalize(input_d, mean, std));
-            
+
             // Run FastGRNN to get logits
-            Vector logits = weight.Transpose() * ins1.fastgrnn_calculations(input_norm, window, stride) + bias;
-            
+            Vector logits = ins1.fastgrnn_calculations(input_norm, window, stride) + bias;
+            //Vector logits = weight.Transpose() * ins1.fastgrnn_calculations(input_norm, window, stride) + bias;
+
             // Print logits
             Debug.Print("Logits: ");
             foreach(var item in logits.GetData())

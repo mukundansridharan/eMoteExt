@@ -8,7 +8,7 @@ namespace CMSIS
 {
     public static class GlobalVar
     {
-        // Q15 conversion factor
+        // Q31 conversion factor
         public const float largeFactor = 6.0f;
     }
 
@@ -120,46 +120,46 @@ namespace CMSIS
         // Max of vector
         public static float Max(float[] invec, out uint outIndex)
         {
-            int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
+            int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
 
             int outVal = Max_Nat(indata, out outIndex);
-            return Support.ScaleConvertQ15ToFloat(outVal, GlobalVar.largeFactor);
+            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor);
         }
 
         // Min of vector
         public static float Min(float[] invec, out uint outIndex)
         {
-            int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
+            int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
 
             int outVal = Min_Nat(indata, out outIndex);
-            return Support.ScaleConvertQ15ToFloat(outVal, GlobalVar.largeFactor);
+            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor);
         }
 
         // Mean of vector
         public static float Mean(float[] invec)
         {
-            int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
+            int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
 
             int outVal = Mean_Nat(indata);
-            return Support.ScaleConvertQ15ToFloat(outVal, GlobalVar.largeFactor);
+            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor);
         }
 
         // Standard deviation of vector
         public static float StD(float[] invec)
         {
-            int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
+            int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
 
             int outVal = StD_Nat(indata);
-            return Support.ScaleConvertQ15ToFloat(outVal, GlobalVar.largeFactor);
+            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor);
         }
 
         // Variance of vector
         public static float Var(float[] invec)
         {
-            int[] indata = Support.ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor);
+            int[] indata = Support.ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor);
 
             int outVal = Var_Nat(indata);
-            return Support.ScaleConvertQ15ToFloat(outVal, GlobalVar.largeFactor * GlobalVar.largeFactor);
+            return Support.ScaleConvertQ31ToFloat(outVal, GlobalVar.largeFactor * GlobalVar.largeFactor);
         }
 
 
@@ -182,14 +182,14 @@ namespace CMSIS
 
     public class Support
     {
-        // Downscale any float; convert to Q15
-        public static int ScaleConvertFloatToQ15(float inx, float scaleFactor)
+        // Downscale any float; convert to Q31
+        public static int ScaleConvertFloatToQ31(float inx, float scaleFactor)
         {
-            return ConvertFloatToQ15(inx / scaleFactor);
+            return ConvertFloatToQ31(inx / scaleFactor);
         }
 
-        // Downscale any float array; convert to Q15
-        public static int[] ScaleConvertFloatArrToQ15(float[] inx, float scaleFactor)
+        // Downscale any float array; convert to Q31
+        public static int[] ScaleConvertFloatArrToQ31(float[] inx, float scaleFactor)
         {
             float[] scaledx = new float[inx.Length];
             for (int i = 0; i < inx.Length; i++)
@@ -198,21 +198,21 @@ namespace CMSIS
             }
 
             int[] outx = new int[scaledx.Length];
-            ConvertFloatToQ15(scaledx, outx);
+            ConvertFloatToQ31(scaledx, outx);
             return outx;
         }
 
-        // Convert Q15 to float; upscale
-        public static float ScaleConvertQ15ToFloat(int inx, float scaleFactor)
+        // Convert Q31 to float; upscale
+        public static float ScaleConvertQ31ToFloat(int inx, float scaleFactor)
         {
-            return ConvertQ15ToFloat(inx) * scaleFactor;
+            return ConvertQ31ToFloat(inx) * scaleFactor;
         }
 
-        // Convert Q15 array to float; upscale
-        public static float[] ScaleConvertQ15ArrToFloat(int[] inx, float scaleFactor)
+        // Convert Q31 array to float; upscale
+        public static float[] ScaleConvertQ31ArrToFloat(int[] inx, float scaleFactor)
         {
             float[] outx = new float[inx.Length];
-            ConvertQ15ToFloat(inx, outx);
+            ConvertQ31ToFloat(inx, outx);
 
             for (int i = 0; i < outx.Length; i++)
             {
@@ -226,8 +226,8 @@ namespace CMSIS
         public static float[] VectorCopy(float[] invec, int index, uint length)
         {
             int[] outvec = new int[length];
-            VectorCopy_Nat(ScaleConvertFloatArrToQ15(invec, GlobalVar.largeFactor), index, outvec, length);
-            return ScaleConvertQ15ArrToFloat(outvec, GlobalVar.largeFactor);
+            VectorCopy_Nat(ScaleConvertFloatArrToQ31(invec, GlobalVar.largeFactor), index, outvec, length);
+            return ScaleConvertQ31ArrToFloat(outvec, GlobalVar.largeFactor);
         }
 
         public static int[] VectorCopy(int[] invec, int index, uint length)
@@ -241,8 +241,8 @@ namespace CMSIS
         public static float[] VectorFill(int len, float val)
         {
             int[] outvec = new int[len];
-            VectorFill_Nat(ScaleConvertFloatToQ15(val, GlobalVar.largeFactor), outvec);
-            return ScaleConvertQ15ArrToFloat(outvec, GlobalVar.largeFactor);
+            VectorFill_Nat(ScaleConvertFloatToQ31(val, GlobalVar.largeFactor), outvec);
+            return ScaleConvertQ31ArrToFloat(outvec, GlobalVar.largeFactor);
         }
 
         public static int[] VectorFill(int len, int val)
@@ -254,16 +254,16 @@ namespace CMSIS
 
         // Natives
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static int ConvertFloatToQ15(float x);
+        extern static int ConvertFloatToQ31(float x);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static float ConvertQ15ToFloat(int x);
+        extern static float ConvertQ31ToFloat(int x);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static void ConvertFloatToQ15(float[] inx, int[] outx);
+        extern static void ConvertFloatToQ31(float[] inx, int[] outx);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static void ConvertQ15ToFloat(int[] inx, float[] outx);
+        extern static void ConvertQ31ToFloat(int[] inx, float[] outx);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern static void VectorCopy_Nat(int[] inx, int index, int[] outx, uint length);
@@ -288,8 +288,8 @@ namespace CMSIS
 
             if (m1.IsFloat() && m2.IsFloat())
             {
-                m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
-                m2dat = Support.ScaleConvertFloatArrToQ15(m2.data, GlobalVar.largeFactor);
+                m1dat = Support.ScaleConvertFloatArrToQ31(m1.data, GlobalVar.largeFactor);
+                m2dat = Support.ScaleConvertFloatArrToQ31(m2.data, GlobalVar.largeFactor);
                 outmat = new Matrix(0, 0, new float[m1.rows * m2.cols]);
             }
             else if (m1.IsQ() && m2.IsQ())
@@ -309,7 +309,7 @@ namespace CMSIS
             mat_mult.Write(false);
 #endif
             if (m1.IsFloat() && m2.IsFloat())
-                outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
+                outmat.data = Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
             else if (m1.IsQ() && m2.IsQ())
                 outmat.qdata = outdata;
 
@@ -324,8 +324,8 @@ namespace CMSIS
 
             if (m1.IsFloat() && m2.IsFloat())
             {
-                m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
-                m2dat = Support.ScaleConvertFloatArrToQ15(m2.data, GlobalVar.largeFactor);
+                m1dat = Support.ScaleConvertFloatArrToQ31(m1.data, GlobalVar.largeFactor);
+                m2dat = Support.ScaleConvertFloatArrToQ31(m2.data, GlobalVar.largeFactor);
                 outmat = new Matrix(0, 0, new float[m1.rows * m2.cols]);
             }
             else if (m1.IsQ() && m2.IsQ())
@@ -346,7 +346,7 @@ namespace CMSIS
 #endif
 
             if (m1.IsFloat() && m2.IsFloat())
-                outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+                outmat.data = Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor);
             else if (m1.IsQ() && m2.IsQ())
                 outmat.qdata = outdata;
             return outmat;
@@ -360,8 +360,8 @@ namespace CMSIS
 
             if (m1.IsFloat() && m2.IsFloat())
             {
-                m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
-                m2dat = Support.ScaleConvertFloatArrToQ15(m2.data, GlobalVar.largeFactor);
+                m1dat = Support.ScaleConvertFloatArrToQ31(m1.data, GlobalVar.largeFactor);
+                m2dat = Support.ScaleConvertFloatArrToQ31(m2.data, GlobalVar.largeFactor);
                 outmat = new Matrix(0, 0, new float[m1.rows * m2.cols]);
             }
             else if (m1.IsQ() && m2.IsQ())
@@ -377,7 +377,7 @@ namespace CMSIS
             MatrixSub_Nat(m1.rows, m1.cols, m1dat, m2.rows, m2.cols, m2dat, out outmat.rows, out outmat.cols, outdata);
 
             if (m1.IsFloat() && m2.IsFloat())
-                outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+                outmat.data = Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor);
             else if (m1.IsQ() && m2.IsQ())
                 outmat.qdata = outdata;
             return outmat;
@@ -391,7 +391,7 @@ namespace CMSIS
 
             if (m1.IsFloat())
             { 
-                m1dat = Support.ScaleConvertFloatArrToQ15(m1.data, GlobalVar.largeFactor);
+                m1dat = Support.ScaleConvertFloatArrToQ31(m1.data, GlobalVar.largeFactor);
                 outmat = new Matrix(0, 0, new float[m1.rows * m1.cols]);
             }
             else if (m1.IsQ())
@@ -410,7 +410,7 @@ namespace CMSIS
             mat_trans.Write(false);
 #endif
             if (m1.IsFloat())
-                outmat.data = Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor);
+                outmat.data = Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor);
             else if (m1.IsQ())
                 outmat.qdata = outdata;
             return outmat;
@@ -602,7 +602,7 @@ namespace CMSIS
 
             if (invec.IsFloat())
             {
-                indata = Support.ScaleConvertFloatArrToQ15(invec.data, GlobalVar.largeFactor);
+                indata = Support.ScaleConvertFloatArrToQ31(invec.data, GlobalVar.largeFactor);
                 outdata = new int[invec.data.Length];
             }
             else if (invec.IsQ())
@@ -615,7 +615,7 @@ namespace CMSIS
             VectorAbs_Nat(indata, outdata);
 
             if (invec.IsFloat())
-                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+                return new Vector(Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor));
             else
                 return new Vector(outdata);
         }
@@ -628,7 +628,7 @@ namespace CMSIS
 
             if (invec.IsFloat())
             {
-                indata = Support.ScaleConvertFloatArrToQ15(invec.data, GlobalVar.largeFactor);
+                indata = Support.ScaleConvertFloatArrToQ31(invec.data, GlobalVar.largeFactor);
                 outdata = new int[invec.data.Length];
             }
             else if (invec.IsQ())
@@ -641,7 +641,7 @@ namespace CMSIS
             VectorNegate_Nat(indata, outdata);
 
             if (invec.IsFloat())
-                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+                return new Vector(Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor));
             else
                 return new Vector(outdata);
         }
@@ -655,8 +655,8 @@ namespace CMSIS
 
             if (invec.IsFloat())
             {
-                indata = Support.ScaleConvertFloatArrToQ15(invec.data, GlobalVar.largeFactor);
-                offset_loc = Support.ScaleConvertFloatToQ15(offset, GlobalVar.largeFactor);
+                indata = Support.ScaleConvertFloatArrToQ31(invec.data, GlobalVar.largeFactor);
+                offset_loc = Support.ScaleConvertFloatToQ31(offset, GlobalVar.largeFactor);
                 outdata = new int[invec.data.Length];
             }
             else if (invec.IsQ() && (int)offset==offset)
@@ -675,7 +675,7 @@ namespace CMSIS
             vec_offset.Write(false);
 #endif
             if (invec.IsFloat())
-                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+                return new Vector(Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor));
             else
                 return new Vector(outdata);
         }
@@ -689,8 +689,8 @@ namespace CMSIS
 
             if (invec.IsFloat())
             {
-                indata = Support.ScaleConvertFloatArrToQ15(invec.data, GlobalVar.largeFactor);
-                scale_loc = Support.ScaleConvertFloatToQ15(scale, GlobalVar.largeFactor);
+                indata = Support.ScaleConvertFloatArrToQ31(invec.data, GlobalVar.largeFactor);
+                scale_loc = Support.ScaleConvertFloatToQ31(scale, GlobalVar.largeFactor);
                 outdata = new int[invec.data.Length];
             }
             else if (invec.IsQ() && (int)scale == scale)
@@ -708,7 +708,7 @@ namespace CMSIS
             vec_scale.Write(false);
 #endif
             if (invec.IsFloat())
-                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor));
+                return new Vector(Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor));
             else
                 return new Vector(outdata);
         }
@@ -720,8 +720,8 @@ namespace CMSIS
 
             if (in1vec.IsFloat() && in2vec.IsFloat())
             {
-                in1data = Support.ScaleConvertFloatArrToQ15(in1vec.data, GlobalVar.largeFactor);
-                in2data = Support.ScaleConvertFloatArrToQ15(in2vec.data, GlobalVar.largeFactor);
+                in1data = Support.ScaleConvertFloatArrToQ31(in1vec.data, GlobalVar.largeFactor);
+                in2data = Support.ScaleConvertFloatArrToQ31(in2vec.data, GlobalVar.largeFactor);
                 outdata = new int[in1vec.data.Length];
             }
             else if (in1vec.IsQ() && in2vec.IsQ())
@@ -739,7 +739,7 @@ namespace CMSIS
             vec_add.Write(false);
 #endif
             if (in1vec.IsFloat() && in2vec.IsFloat())
-                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+                return new Vector(Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor));
             else
                 return new Vector(outdata);
         }
@@ -751,8 +751,8 @@ namespace CMSIS
 
             if (in1vec.IsFloat() && in2vec.IsFloat())
             {
-                in1data = Support.ScaleConvertFloatArrToQ15(in1vec.data, GlobalVar.largeFactor);
-                in2data = Support.ScaleConvertFloatArrToQ15(in2vec.data, GlobalVar.largeFactor);
+                in1data = Support.ScaleConvertFloatArrToQ31(in1vec.data, GlobalVar.largeFactor);
+                in2data = Support.ScaleConvertFloatArrToQ31(in2vec.data, GlobalVar.largeFactor);
                 outdata = new int[in1vec.data.Length];
             }
             else if (in1vec.IsQ() && in2vec.IsQ())
@@ -766,7 +766,7 @@ namespace CMSIS
             VectorSub_Nat(in1data, in2data, outdata);
 
             if (in1vec.IsFloat() && in2vec.IsFloat())
-                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor));
+                return new Vector(Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor));
             else
                 return new Vector(outdata);
         }
@@ -775,12 +775,12 @@ namespace CMSIS
         public static Vector VectorRecip(Vector in1vec)
         {
             // VectorRecip_Nat doesn't work: don't know how to interpret result
-            // (https://voltampmedia.com/2011/09/27/using-arms-cmsis-dsp-library-arm_recip_q15/)
-            /*int[] in1data = Support.ScaleConvertFloatArrToQ15(in1vec, GlobalVar.largeFactor);
+            // (https://voltampmedia.com/2011/09/27/using-arms-cmsis-dsp-library-arm_recip_Q31/)
+            /*int[] in1data = Support.ScaleConvertFloatArrToQ31(in1vec, GlobalVar.largeFactor);
             int[] outdata = new int[in1vec.Length];
 
             VectorRecip_Nat(in1data, outdata);
-            return Support.ScaleConvertQ15ArrToFloat(outdata, 1.0f/GlobalVar.largeFactor);*/
+            return Support.ScaleConvertQ31ArrToFloat(outdata, 1.0f/GlobalVar.largeFactor);*/
 #if LOGIC
             vec_recip.Write(true);
 #endif
@@ -801,8 +801,8 @@ namespace CMSIS
 
             if (in1vec.IsFloat() && in2vec.IsFloat())
             {
-                in1data = Support.ScaleConvertFloatArrToQ15(in1vec.data, GlobalVar.largeFactor);
-                in2data = Support.ScaleConvertFloatArrToQ15(in2vec.data, GlobalVar.largeFactor);
+                in1data = Support.ScaleConvertFloatArrToQ31(in1vec.data, GlobalVar.largeFactor);
+                in2data = Support.ScaleConvertFloatArrToQ31(in2vec.data, GlobalVar.largeFactor);
             }
             else if (in1vec.IsQ() && in2vec.IsQ())
             {
@@ -814,7 +814,7 @@ namespace CMSIS
             int outdata = VectorDot_Nat(in1data, in2data);
 
             if (in1vec.IsFloat() && in2vec.IsFloat())
-                return Support.ScaleConvertQ15ToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
+                return Support.ScaleConvertQ31ToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor);
             else
                 return outdata;
         }
@@ -826,8 +826,8 @@ namespace CMSIS
 
             if (in1vec.IsFloat() && in2vec.IsFloat())
             {
-                in1data = Support.ScaleConvertFloatArrToQ15(in1vec.data, GlobalVar.largeFactor);
-                in2data = Support.ScaleConvertFloatArrToQ15(in2vec.data, GlobalVar.largeFactor);
+                in1data = Support.ScaleConvertFloatArrToQ31(in1vec.data, GlobalVar.largeFactor);
+                in2data = Support.ScaleConvertFloatArrToQ31(in2vec.data, GlobalVar.largeFactor);
                 outdata = new int[in1vec.data.Length];
             }
             else if (in1vec.IsQ() && in2vec.IsQ())
@@ -845,7 +845,7 @@ namespace CMSIS
             vec_had.Write(false);
 #endif
             if (in1vec.IsFloat() && in2vec.IsFloat())
-                return new Vector(Support.ScaleConvertQ15ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor));
+                return new Vector(Support.ScaleConvertQ31ArrToFloat(outdata, GlobalVar.largeFactor * GlobalVar.largeFactor));
             else
                 return new Vector(outdata);
         }
@@ -905,7 +905,7 @@ namespace CMSIS
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern static void VectorHadamard_Nat(int[] intx, int[] inty, int[] outx);
 
-        // Doesn't work: don't know how to interpret result (https://voltampmedia.com/2011/09/27/using-arms-cmsis-dsp-library-arm_recip_q15/)
+        // Doesn't work: don't know how to interpret result (https://voltampmedia.com/2011/09/27/using-arms-cmsis-dsp-library-arm_recip_Q31/)
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern static void VectorRecip_Nat(int[] intx, int[] outx);
 

@@ -41,9 +41,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MathFuncs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MathFuncs\bin\Debug\MathFuncs.dll</HintPath>
+    <Reference Include="MathFuncs">
+      <HintPath>..\..\MathFuncs\bin\Logic\MathFuncs.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SPOT.Graphics" />
     <Reference Include="Microsoft.SPOT.Native" />
