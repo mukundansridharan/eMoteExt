@@ -60,7 +60,7 @@ IAT_DIR=$(LIBS)/$(FLAVER)/$(BUILD)/$(SOLUTION)/obj/Solutions/$(SOLUTION)/TinyCLR
 AM_LIBLIST := $(foreach f,$(LIBS_ANY), $(LIBS_ANY_DIR)/$(f))
 OBJS_CLRSTART=$(LIBS)/$(FLAVER)/$(BUILD)/$(SOLUTION)/obj/Solutions/$(SOLUTION)/TinyCLR
 
-INC=-I../../Include/DeviceCode -I../../Include/CLR -I../../Include/Support -I../../Include/SMONative -I$(LIBS_ANY_DIR) -I.
+INC=-I../../Include/DeviceCode -I../../Include/CLR -I../../Include/Support -I../../Include/SMONative -I../../Include/EMI -I$(LIBS_ANY_DIR) -I.
 
 CFLAGS	= -xc++ -std=c++11 -D_ISOC99_SOURCE -Wno-invalid-offsetof -fcheck-new  -fno-threadsafe-statics   -DSAMRAKSH_CUSTOM_NEWLIB -mslow-flash-data -fdata-sections -ffunction-sections -fdollars-in-identifiers -fno-exceptions -mcpu=cortex-m3 -funsigned-char -mstructure-size-boundary=8  -DTINYCLR_ENABLE_SOURCELEVELDEBUGGING  -mthumb -DCOMPILE_THUMB2 -Wno-psabi -DVERSION_MAJOR=4 -DVERSION_MINOR=3 -DVERSION_BUILD=0 -DVERSION_REVISION=0  -DMF_VERSION="\"4.3.1.0\"" -DOEMSYSTEMINFOSTRING="\"Samraksh Copyright (C) 2015 Samraksh and Microsoft.\"" -DPLATFORM_ARM_STM32F10x -DPLATFORM_ARM_AUSTERE -DTARGETLOCATION_FLASH  -DSAM_APP_TINYCLR  -DLITTLE_ENDIAN -DGCC    -DSAM_STACK_BOTTOM=0x20000000  -DSAM_STACK_TOP=0x20001000  -DSAM_HEAP_BEGIN=0x2000F5AC  -DSAM_HEAP_END=0x20017DF8  -DSAM_CUSTOM_HEAP_BEGIN=0x20017E00  -DSAM_CUSTOM_HEAP_END=0x20017FF8  -DSAM_PROFILER_BUFFER_BEGIN=0x20017F00  -DSAM_PROFILER_BUFFER_END=0x20017FF8    -mfloat-abi=soft    -mlittle-endian  -g3 -Og -DSAM_FORCE_GCC_CMDLINE_OPTS -DDEBUG  -D_DEBUG    
 
