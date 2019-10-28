@@ -14,6 +14,7 @@
 #include "SMO.h"
 #include "SMO_InferenceEngine_SMO.h"
 #include "SMONative.cpp"
+#include "emi_fastgrnn.cpp"
 
 using namespace InferenceEngine;
 
