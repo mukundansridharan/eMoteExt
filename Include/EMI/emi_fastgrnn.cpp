@@ -139,6 +139,7 @@ void run_test(){
 #endif
 #ifdef MOTE_PROFILE
 	CPU_GPIO_EnableOutputPin(0, false);
+	CPU_GPIO_EnableOutputPin(1, false);
 #endif
 #ifndef MOTE
 	// Initialize output file
@@ -150,6 +151,14 @@ void run_test(){
 		uint test_input[timeSteps][inputDims] = {0};
 		util_slice3D((uint*) test_inputs, (uint*) test_input, d, timeSteps, inputDims);
 
+#ifdef MOTE_PROFILE
+		// Profile latency per bag (second in V1)
+		if(d%numInstances==0)
+			CPU_GPIO_SetPinState(1, true);
+		else if(d%numInstances==numInstances-1)
+			CPU_GPIO_SetPinState(1, false);
+#endif		
+
 #ifdef DBG
 		util_printMatrix((uint*) test_input, timeSteps, inputDims);
 #endif
@@ -157,7 +166,8 @@ void run_test(){
 		ll h[hiddenDims] = {0};
 	
 		for(int t=0; t<timeSteps; t++){
-#ifdef MOTE_PROFILE			
+#ifdef MOTE_PROFILE
+			// Profile latency per timestep			
 			//hal_printf("b");
 			CPU_GPIO_SetPinState(0, true);
 #endif
