@@ -137,6 +137,9 @@ void run_test(){
 #ifdef DBG
 	cout << "Model size: " << size/1000 << " KB" << endl << endl;
 #endif
+#ifdef MOTE_PROFILE
+	CPU_GPIO_EnableOutputPin(0, false);
+#endif
 #ifndef MOTE
 	// Initialize output file
 	ofstream outfile;
@@ -155,7 +158,8 @@ void run_test(){
 	
 		for(int t=0; t<timeSteps; t++){
 #ifdef MOTE_PROFILE			
-			hal_printf("b");
+			//hal_printf("b");
+			CPU_GPIO_SetPinState(0, true);
 #endif
 			uint x_int[inputDims] = {0};
 			util_slice2D((uint*)test_input, x_int, t, inputDims);
@@ -217,7 +221,8 @@ void run_test(){
 			addVecs(h, out_hiddenDims, hiddenDims, h);
 			divVecScal(h, I_l, hiddenDims, h);
 #ifdef MOTE_PROFILE
-			hal_printf("e");
+			//hal_printf("e");
+			CPU_GPIO_SetPinState(0, false);
 #endif
 #ifdef DBG
 			cout << "h at t=" << t << endl;
@@ -243,6 +248,8 @@ void run_test(){
 	}
 #ifndef MOTE
 	outfile.close();
+#else
+	hal_printf("Test complete.");
 #endif
 }
 
