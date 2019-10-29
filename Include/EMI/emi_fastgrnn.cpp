@@ -138,8 +138,8 @@ void run_test(){
 	cout << "Model size: " << size/1000 << " KB" << endl << endl;
 #endif
 #ifdef MOTE_PROFILE
-	CPU_GPIO_EnableOutputPin(0, false);
-	CPU_GPIO_EnableOutputPin(1, false);
+	CPU_GPIO_EnableOutputPin(0, false); //J11-3
+	CPU_GPIO_EnableOutputPin(1, false); //J11-4
 #endif
 #ifndef MOTE
 	// Initialize output file
@@ -155,8 +155,6 @@ void run_test(){
 		// Profile latency per bag (second in V1)
 		if(d%numInstances==0)
 			CPU_GPIO_SetPinState(1, true);
-		else if(d%numInstances==numInstances-1)
-			CPU_GPIO_SetPinState(1, false);
 #endif		
 
 #ifdef DBG
@@ -246,6 +244,10 @@ void run_test(){
 #ifdef DBG
 		cout << "Classification output:" << endl;
 		util_printVec(out_numClasses, numClasses);
+#endif
+#ifdef MOTE_PROFILE
+		if(d%numInstances==numInstances-1)
+			CPU_GPIO_SetPinState(1, false);
 #endif
 #ifndef MOTE
 		//Print decision to csv file
