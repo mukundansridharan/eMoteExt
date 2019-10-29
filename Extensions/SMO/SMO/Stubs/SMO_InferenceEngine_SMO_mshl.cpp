@@ -13,7 +13,7 @@
 using namespace InferenceEngine;
 
 
-HRESULT Library_SMO_InferenceEngine_SMO::predictCount___R4__SZARRAY_R4( CLR_RT_StackFrame& stack )
+HRESULT Library_SMO_InferenceEngine_SMO::runEMITest___VOID( CLR_RT_StackFrame& stack )
 {
     TINYCLR_HEADER(); hr = S_OK;
     {
@@ -21,32 +21,8 @@ HRESULT Library_SMO_InferenceEngine_SMO::predictCount___R4__SZARRAY_R4( CLR_RT_S
 
         FAULT_ON_NULL(pMngObj);
 
-        CLR_RT_TypedArray_float param0;
-        TINYCLR_CHECK_HRESULT( Interop_Marshal_float_ARRAY( stack, 1, param0 ) );
-
-        float retVal = SMO::predictCount( pMngObj,  param0, hr );
+        SMO::runEMITest( pMngObj,  hr );
         TINYCLR_CHECK_HRESULT( hr );
-        SetResult_float( stack, retVal );
-
-    }
-    TINYCLR_NOCLEANUP();
-}
-
-HRESULT Library_SMO_InferenceEngine_SMO::predictClass___R8__SZARRAY_R4( CLR_RT_StackFrame& stack )
-{
-    TINYCLR_HEADER(); hr = S_OK;
-    {
-        CLR_RT_HeapBlock* pMngObj = Interop_Marshal_RetrieveManagedObject( stack );
-
-        FAULT_ON_NULL(pMngObj);
-
-        CLR_RT_TypedArray_float param0;
-        TINYCLR_CHECK_HRESULT( Interop_Marshal_float_ARRAY( stack, 1, param0 ) );
-
-        double retVal = SMO::predictClass( pMngObj,  param0, hr );
-        TINYCLR_CHECK_HRESULT( hr );
-        SetResult_double( stack, retVal );
-
     }
     TINYCLR_NOCLEANUP();
 }

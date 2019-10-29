@@ -13,18 +13,12 @@
 
 #include "SMO.h"
 #include "SMO_InferenceEngine_SMO.h"
-#include "SMONative.cpp"
 #include "emi_fastgrnn.cpp"
 
 using namespace InferenceEngine;
 
-float SMO::predictCount( CLR_RT_HeapBlock* pMngObj, CLR_RT_TypedArray_float param0, HRESULT &hr )
+void SMO::runEMITest( CLR_RT_HeapBlock* pMngObj, HRESULT &hr )
 {
-    return SMONative::predictCount(param0.GetBuffer());
-}
-
-double SMO::predictClass( CLR_RT_HeapBlock* pMngObj, CLR_RT_TypedArray_float param0, HRESULT &hr )
-{
-    return SMONative::predictClass(param0.GetBuffer());
+	run_test(); 
 }
 

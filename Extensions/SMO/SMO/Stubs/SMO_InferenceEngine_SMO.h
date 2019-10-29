@@ -20,8 +20,7 @@ namespace InferenceEngine
     {
         // Helper Functions to access fields of managed object
         // Declaration of stubs. These functions are implemented by Interop code developers
-        static float predictCount( CLR_RT_HeapBlock* pMngObj, CLR_RT_TypedArray_float param0, HRESULT &hr );
-        static double predictClass( CLR_RT_HeapBlock* pMngObj, CLR_RT_TypedArray_float param0, HRESULT &hr );
+        static void runEMITest( CLR_RT_HeapBlock* pMngObj, HRESULT &hr );
     };
 }
 #endif  //_SMO_INFERENCEENGINE_SMO_H_

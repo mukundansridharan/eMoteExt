@@ -13,8 +13,7 @@
 #include <TinyCLR_Interop.h>
 struct Library_SMO_InferenceEngine_SMO
 {
-    TINYCLR_NATIVE_DECLARE(predictCount___R4__SZARRAY_R4);
-    TINYCLR_NATIVE_DECLARE(predictClass___R8__SZARRAY_R4);
+    TINYCLR_NATIVE_DECLARE(runEMITest___VOID);
 
     //--//
 

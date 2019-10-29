@@ -12,15 +12,14 @@
 
 static const CLR_RT_MethodHandler method_lookup[] =
 {
-    Library_SMO_InferenceEngine_SMO::predictCount___R4__SZARRAY_R4,
-    Library_SMO_InferenceEngine_SMO::predictClass___R8__SZARRAY_R4,
+    Library_SMO_InferenceEngine_SMO::runEMITest___VOID,
     NULL,
 };
 
 const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_SMO =
 {
     "SMO", 
-    0xE13A6706,
+    0x0C6E078B,
     method_lookup
 };
 
