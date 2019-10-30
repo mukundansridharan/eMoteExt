@@ -264,7 +264,8 @@ void run_test(){
 	hal_printf("Test complete.");
 #endif
 }
-
-/*int main(){
+#ifndef MOTE
+int main(){
 	run_test();
-}*/
+}
+#endif
