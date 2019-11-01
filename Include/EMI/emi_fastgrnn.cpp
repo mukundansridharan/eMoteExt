@@ -1,6 +1,9 @@
 #ifdef MOTE_PROFILE
 #define MOTE
 #include <tinyhal.h>
+#endif
+
+#ifdef MOTE
 #undef DBG
 #endif
 
@@ -19,9 +22,6 @@ using namespace std;
 
 #define min(a,b) ((b)>(a))?a:b
 #define max(a,b) ((a)>(b))?a:b
-
-#define UPDATE_NL quantTanh
-#define GATE_NL quantSigm
 
 ll out_wRank[wRank] = {0};
 ll out_uRank[uRank] = {0};

@@ -24,3 +24,6 @@ static const int hiddenDims = 32;
 static const int timeSteps = 12;
 static const int numInstances = 8;
 static const int numClasses = 2;
+
+#define UPDATE_NL quantTanh
+#define GATE_NL quantSigm
