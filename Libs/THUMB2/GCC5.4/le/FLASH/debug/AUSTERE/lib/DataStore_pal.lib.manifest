@@ -10,7 +10,7 @@
     <Compiler>GCC</Compiler>
     <CompilerVersion>GCC5.4</CompilerVersion>
     <TargetLocation>FLASH</TargetLocation>
-    <MemoryFlavor>FLASH</MemoryFlavor>
+    <MemoryFlavor>flash</MemoryFlavor>
     <Processor>STM32F10x</Processor>
     <TargetPlatform>AUSTERE</TargetPlatform>
     <Codebase>STM32F10x</Codebase>
@@ -18,7 +18,7 @@
     <Company>The Samraksh Company</Company>
     <Copyright>Copyright (C) 2015 Samraksh and Microsoft.</Copyright>
     <FileVersion>4.3.1.0</FileVersion>
-    <Configuration>Debug</Configuration>
+    <Configuration>release</Configuration>
     <Product>Microsoft .NET Micro Framework</Product>
     <Trademark>.NET is a trademark of Microsoft Corporation.</Trademark>
     <HasLibraryCategory>True</HasLibraryCategory>
@@ -42,10 +42,10 @@
 </PropertyGroup>
 
 <ItemGroup>
-    <ObjectFile Include="G:\Mukundan\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\debug\AUSTERE\obj\DeviceCode\pal\Samraksh\DataStore\Datastore.obj" />
-    <ObjectFile Include="G:\Mukundan\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\debug\AUSTERE\obj\DeviceCode\pal\Samraksh\DataStore\AddressTable.obj" />
-    <ObjectFile Include="G:\Mukundan\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\debug\AUSTERE\obj\DeviceCode\pal\Samraksh\DataStore\MyVector.obj" />
-    <ObjectFile Include="G:\Mukundan\Repos\eMote\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\debug\AUSTERE\obj\DeviceCode\pal\Samraksh\DataStore\DatastoreUtil.obj" />
+    <ObjectFile Include="c:\work\DotNet-MF\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\release\AUSTERE\obj\DeviceCode\pal\Samraksh\DataStore\Datastore.obj" />
+    <ObjectFile Include="c:\work\DotNet-MF\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\release\AUSTERE\obj\DeviceCode\pal\Samraksh\DataStore\AddressTable.obj" />
+    <ObjectFile Include="c:\work\DotNet-MF\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\release\AUSTERE\obj\DeviceCode\pal\Samraksh\DataStore\MyVector.obj" />
+    <ObjectFile Include="c:\work\DotNet-MF\MicroFrameworkPK_v4_3\BuildOutput\THUMB2\GCC5.4\le\FLASH\release\AUSTERE\obj\DeviceCode\pal\Samraksh\DataStore\DatastoreUtil.obj" />
 </ItemGroup>
 
 </Project>
