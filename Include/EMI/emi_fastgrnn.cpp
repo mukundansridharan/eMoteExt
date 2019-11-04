@@ -29,8 +29,13 @@ using namespace std;
 	ofstream outfile;
 #endif
 
-// Copy uint into ll array
+// Copy utils
 inline void copyUIntVecToLL(uint* invec, ll* outvec, int vec_len)
+{
+	copy(invec,invec+vec_len, outvec);
+}
+
+inline void copyUShortVecToUInt(ushort* invec, uint* outvec, int vec_len)
 {
 	copy(invec,invec+vec_len, outvec);
 }
@@ -109,6 +114,13 @@ void util_printMatrix(uint* mat, int row_len, int col_len){
 	cout << "\n\n";
 }
 #endif
+
+// Extract instance
+void extract_instance(uint* src, uint*dst, int row_start, int row_end, int vec_len){
+	for(int t=0, k=row_start * vec_len; k < row_end * vec_len; t++, k++)
+		*(dst+t) = *(src + k);
+}
+
 // Matrix slice utils
 void util_slice2D(uint* src, uint*dst, int row_index, int vec_len){
 	for(int j=0; j < vec_len; j++)
@@ -133,103 +145,129 @@ string strBuild(ll i, char delim)
 }
 #endif
 
-void emi_rnn(uint* test_input){
+inline void emi_rnn(uint* test_input){	
 	ll h[hiddenDims] = {0};
 	ll out_wRank[wRank] = {0};
 	ll out_uRank[uRank] = {0};
 	ll out_hiddenDims[hiddenDims] = {0};
 	ll out_numClasses[numClasses] = {0};
-	
-		for(int t=0; t<timeSteps; t++){
+	for(int t=0; t<timeSteps; t++){
 #ifdef MOTE_PROFILE
-			// Profile latency per timestep			
-			//hal_printf("b");
-			CPU_GPIO_SetPinState(0, true);
+		// Profile latency per timestep			
+		//hal_printf("b");
+		CPU_GPIO_SetPinState(0, true);
 #endif
-			uint x_int[inputDims] = {0};
-			util_slice2D(test_input, x_int, t, inputDims);
-	
-			ll x[8] = {};
-	
-			copyUIntVecToLL(x_int, x, inputDims);
+		uint x_int[inputDims] = {0};
+		util_slice2D(test_input, x_int, t, inputDims);
+
+		ll x[8] = {};
+
+		copyUIntVecToLL(x_int, x, inputDims);
 #ifdef DBG
-			cout << "Current input array in ll" << endl;
-			util_printVec(x, inputDims);
+		cout << "Current input array in ll" << endl;
+		util_printVec(x, inputDims);
 #endif	
-			stdScaleInput(x, inputDims, x);
+		stdScaleInput(x, inputDims, x);
 #ifdef DBG	
-			cout << "Post-standardization input" << endl;
-			util_printVec(x, inputDims);
+		cout << "Post-standardization input" << endl;
+		util_printVec(x, inputDims);
 #endif	
-			// Precompute
-			ll pre[hiddenDims] = {0};
-			mulMatVec((ll*)qW1_transp_l, x, wRank, inputDims, out_wRank);
-			mulMatVec((ll*)qW2_transp_l, out_wRank, hiddenDims, wRank, pre);
-	
-			mulMatVec((ll*)qU1_transp_l, h, uRank, hiddenDims, out_uRank);
-			mulMatVec((ll*)qU2_transp_l, out_uRank, hiddenDims, uRank, out_hiddenDims);
-	
-			addVecs(pre, out_hiddenDims, hiddenDims, pre);
-	
-			divVecScal(pre, q_l, hiddenDims, pre);
+		// Precompute
+		ll pre[hiddenDims] = {0};
+		mulMatVec((ll*)qW1_transp_l, x, wRank, inputDims, out_wRank);
+		mulMatVec((ll*)qW2_transp_l, out_wRank, hiddenDims, wRank, pre);
+
+		mulMatVec((ll*)qU1_transp_l, h, uRank, hiddenDims, out_uRank);
+		mulMatVec((ll*)qU2_transp_l, out_uRank, hiddenDims, uRank, out_hiddenDims);
+
+		addVecs(pre, out_hiddenDims, hiddenDims, pre);
+
+		divVecScal(pre, q_l, hiddenDims, pre);
 
 #ifdef DBG
-			cout << "Pre at t=" << t << endl;
-			util_printVec(pre, hiddenDims);
+		cout << "Pre at t=" << t << endl;
+		util_printVec(pre, hiddenDims);
 #endif
-	
-			// Create h_, z
-			ll h_[hiddenDims] = {0};
-			ll z[hiddenDims] = {0};
-	
-			addVecs(pre, (ll*)qB_h_l, hiddenDims, h_);
-			addVecs(pre, (ll*)qB_g_l, hiddenDims, z);
-	
-			UPDATE_NL(h_, hiddenDims, q_times_I_l, h_);
-			divVecScal(h_, q_l, hiddenDims, h_);
-	
-			GATE_NL(z, hiddenDims, q_times_I_l, z);
-			divVecScal(z, q_l, hiddenDims, z);
+
+		// Create h_, z
+		ll h_[hiddenDims] = {0};
+		ll z[hiddenDims] = {0};
+
+		addVecs(pre, (ll*)qB_h_l, hiddenDims, h_);
+		addVecs(pre, (ll*)qB_g_l, hiddenDims, z);
+
+		UPDATE_NL(h_, hiddenDims, q_times_I_l, h_);
+		divVecScal(h_, q_l, hiddenDims, h_);
+
+		GATE_NL(z, hiddenDims, q_times_I_l, z);
+		divVecScal(z, q_l, hiddenDims, z);
 #ifdef DBG
-			cout << "h_ at t=" << t << endl;
-			util_printVec(h_, hiddenDims);
-	
-			cout << "z at t=" << t << endl;
-			util_printVec(z, hiddenDims);
+		cout << "h_ at t=" << t << endl;
+		util_printVec(h_, hiddenDims);
+
+		cout << "z at t=" << t << endl;
+		util_printVec(z, hiddenDims);
 #endif
-			// Create new h
-			mulVecs(z, h, hiddenDims, h);
-	
-			subVecs((ll*)I_l_vec, z, hiddenDims, out_hiddenDims);
-			mulVecs(out_hiddenDims, h_, hiddenDims, out_hiddenDims);
-	
-			addVecs(h, out_hiddenDims, hiddenDims, h);
-			divVecScal(h, I_l, hiddenDims, h);
+		// Create new h
+		mulVecs(z, h, hiddenDims, h);
+
+		subVecs((ll*)I_l_vec, z, hiddenDims, out_hiddenDims);
+		mulVecs(out_hiddenDims, h_, hiddenDims, out_hiddenDims);
+
+		addVecs(h, out_hiddenDims, hiddenDims, h);
+		divVecScal(h, I_l, hiddenDims, h);
 #ifdef MOTE_PROFILE
-			//hal_printf("e");
-			CPU_GPIO_SetPinState(0, false);
+		//hal_printf("e");
+		CPU_GPIO_SetPinState(0, false);
 #endif
 #ifdef DBG
-			cout << "h at t=" << t << endl;
-			util_printVec(h, hiddenDims);
+		cout << "h at t=" << t << endl;
+		util_printVec(h, hiddenDims);
 #endif
-		}
-	
-		// Classify
-		mulMatVec((ll*)qFC_Weight_l, h, numClasses, hiddenDims, out_numClasses);
-		addVecs(out_numClasses, (ll*)qFC_Bias_l, numClasses, out_numClasses);
+	}
+
+	// Classify
+	mulMatVec((ll*)qFC_Weight_l, h, numClasses, hiddenDims, out_numClasses);
+	addVecs(out_numClasses, (ll*)qFC_Bias_l, numClasses, out_numClasses);
 #ifdef DBG
-		cout << "Classification output:" << endl;
-		util_printVec(out_numClasses, numClasses);
+	cout << "Classification output:" << endl;
+	util_printVec(out_numClasses, numClasses);
+#endif
+#ifdef MOTE
+	if(out_numClasses[0]>out_numClasses[1])
+		hal_printf("N");
+	else
+		hal_printf("T");
 #endif
 #ifndef MOTE
-		//Print decision to csv file
-		string outstr;
-		for(int c = 0; c < numClasses -1 ; c++)
-			outstr += strBuild(out_numClasses[c], ',');
-		outstr += strBuild(out_numClasses[numClasses -1], '\n');
-		outfile << outstr;
+	//Print decision to csv file
+	string outstr;
+	for(int c = 0; c < numClasses -1 ; c++)
+		outstr += strBuild(out_numClasses[c], ',');
+	outstr += strBuild(out_numClasses[numClasses -1], '\n');
+	outfile << outstr;
 #endif
+}
+
+void emi_driver(uint* data){
+	// Reshape data
+	//int (&data2D)[orig_num_steps][inputDims] = *reinterpret_cast<int (*)[orig_num_steps][inputDims]>(&data);
+	
+	// Create instances and run EMI
+	for(int start = 0, i=0; i<numInstances; start += instStride, i++){
+		int end;
+		if(i==numInstances-1)
+			// Correction for last iteration
+			end = orig_num_steps;
+		else
+			end = start + timeSteps;
+
+		uint next_inst[timeSteps][inputDims] = {0};
+		extract_instance(data, (uint*)next_inst, start, end, inputDims);
+		
+		// Call emi_rnn
+		emi_rnn((uint*)next_inst);
+	}
 }
 
 void run_test(){

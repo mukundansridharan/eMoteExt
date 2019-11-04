@@ -14,6 +14,7 @@
 struct Library_SMO_InferenceEngine_SMO
 {
     TINYCLR_NATIVE_DECLARE(runEMITest___VOID);
+    TINYCLR_NATIVE_DECLARE(EMIDriver___VOID__SZARRAY_U4);
 
     //--//
 

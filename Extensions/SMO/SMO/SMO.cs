@@ -14,5 +14,8 @@ namespace InferenceEngine
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         extern public void runEMITest();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        extern public void EMIDriver(uint[] bagData);
     }
 }

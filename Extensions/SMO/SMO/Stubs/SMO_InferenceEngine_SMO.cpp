@@ -19,6 +19,12 @@ using namespace InferenceEngine;
 
 void SMO::runEMITest( CLR_RT_HeapBlock* pMngObj, HRESULT &hr )
 {
-	run_test(); 
+	run_test();
+}
+
+void SMO::EMIDriver( CLR_RT_HeapBlock* pMngObj, CLR_RT_TypedArray_UINT32 param0, HRESULT &hr )
+{
+	// Call EMI driver
+	emi_driver(param0.GetBuffer());
 }
 

@@ -26,3 +26,20 @@ HRESULT Library_SMO_InferenceEngine_SMO::runEMITest___VOID( CLR_RT_StackFrame& s
     }
     TINYCLR_NOCLEANUP();
 }
+
+HRESULT Library_SMO_InferenceEngine_SMO::EMIDriver___VOID__SZARRAY_U4( CLR_RT_StackFrame& stack )
+{
+    TINYCLR_HEADER(); hr = S_OK;
+    {
+        CLR_RT_HeapBlock* pMngObj = Interop_Marshal_RetrieveManagedObject( stack );
+
+        FAULT_ON_NULL(pMngObj);
+
+        CLR_RT_TypedArray_UINT32 param0;
+        TINYCLR_CHECK_HRESULT( Interop_Marshal_UINT32_ARRAY( stack, 1, param0 ) );
+
+        SMO::EMIDriver( pMngObj,  param0, hr );
+        TINYCLR_CHECK_HRESULT( hr );
+    }
+    TINYCLR_NOCLEANUP();
+}

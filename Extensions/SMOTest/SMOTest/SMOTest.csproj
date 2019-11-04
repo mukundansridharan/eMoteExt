@@ -39,7 +39,8 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Native" />
-    <Reference Include="SMO">
+    <Reference Include="SMO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SMO\SMO\bin\Debug\SMO.dll</HintPath>
     </Reference>
   </ItemGroup>

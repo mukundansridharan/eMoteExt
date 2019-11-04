@@ -24,6 +24,9 @@ static const int hiddenDims = 32;
 static const int timeSteps = 12;
 static const int numInstances = 8;
 static const int numClasses = 2;
+static const int numSamplesInBag = 512;
+static const int instStride = 8;
+static const int orig_num_steps = numSamplesInBag/inputDims;
 
 #define UPDATE_NL quantTanh
 #define GATE_NL quantSigm
