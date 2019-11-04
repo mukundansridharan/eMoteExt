@@ -23,10 +23,11 @@ using namespace std;
 #define min(a,b) ((b)>(a))?a:b
 #define max(a,b) ((a)>(b))?a:b
 
-ll out_wRank[wRank] = {0};
-ll out_uRank[uRank] = {0};
-ll out_hiddenDims[hiddenDims] = {0};
-ll out_numClasses[numClasses] = {0};
+// initialize outfile if running on PC
+#ifndef MOTE
+	// Initialize output file
+	ofstream outfile;
+#endif
 
 // Copy uint into ll array
 inline void copyUIntVecToLL(uint* invec, ll* outvec, int vec_len)
@@ -131,37 +132,13 @@ string strBuild(ll i, char delim)
     return s;
 }
 #endif
-void run_test(){
-	int size = sizeof(qW1_transp_l) + sizeof(qFC_Bias_l) + sizeof(qW2_transp_l) + sizeof(qU2_transp_l) + sizeof(qFC_Weight_l) + sizeof(qU1_transp_l) + sizeof(qB_g_l) + sizeof(qB_h_l) + sizeof(q_l) + sizeof(I_l) + sizeof(mean_l) + sizeof(stdev_l) + sizeof(I_l_vec) + sizeof(q_times_I_l);
-	
-#ifdef DBG
-	cout << "Model size: " << size/1000 << " KB" << endl << endl;
-#endif
-#ifdef MOTE_PROFILE
-	CPU_GPIO_EnableOutputPin(0, false); //J11-3
-	CPU_GPIO_EnableOutputPin(1, false); //J11-4
-#endif
-#ifndef MOTE
-	// Initialize output file
-	ofstream outfile;
-	outfile.open("out_c++.csv");
-#endif
-	for(int d=0; d < numData; d ++)
-	{
-		uint test_input[timeSteps][inputDims] = {0};
-		util_slice3D((uint*) test_inputs, (uint*) test_input, d, timeSteps, inputDims);
 
-#ifdef MOTE_PROFILE
-		// Profile latency per bag (second in V1)
-		if(d%numInstances==0)
-			CPU_GPIO_SetPinState(1, true);
-#endif		
-
-#ifdef DBG
-		util_printMatrix((uint*) test_input, timeSteps, inputDims);
-#endif
-
-		ll h[hiddenDims] = {0};
+void emi_rnn(uint* test_input){
+	ll h[hiddenDims] = {0};
+	ll out_wRank[wRank] = {0};
+	ll out_uRank[uRank] = {0};
+	ll out_hiddenDims[hiddenDims] = {0};
+	ll out_numClasses[numClasses] = {0};
 	
 		for(int t=0; t<timeSteps; t++){
 #ifdef MOTE_PROFILE
@@ -170,7 +147,7 @@ void run_test(){
 			CPU_GPIO_SetPinState(0, true);
 #endif
 			uint x_int[inputDims] = {0};
-			util_slice2D((uint*)test_input, x_int, t, inputDims);
+			util_slice2D(test_input, x_int, t, inputDims);
 	
 			ll x[8] = {};
 	
@@ -245,10 +222,6 @@ void run_test(){
 		cout << "Classification output:" << endl;
 		util_printVec(out_numClasses, numClasses);
 #endif
-#ifdef MOTE_PROFILE
-		if(d%numInstances==numInstances-1)
-			CPU_GPIO_SetPinState(1, false);
-#endif
 #ifndef MOTE
 		//Print decision to csv file
 		string outstr;
@@ -256,6 +229,43 @@ void run_test(){
 			outstr += strBuild(out_numClasses[c], ',');
 		outstr += strBuild(out_numClasses[numClasses -1], '\n');
 		outfile << outstr;
+#endif
+}
+
+void run_test(){
+	int size = sizeof(qW1_transp_l) + sizeof(qFC_Bias_l) + sizeof(qW2_transp_l) + sizeof(qU2_transp_l) + sizeof(qFC_Weight_l) + sizeof(qU1_transp_l) + sizeof(qB_g_l) + sizeof(qB_h_l) + sizeof(q_l) + sizeof(I_l) + sizeof(mean_l) + sizeof(stdev_l) + sizeof(I_l_vec) + sizeof(q_times_I_l);
+	
+#ifdef DBG
+	cout << "Model size: " << size/1000 << " KB" << endl << endl;
+#endif
+#ifdef MOTE_PROFILE
+	CPU_GPIO_EnableOutputPin(0, false); //J11-3
+	CPU_GPIO_EnableOutputPin(1, false); //J11-4
+#endif
+#ifndef MOTE
+	// Initialize output file
+	outfile.open("out_c++.csv");
+#endif
+	for(int d=0; d < numData; d ++)
+	{
+		uint test_input[timeSteps][inputDims] = {0};
+		util_slice3D((uint*) test_inputs, (uint*) test_input, d, timeSteps, inputDims);
+
+#ifdef MOTE_PROFILE
+		// Profile latency per bag (second in V1)
+		if(d%numInstances==0)
+			CPU_GPIO_SetPinState(1, true);
+#endif
+
+#ifdef DBG
+		util_printMatrix((uint*) test_input, timeSteps, inputDims);
+#endif
+		// Call emi_rnn
+		emi_rnn((uint*)test_input);
+
+#ifdef MOTE_PROFILE
+		if(d%numInstances==numInstances-1)
+			CPU_GPIO_SetPinState(1, false);
 #endif
 	}
 #ifndef MOTE
