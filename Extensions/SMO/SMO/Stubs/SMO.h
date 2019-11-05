@@ -11,10 +11,19 @@
 #define _SMO_H_
 
 #include <TinyCLR_Interop.h>
-struct Library_SMO_InferenceEngine_SMO
+struct Library_SMO_InferenceEngine_EMI
 {
     TINYCLR_NATIVE_DECLARE(runEMITest___VOID);
-    TINYCLR_NATIVE_DECLARE(EMIDriver___VOID__SZARRAY_U4);
+    TINYCLR_NATIVE_DECLARE(EMIDriver___BOOLEAN__SZARRAY_U4);
+
+    //--//
+
+};
+
+struct Library_SMO_InferenceEngine_FastGRNN
+{
+    TINYCLR_NATIVE_DECLARE(runFastGRNNTest___VOID);
+    TINYCLR_NATIVE_DECLARE(FastGRNNDriver___BOOLEAN__SZARRAY_U4);
 
     //--//
 

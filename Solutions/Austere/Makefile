@@ -30,7 +30,7 @@ MISCTOOLS=../../Tools
 
 #####This is the library you are adding, it will create a library by name "ext.lib"####
 DLLDIR=../../Extensions/SMO/SMO/Stubs
-DLLOBJS=$(DLLDIR)/SMO.obj $(DLLDIR)/SMO_InferenceEngine_SMO.obj $(DLLDIR)/SMO_InferenceEngine_SMO_mshl.obj
+DLLOBJS=$(DLLDIR)/SMO.obj $(DLLDIR)/SMO_InferenceEngine_EMI.obj $(DLLDIR)/SMO_InferenceEngine_EMI_mshl.obj $(DLLDIR)/SMO_InferenceEngine_FastGRNN.obj $(DLLDIR)/SMO_InferenceEngine_FastGRNN_mshl.obj
 
 
 all: binary 

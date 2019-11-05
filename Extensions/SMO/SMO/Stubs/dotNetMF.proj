@@ -10,9 +10,12 @@
 <ItemGroup>
 <HFile Include="SMO.h" />
 <Compile Include="SMO.cpp" />
-<Compile Include="SMO_InferenceEngine_SMO_mshl.cpp" />
-<HFile Include="SMO_InferenceEngine_SMO.h" />
-<Compile Include="SMO_InferenceEngine_SMO.cpp" />
+<Compile Include="SMO_InferenceEngine_EMI_mshl.cpp" />
+<HFile Include="SMO_InferenceEngine_EMI.h" />
+<Compile Include="SMO_InferenceEngine_EMI.cpp" />
+<Compile Include="SMO_InferenceEngine_FastGRNN_mshl.cpp" />
+<HFile Include="SMO_InferenceEngine_FastGRNN.h" />
+<Compile Include="SMO_InferenceEngine_FastGRNN.cpp" />
 </ItemGroup>
 <Import Project="$(SPOCLIENT)\tools\targets\Microsoft.SPOT.System.Targets" />
 </Project>

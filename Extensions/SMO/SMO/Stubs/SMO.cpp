@@ -12,15 +12,18 @@
 
 static const CLR_RT_MethodHandler method_lookup[] =
 {
-    Library_SMO_InferenceEngine_SMO::runEMITest___VOID,
-    Library_SMO_InferenceEngine_SMO::EMIDriver___VOID__SZARRAY_U4,
+    Library_SMO_InferenceEngine_EMI::runEMITest___VOID,
+    Library_SMO_InferenceEngine_EMI::EMIDriver___BOOLEAN__SZARRAY_U4,
+    NULL,
+    Library_SMO_InferenceEngine_FastGRNN::runFastGRNNTest___VOID,
+    Library_SMO_InferenceEngine_FastGRNN::FastGRNNDriver___BOOLEAN__SZARRAY_U4,
     NULL,
 };
 
 const CLR_RT_NativeAssemblyData g_CLR_AssemblyNative_SMO =
 {
     "SMO", 
-    0x4F4F118A,
+    0x16B9893B,
     method_lookup
 };
 
