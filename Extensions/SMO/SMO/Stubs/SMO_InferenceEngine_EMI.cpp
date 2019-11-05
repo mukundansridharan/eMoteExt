@@ -19,7 +19,7 @@ using namespace InferenceEngine;
 
 void EMI::runEMITest( CLR_RT_HeapBlock* pMngObj, HRESULT &hr )
 {
-	run_test();
+	run_test_lower();
 }
 
 INT8 EMI::EMIDriver( CLR_RT_HeapBlock* pMngObj, CLR_RT_TypedArray_UINT32 param0, HRESULT &hr )

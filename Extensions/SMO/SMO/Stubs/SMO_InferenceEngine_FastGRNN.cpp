@@ -19,7 +19,7 @@ using namespace InferenceEngine;
 
 void FastGRNN::runFastGRNNTest( CLR_RT_HeapBlock* pMngObj, HRESULT &hr )
 {
-	run_test();
+	run_test_upper();
 }
 
 INT8 FastGRNN::FastGRNNDriver( CLR_RT_HeapBlock* pMngObj, CLR_RT_TypedArray_UINT32 param0, HRESULT &hr )

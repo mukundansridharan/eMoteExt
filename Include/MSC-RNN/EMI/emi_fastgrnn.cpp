@@ -161,7 +161,7 @@ bool emi_driver(uint* data){
 	return false;
 }
 
-void run_test(){
+void run_test_lower(){
 	int size = sizeof(qW1_transp_l) + sizeof(qFC_Bias_l) + sizeof(qW2_transp_l) + sizeof(qU2_transp_l) + sizeof(qFC_Weight_l) + sizeof(qU1_transp_l) + sizeof(qB_g_l) + sizeof(qB_h_l) + sizeof(q_l) + sizeof(I_l) + sizeof(mean_l) + sizeof(stdev_l) + sizeof(I_l_vec) + sizeof(q_times_I_l);
 	
 #ifndef MOTE
@@ -200,11 +200,11 @@ void run_test(){
 #ifndef MOTE
 	outfile.close();
 #else
-	hal_printf("Test complete.");
+	hal_printf("Test complete (lower).\n");
 #endif
 }
 #ifndef MOTE
 int main(){
-	run_test();
+	run_test_lower();
 }
 #endif

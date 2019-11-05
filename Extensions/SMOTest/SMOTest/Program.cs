@@ -12,12 +12,12 @@ namespace SMOTest
             Debug.Print("Connect Logic Analyzer. Sleeping for 5 seconds");
             Thread.Sleep(5000);
             // EMI test
-            Debug.Print("Running lower tier test...");
-            EMI emitest = new EMI();
-            emitest.runEMITest();
-            Thread.Sleep(2000);
+            //Debug.Print("Running lower tier test...");
+            //EMI emitest = new EMI();
+            //emitest.runEMITest();
+            //Thread.Sleep(2000);
             // FastGRNN test
-            Debug.Print("Running uppertier test...");
+            Debug.Print("Running upper tier test...");
             FastGRNN fgrnntest = new FastGRNN();
             fgrnntest.runFastGRNNTest();
         }

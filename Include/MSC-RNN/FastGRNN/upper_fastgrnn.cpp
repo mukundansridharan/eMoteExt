@@ -149,7 +149,7 @@ bool fastgrnn_driver(uint* data){
 		return false;
 }
 
-void run_test(){
+void run_test_upper(){
 	int size = sizeof(qW1_transp_u) + sizeof(qFC_Bias_u) + sizeof(qW2_transp_u) + sizeof(qU2_transp_u) + sizeof(qFC_Weight_u) + sizeof(qU1_transp_u) + sizeof(qB_g_u) + sizeof(qB_h_u) + sizeof(q_u) + sizeof(I_u) + sizeof(mean_u) + sizeof(stdev_u) + sizeof(I_u_vec) + sizeof(q_times_I_u) + sizeof(I_squared_times_nu_u_vec) + sizeof(I_times_zeta_u);
 	
 #ifndef MOTE
@@ -186,11 +186,11 @@ void run_test(){
 #ifndef MOTE
 	outfile.close();
 #else
-	hal_printf("Test complete.");
+	hal_printf("Test complete (upper tier).\n");
 #endif
 }
 #ifndef MOTE
 int main(){
-	run_test();
+	run_test_upper();
 }
 #endif
