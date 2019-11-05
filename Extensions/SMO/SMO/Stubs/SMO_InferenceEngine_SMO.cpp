@@ -22,9 +22,17 @@ void SMO::runEMITest( CLR_RT_HeapBlock* pMngObj, HRESULT &hr )
 	run_test();
 }
 
+int num_disp = 0;
+
 void SMO::EMIDriver( CLR_RT_HeapBlock* pMngObj, CLR_RT_TypedArray_UINT32 param0, HRESULT &hr )
 {
 	// Call EMI driver
-	emi_driver(param0.GetBuffer());
+	bool bag_dec = emi_driver(param0.GetBuffer());
+
+	// Print aggregated bag-level decision
+	if(bag_dec)
+		hal_printf("\nDisplacement %d\n", num_disp++);
+	//else
+	//	hal_printf("\nN\n");
 }
 

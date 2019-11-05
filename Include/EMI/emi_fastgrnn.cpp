@@ -145,7 +145,7 @@ string strBuild(ll i, char delim)
 }
 #endif
 
-inline void emi_rnn(uint* test_input){	
+inline int emi_rnn(uint* test_input){	
 	ll h[hiddenDims] = {0};
 	ll out_wRank[wRank] = {0};
 	ll out_uRank[uRank] = {0};
@@ -235,9 +235,9 @@ inline void emi_rnn(uint* test_input){
 #endif
 #ifdef MOTE
 	if(out_numClasses[0]>out_numClasses[1])
-		hal_printf("N");
+		return 0;
 	else
-		hal_printf("T");
+		return 1;
 #endif
 #ifndef MOTE
 	//Print decision to csv file
@@ -249,10 +249,11 @@ inline void emi_rnn(uint* test_input){
 #endif
 }
 
-void emi_driver(uint* data){
+bool emi_driver(uint* data){
 	// Reshape data
 	//int (&data2D)[orig_num_steps][inputDims] = *reinterpret_cast<int (*)[orig_num_steps][inputDims]>(&data);
-	
+	int maxconsectargets = 0;
+	bool detect_in_bag = false;
 	// Create instances and run EMI
 	for(int start = 0, i=0; i<numInstances; start += instStride, i++){
 		int end;
@@ -266,8 +267,17 @@ void emi_driver(uint* data){
 		extract_instance(data, (uint*)next_inst, start, end, inputDims);
 		
 		// Call emi_rnn
-		emi_rnn((uint*)next_inst);
+		int inst_dec = emi_rnn((uint*)next_inst);
+		//hal_printf("%d", inst_dec);
+		// Bag-level detection logic
+		if(inst_dec==0)
+			maxconsectargets = 0;
+		else
+			maxconsectargets++;
+		if(maxconsectargets>=k)
+			return true;
 	}
+	return false;
 }
 
 void run_test(){

@@ -27,6 +27,7 @@ static const int numClasses = 2;
 static const int numSamplesInBag = 512;
 static const int instStride = 8;
 static const int orig_num_steps = numSamplesInBag/inputDims;
+static const int k = 6;
 
 #define UPDATE_NL quantTanh
 #define GATE_NL quantSigm
