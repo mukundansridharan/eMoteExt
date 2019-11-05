@@ -15,7 +15,7 @@ namespace SMOTest
             Debug.Print("Running lower tier test...");
             EMI emitest = new EMI();
             emitest.runEMITest();
-            Thread.Sleep(2000);
+            Thread.Sleep(500);
             // FastGRNN test
             Debug.Print("Running upper tier test...");
             FastGRNN fgrnntest = new FastGRNN();
