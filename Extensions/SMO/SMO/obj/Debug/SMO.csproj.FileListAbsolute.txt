@@ -1,0 +1,16 @@
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\le\SMO.dll
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\be\SMO.dll
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\le\SMO.pdb
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\be\SMO.pdb
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\SMO.dll
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\SMO.pdb
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\le\SMO.pe
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\le\SMO.pdbx
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\be\SMO.pe
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\be\SMO.pdbx
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\obj\Debug\be\SMO.pe
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\obj\Debug\be\SMO.pdbx
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\obj\Debug\le\SMO.pe
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\obj\Debug\le\SMO.pdbx
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\obj\Debug\SMO.dll
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\obj\Debug\SMO.pdb
