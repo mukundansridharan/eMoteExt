@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <FeatureName>SMO</FeatureName>
-    <Guid>{ef814e46-0e13-4da2-b8c1-8128abc88edd}</Guid>
+    <Guid>{4b10614f-35e5-4f12-b399-07123a119aa7}</Guid>
     <Description>&lt;Add Feature Description Here&gt;</Description>
     <Groups />
     <SMO_FEATUREPROJ>True</SMO_FEATUREPROJ>

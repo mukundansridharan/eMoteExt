@@ -28,12 +28,18 @@ using namespace std;
 	ofstream outfile;
 #endif
 
-inline int upper_fastgrnn(uint* test_input){	
-	ll h[hiddenDims_u] = {0};
-	ll out_wRank_u[wRank_u] = {0};
-	ll out_uRank_u[uRank_u] = {0};
-	ll out_hiddenDims_u[hiddenDims_u] = {0};
-	ll out_numClasses_u[numClasses_u] = {0};
+//static ll h[hiddenDims_u] = {0};
+static ll out_wRank_u[wRank_u] = {0};
+static ll out_uRank_u[uRank_u] = {0};
+static ll out_hiddenDims_u[hiddenDims_u] = {0};
+static ll out_numClasses_u[numClasses_u] = {0};
+static ll x[inputDims_u] = {0};
+static ll pre[hiddenDims_u] = {0};
+static ll h_[hiddenDims_u] = {0};
+static ll z[hiddenDims_u] = {0};
+
+inline int upper_fastgrnn(uint* test_input){
+	ll h[hiddenDims_u] = {0};	
 	for(int t=0; t<timeSteps_u; t++){
 #ifdef MOTE_PROFILE
 		// Profile latency per timestep			
@@ -42,8 +48,6 @@ inline int upper_fastgrnn(uint* test_input){
 #endif
 		uint x_int[inputDims_u] = {0};
 		util_slice2D(test_input, x_int, t, inputDims_u);
-
-		ll x[inputDims_u] = {};
 
 		copyUIntVecToLL(x_int, x, inputDims_u);
 #ifdef DBG
@@ -56,7 +60,6 @@ inline int upper_fastgrnn(uint* test_input){
 		util_printVec(x, inputDims_u);
 #endif	
 		// Precompute
-		ll pre[hiddenDims_u] = {0};
 		mulMatVec((ll*)qW1_transp_u, x, wRank_u, inputDims_u, out_wRank_u);
 		mulMatVec((ll*)qW2_transp_u, out_wRank_u, hiddenDims_u, wRank_u, pre);
 
@@ -73,9 +76,6 @@ inline int upper_fastgrnn(uint* test_input){
 #endif
 
 		// Create h_, z
-		ll h_[hiddenDims_u] = {0};
-		ll z[hiddenDims_u] = {0};
-
 		addVecs(pre, (ll*)qB_h_u, hiddenDims_u, h_);
 		addVecs(pre, (ll*)qB_g_u, hiddenDims_u, z);
 
@@ -149,6 +149,8 @@ bool fastgrnn_driver(uint* data){
 		return false;
 }
 
+static uint test_input[timeSteps_u][inputDims_u] = {0};
+
 void run_test_upper(){
 	int size = sizeof(qW1_transp_u) + sizeof(qFC_Bias_u) + sizeof(qW2_transp_u) + sizeof(qU2_transp_u) + sizeof(qFC_Weight_u) + sizeof(qU1_transp_u) + sizeof(qB_g_u) + sizeof(qB_h_u) + sizeof(q_u) + sizeof(I_u) + sizeof(mean_u) + sizeof(stdev_u) + sizeof(I_u_vec) + sizeof(q_times_I_u) + sizeof(I_squared_times_nu_u_vec) + sizeof(I_times_zeta_u);
 	
@@ -165,7 +167,6 @@ void run_test_upper(){
 #endif
 	for(int d=0; d < numData_u; d ++)
 	{
-		uint test_input[timeSteps_u][inputDims_u] = {0};
 		util_slice3D((uint*) test_inputs_u, (uint*) test_input, d, timeSteps_u, inputDims_u);
 
 #ifdef MOTE_PROFILE

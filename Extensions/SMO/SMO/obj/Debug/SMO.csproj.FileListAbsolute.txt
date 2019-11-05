@@ -8,6 +8,8 @@ C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\le\SMO.pe
 C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\le\SMO.pdbx
 C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\be\SMO.pe
 C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\bin\Debug\be\SMO.pdbx
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\obj\Debug\SMO.csprojResolveAssemblyReference.cache
+C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\obj\Debug\TinyCLR_DebugReferences.cache
 C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\obj\Debug\be\SMO.pe
 C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\obj\Debug\be\SMO.pdbx
 C:\Users\roy17\Documents\eMoteExt\Extensions\SMO\SMO\obj\Debug\le\SMO.pe
