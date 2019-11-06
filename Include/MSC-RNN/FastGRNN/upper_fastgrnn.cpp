@@ -132,11 +132,12 @@ inline int upper_fastgrnn(uint* test_input){
 		return 1;
 }
 
+static uint strided_data[timeSteps_u*inputDims_u];
+
 bool fastgrnn_driver(uint* data){
 	// Reshape data
 	//int (&data2D)[orig_num_steps][inputDims_u] = *reinterpret_cast<int (*)[orig_num_steps][inputDims_u]>(&data);
 
-	uint strided_data[timeSteps_u*inputDims_u];
 	// Create strides
 	for(int dest_index=0, src_index=0, i=0; i<timeSteps_u; dest_index += inputDims_u, src_index += stride_u, i++)
 		copy(data + src_index, data + src_index + inputDims_u, strided_data + dest_index);
