@@ -151,13 +151,14 @@ bool emi_driver(uint* data){
 		int inst_dec = emi_rnn((uint*)next_inst);
 		//hal_printf("%d", inst_dec);
 		// Bag-level detection logic
-		if(inst_dec==0)
-			maxconsectargets = 0;
-		else
+		if(inst_dec==1)
 			maxconsectargets++;
-		if(maxconsectargets>=k)
+		if(maxconsectargets==numInstances){
+			//hal_printf("\n");
 			return true;
+		}
 	}
+	//hal_printf("\n");
 	return false;
 }
 

@@ -148,6 +148,7 @@ bool fastgrnn_driver(uint* data){
 		return true;
 	else
 		return false;
+
 }
 
 static uint test_input[timeSteps_u][inputDims_u] = {0};
